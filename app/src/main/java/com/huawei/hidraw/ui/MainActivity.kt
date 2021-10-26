@@ -1,12 +1,44 @@
 package com.huawei.hidraw.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.huawei.hidraw.R
+import com.huawei.hidraw.databinding.ActivityMainBinding
+import com.huawei.hidraw.util.ext.hide
+import com.huawei.hidraw.util.ext.show
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
+    private val navController by lazy { (supportFragmentManager.findFragmentById(R.id.navHostFragmentContainer) as NavHostFragment).navController }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater).also {
+            setContentView(it.root)
+        }
+
+        setupNavigation()
+        setNavDestinationListener()
+    }
+
+
+    private fun setupNavigation() {
+        binding.bottomNavigationView.setupWithNavController(navController)
+    }
+
+    private fun setNavDestinationListener() {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                null -> {
+                    binding.bottomNavigationView.hide()
+                }
+                else -> binding.bottomNavigationView.show()
+            }
+        }
     }
 }
