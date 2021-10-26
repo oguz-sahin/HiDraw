@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HiDraw</string>
+    <string name="connection_error">Check Your Internet Connection.</string>
+    <string name="general_error">Something went Wrong.</string>
 </resources>
