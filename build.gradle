@@ -27,6 +27,7 @@ buildscript {
         circle_image_view_version = "3.1.0"
         legacy_support_version = "1.0.0"
         sdp_version = "1.0.6"
+        lottieVersion = "3.4.0"
         ag_connect_version = "1.5.2.300"
         analytic_kit_version = "6.3.0.303"
         crash_service_version = "1.6.0.300"

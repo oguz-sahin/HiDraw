@@ -121,6 +121,9 @@ dependencies {
     //CircularImageView
     implementation "de.hdodenhof:circleimageview:$circle_image_view_version"
 
+    //Lottie
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
     //Sdp
     implementation "com.intuit.sdp:sdp-android:$sdp_version"
 

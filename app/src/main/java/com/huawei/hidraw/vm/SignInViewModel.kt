@@ -24,6 +24,7 @@ class SignInViewModel @Inject constructor(private val authRepository: AuthReposi
         }
     }
 
+
     fun signIn(result: ActivityResult) {
         viewModelScope.launch {
             if (result.resultCode == Activity.RESULT_OK) {
@@ -38,6 +39,7 @@ class SignInViewModel @Inject constructor(private val authRepository: AuthReposi
             } else {
                 showGeneralError()
             }
+            showLoading()
         }
     }
 

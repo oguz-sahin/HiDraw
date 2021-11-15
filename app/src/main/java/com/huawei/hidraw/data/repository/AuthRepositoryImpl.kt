@@ -1,6 +1,6 @@
 package com.huawei.hidraw.data.repository
 
-import com.huawei.hidraw.data.PrefDataSource
+import com.huawei.hidraw.data.datasource.PrefDataSource
 import com.huawei.hidraw.util.ext.defaultForType
 import javax.inject.Inject
 

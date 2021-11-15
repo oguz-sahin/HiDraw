@@ -1,4 +1,4 @@
-package com.huawei.hidraw.data
+package com.huawei.hidraw.data.datasource
 
 import android.content.SharedPreferences
 import com.huawei.hidraw.util.ext.defaultForType
