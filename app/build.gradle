@@ -17,7 +17,7 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
-
+        buildConfigField "String", "BASE_URL", "\"http://159.138.96.192:8081/\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -90,6 +90,15 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_common_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_viewmodel_version"
 
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+
+    // OkHttp interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttp_interceptor_version"
+
+
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
@@ -114,4 +123,16 @@ dependencies {
 
     //Sdp
     implementation "com.intuit.sdp:sdp-android:$sdp_version"
+
+    //Ag Connect
+    implementation "com.huawei.agconnect:agconnect-core:$ag_connect_version"
+
+    //Analytic Kit
+    implementation "com.huawei.hms:hianalytics:$analytic_kit_version"
+
+    //Crash Service
+    implementation "com.huawei.agconnect:agconnect-crash:$crash_service_version"
+
+    //Account Kit
+    implementation "com.huawei.hms:hwid:$account_service_version"
 }

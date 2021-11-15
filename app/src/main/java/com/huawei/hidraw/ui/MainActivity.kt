@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private val navController by lazy { (supportFragmentManager.findFragmentById(R.id.navHostFragmentContainer) as NavHostFragment).navController }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_HiDraw)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
@@ -34,11 +35,12 @@ class MainActivity : AppCompatActivity() {
     private fun setNavDestinationListener() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                null -> {
+                R.id.signInFragment -> {
                     binding.bottomNavigationView.hide()
                 }
                 else -> binding.bottomNavigationView.show()
             }
         }
     }
+
 }

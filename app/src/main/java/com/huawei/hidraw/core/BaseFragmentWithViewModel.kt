@@ -5,6 +5,7 @@ import android.view.View
 import androidx.viewbinding.ViewBinding
 import com.huawei.hidraw.R
 import com.huawei.hidraw.util.ext.observeEvent
+import com.huawei.hidraw.vm.SignInViewModel
 
 /**
  * Created by Oguz Sahin on 10/26/2021.
