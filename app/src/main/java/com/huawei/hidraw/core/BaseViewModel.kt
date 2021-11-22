@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
+import com.huawei.hidraw.data.model.ErrorResponseModel
 import com.huawei.hidraw.util.Event
 
 /**
@@ -45,6 +46,10 @@ abstract class BaseViewModel : ViewModel() {
     fun showGeneralError() = sendEvent(BaseViewEvent.ShowGeneralError)
 
     fun showConnectionError() = sendEvent(BaseViewEvent.ShowConnectionError)
+
+    fun handleErrorMessage(errorResponseModel: ErrorResponseModel?): String {
+        return errorResponseModel?.result?.msg ?: ""
+    }
 
 
 }

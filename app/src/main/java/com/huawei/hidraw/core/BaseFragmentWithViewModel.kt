@@ -38,7 +38,7 @@ abstract class BaseFragmentWithViewModel<VB : ViewBinding, out VM : BaseViewMode
 
 
     private fun handleLoadingStatus(isLoading: Boolean) {
-        if (isLoading) loadingDialog.show() else loadingDialog.dismiss()
+        if (isLoading) loadingDialog.show() else loadingDialog.cancel()
     }
 
 

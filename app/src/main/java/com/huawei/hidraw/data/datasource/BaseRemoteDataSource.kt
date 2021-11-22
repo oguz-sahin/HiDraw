@@ -66,7 +66,7 @@ open class BaseRemoteDataSource constructor(private val ioDispatcher: CoroutineD
                 Gson().fromJson(it, ErrorResponseModel::class.java)
             }
         } catch (exception: Exception) {
-            null
+            ErrorResponseModel(ErrorModel(throwable.code().toString(), throwable.message()))
         }
     }
 }
