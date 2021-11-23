@@ -5,4 +5,7 @@
     <string name="sign_in_huawei_id">Sign in Huawei ID</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="remaining_time_icon">remaining Time Icon</string>
+    <string name="draw_status_image">draw_status_image</string>
+    <string name="draw_image">draw_image</string>
 </resources>
