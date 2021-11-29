@@ -19,7 +19,7 @@ class SignInViewModel @Inject constructor(private val authRepository: AuthReposi
 
 
     init {
-        if (true) {
+        if (isUserLogged()) {
             navigate(actionSignInFragmentToHomeFragment())
         }
     }

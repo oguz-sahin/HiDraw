@@ -1,6 +1,7 @@
 package com.huawei.hidraw.util
 
 import android.content.Context
+import com.huawei.hidraw.data.model.NoConnectionException
 import com.huawei.hidraw.util.NetworkUtils.isNetworkAvailable
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -20,8 +21,4 @@ class NetworkConnectionInterceptor(private val context: Context) : Interceptor {
         return chain.proceed(builder.build())
     }
 
-    inner class NoConnectionException : IOException() {
-        override val message: String
-            get() = super.message ?: "No Internet Connection"
-    }
 }

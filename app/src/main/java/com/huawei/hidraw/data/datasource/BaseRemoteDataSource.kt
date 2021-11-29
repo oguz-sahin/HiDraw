@@ -2,10 +2,8 @@ package com.huawei.hidraw.data.datasource
 
 import com.google.gson.Gson
 import com.huawei.hidraw.data.ResultWrapper
-import com.huawei.hidraw.data.model.BaseResponseModel
-import com.huawei.hidraw.data.model.ErrorModel
-import com.huawei.hidraw.data.model.ErrorResponseModel
-import com.huawei.hidraw.util.NetworkConnectionInterceptor.NoConnectionException
+import com.huawei.hidraw.data.ResultWrapper.Error
+import com.huawei.hidraw.data.model.*
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
@@ -26,33 +24,14 @@ open class BaseRemoteDataSource constructor(private val ioDispatcher: CoroutineD
 
             } catch (throwable: Throwable) {
                 when (throwable) {
-                    is NoConnectionException -> ResultWrapper.Error(
-                        ErrorResponseModel(
-                            ErrorModel(
-                                msg = "İnternet Bağlantınızı Kontrol Ediniz"
-                            )
-                        )
-                    )
+                    is NoConnectionException -> Error(throwable)
                     is HttpException -> {
                         val errorResponse = convertErrorBody(throwable)
-                        ResultWrapper.Error(errorResponse)
+                        Error(HttpException(errorResponse))
                     }
-
-                    is SocketTimeoutException -> ResultWrapper.Error(
-                        ErrorResponseModel(
-                            ErrorModel(
-                                msg = "Bağlantı Zaman Aşımına Uğradı"
-                            )
-                        )
-                    )
+                    is SocketTimeoutException -> Error(TimeOutException())
                     else -> {
-                        ResultWrapper.Error(
-                            ErrorResponseModel(
-                                ErrorModel(
-                                    msg = "Bir Sorun Oluştu"
-                                )
-                            )
-                        )
+                        Error(GeneralException())
                     }
                 }
             }

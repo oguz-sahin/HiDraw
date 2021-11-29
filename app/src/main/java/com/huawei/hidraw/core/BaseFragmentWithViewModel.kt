@@ -50,11 +50,10 @@ abstract class BaseFragmentWithViewModel<VB : ViewBinding, out VM : BaseViewMode
 
             is BaseViewEvent.ShowError -> showError(event.message)
 
-            is BaseViewEvent.ShowConnectionError -> showError(getString(R.string.connection_error))
-
-            is BaseViewEvent.ShowGeneralError -> showError(getString(R.string.general_error))
+            is BaseViewEvent.ShowErrorWithId -> showError(event.messageId)
 
             is BaseViewEvent.NavigateTo -> navigateDirections(event.directions)
+
         }
     }
 
