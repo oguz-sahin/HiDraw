@@ -8,6 +8,7 @@
     <string name="remaining_time_icon">remaining Time Icon</string>
     <string name="draw_status_image">draw_status_image</string>
     <string name="draw_image">draw_image</string>
-    <string name="attanted_draw">Attanted Draw</string>
+    <string name="attended_draw">Attended Draw</string>
     <string name="created_draw">Created Draw</string>
+    <string name="Winners">Winners</string>
 </resources>

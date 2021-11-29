@@ -44,7 +44,7 @@
             android:singleLine="true"
             android:textColor="@color/black"
             android:textSize="@dimen/title_text_size"
-            app:layout_constraintEnd_toStartOf="@+id/ivDrawStatus"
+            app:layout_constraintEnd_toStartOf="@+id/ivRemainingTime"
             app:layout_constraintStart_toEndOf="@+id/ivUserImage"
             app:layout_constraintTop_toTopOf="@+id/ivUserImage"
             tools:text="Coffee Draw" />
@@ -55,12 +55,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
-            android:ellipsize="end"
-            android:singleLine="true"
             android:textColor="@color/black"
             android:textSize="@dimen/large_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/ivUserImage"
-            app:layout_constraintEnd_toEndOf="@id/glEnd"
             app:layout_constraintStart_toEndOf="@+id/ivUserImage"
             app:layout_constraintTop_toBottomOf="@+id/tvDrawName"
             tools:text="20.12.2021" />

@@ -3,8 +3,6 @@ package com.huawei.hidraw.vm
 import androidx.activity.result.ActivityResult
 import androidx.lifecycle.viewModelScope
 import com.huawei.hidraw.core.BaseViewModel
-import com.huawei.hidraw.data.ResultWrapper
-import com.huawei.hidraw.data.ResultWrapper.Error
 import com.huawei.hidraw.data.model.UserModel
 import com.huawei.hidraw.data.repository.AuthRepository
 import com.huawei.hidraw.ui.signin.SignInFragmentDirections.actionSignInFragmentToHomeFragment
@@ -51,20 +49,14 @@ class SignInViewModel @Inject constructor(private val authRepository: AuthReposi
 
     private fun isUserLogged(): Boolean = authRepository.isUserLogged()
 
+
     private fun register(userModel: UserModel) {
-        viewModelScope.launch {
-            showLoading()
-            when (val response = authRepository.register(userModel)) {
-                is Error -> {
-                    hideLoading()
-                    showError(handleErrorMessage(response.errorResponse))
-                }
-                is ResultWrapper.Success -> {
-                    authRepository.saveUser(userModel)
-                    hideLoading()
-                    showSuccess("Başarılı bir şekilde sign olundu")
-                }
+        makeNetworkRequest(
+            requestFunc = { authRepository.register(userModel) },
+            onSuccess = {
+                authRepository.saveUser(userModel)
+                showSuccess("Başarılı bir şekilde sign olundu")
             }
-        }
+        )
     }
 }
