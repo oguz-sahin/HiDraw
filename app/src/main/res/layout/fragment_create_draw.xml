@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilDrawNames"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:hint="@string/draw_name"
+        app:layout_constraintEnd_toEndOf="@id/guideEnd"
+        app:layout_constraintStart_toStartOf="@id/guideStart"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/ic_baseline_star_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etDrawNames"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilWinnerCounts"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/create_draw_winner_count"
+        android:layout_marginEnd="@dimen/_8sdp"
+        app:layout_constraintEnd_toStartOf="@+id/tilReserveCount"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/guideStart"
+        app:layout_constraintTop_toBottomOf="@+id/tilDrawNames"
+        app:startIconDrawable="@drawable/ic_baseline_person_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etWinnerCounts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilReserveCount"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/create_draw_reserve"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="@id/guideEnd"
+        app:layout_constraintStart_toEndOf="@+id/tilWinnerCounts"
+        app:layout_constraintTop_toTopOf="@+id/tilWinnerCounts"
+        app:startIconDrawable="@drawable/ic_baseline_person_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etReserveCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/cpGroupDrawType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/guideEnd"
+        app:layout_constraintStart_toStartOf="@+id/guideStart"
+        app:layout_constraintTop_toBottomOf="@+id/tilWinnerCounts"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:singleSelection="true"
+        app:singleLine="true">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/chips"
+            android:weightSum="2">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/cpCustom"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/draw_type_custom"
+                android:textColor="@color/white"
+                app:chipBackgroundColor="@color/chip_blue"
+                app:chipIcon="@drawable/ic_baseline_custom_24"
+                app:chipIconEnabled="true"
+                app:chipStrokeColor="@color/chip_blue"
+                app:chipStrokeWidth="@dimen/_1sdp"
+                app:iconStartPadding="@dimen/_8sdp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/cpInstagram"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:text="@string/draw_type_instagram"
+                app:chipBackgroundColor="@android:color/transparent"
+                app:chipIcon="@drawable/ic_instagram"
+                app:chipIconEnabled="true"
+                app:chipStrokeColor="@color/chip_blue"
+                app:chipStrokeWidth="@dimen/_1sdp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <Button
+        android:id="@+id/btnStartDate"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/_42sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:gravity="center_vertical"
+        android:hint="@string/start_date"
+        app:icon="@drawable/ic_baseline_date_range_24"
+        app:iconTint="@color/icon_gray_for_btn"
+        android:layout_marginEnd="@dimen/_8sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnEndDate"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cpGroupDrawType" />
+
+
+    <Button
+        android:id="@+id/btnEndDate"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/_42sdp"
+        android:gravity="start|center_vertical"
+        android:hint="@string/end_date"
+        app:icon="@drawable/ic_baseline_date_range_24"
+        app:iconTint="@color/icon_gray_for_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginEnd="@dimen/_8sdp"
+        app:layout_constraintStart_toEndOf="@+id/btnStartDate"
+        app:layout_constraintTop_toTopOf="@+id/btnStartDate" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etCustomDrawDescription"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/guideStart"
+        app:layout_constraintEnd_toStartOf="@id/guideEnd"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartDate">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:maxLines="6"
+            android:minLines="3" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etDrawParticipantNames"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/names"
+        app:layout_constraintEnd_toEndOf="@id/guideEnd"
+        app:layout_constraintStart_toStartOf="@id/guideStart"
+        app:layout_constraintTop_toBottomOf="@+id/etCustomDrawDescription">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:maxLines="10"
+            android:minLines="5" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvInputInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:drawablePadding="@dimen/_4sdp"
+        android:gravity="center"
+        android:text="@string/click_for_the_input_type"
+        app:drawableStartCompat="@drawable/ic_baseline_info_24"
+        app:layout_constraintStart_toStartOf="@+id/etDrawParticipantNames"
+        app:layout_constraintTop_toBottomOf="@+id/etDrawParticipantNames" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etDrawUrl"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:hint="@string/url"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartDate"
+        app:startIconDrawable="@drawable/ic_baseline_link_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etInstagramDrawDescription"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:hint="@string/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDrawUrl">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:maxLines="10"
+            android:minLines="3" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etMinTagCount"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:hint="@string/tag_count"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etInstagramDrawDescription"
+        app:startIconDrawable="@drawable/ic_at_tag">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <CheckBox
+        android:id="@+id/cb_screenRecord"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/take_screen_record"
+        android:layout_marginStart="@dimen/_16sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etMinTagCount"
+        app:layout_constraintTop_toTopOf="@+id/etMinTagCount" />
+
+    <CheckBox
+        android:id="@+id/cb_eachUserOnlyOnce"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/count_each_user_only_once"
+        android:layout_marginEnd="@dimen/_8sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/cb_screenRecord"
+        app:layout_constraintTop_toBottomOf="@+id/cb_screenRecord" />
+
+    <Button
+        android:id="@+id/btnCreateDraw"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/buttercup"
+        android:text="@string/create_draw"
+        android:layout_marginBottom="@dimen/_16sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/grpCustom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="etCustomDrawDescription,etDrawParticipantNames,tvInputInfo" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/grpInstagram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="etDrawUrl,etInstagramDrawDescription,etMinTagCount,cb_eachUserOnlyOnce,cb_screenRecord" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/_8sdp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/_8sdp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
