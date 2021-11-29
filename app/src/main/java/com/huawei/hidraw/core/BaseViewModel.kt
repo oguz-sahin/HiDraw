@@ -4,9 +4,12 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
+import com.huawei.hidraw.data.ResultWrapper
 import com.huawei.hidraw.data.model.ErrorResponseModel
 import com.huawei.hidraw.util.Event
+import kotlinx.coroutines.launch
 
 /**
  * Created by Oguz Sahin on 10/26/2021.
@@ -24,11 +27,11 @@ abstract class BaseViewModel : ViewModel() {
     /** An helper function for sending one-time events to [baseEvent] **/
     private fun sendEvent(event: BaseViewEvent) = _baseEvent.postValue(Event(event))
 
-    fun showLoading() {
+    private fun showLoading() {
         _loading.postValue(true)
     }
 
-    fun hideLoading() {
+    private fun hideLoading() {
         _loading.postValue(false)
     }
 
@@ -43,13 +46,30 @@ abstract class BaseViewModel : ViewModel() {
 
     fun showSuccess(@StringRes message: Int) = sendEvent(BaseViewEvent.ShowSuccessWithId(message))
 
-    fun showGeneralError() = sendEvent(BaseViewEvent.ShowGeneralError)
 
-    fun showConnectionError() = sendEvent(BaseViewEvent.ShowConnectionError)
-
-    fun handleErrorMessage(errorResponseModel: ErrorResponseModel?): String {
-        return errorResponseModel?.result?.msg ?: ""
+    fun <T> makeNetworkRequest(
+        requestFunc: suspend () -> ResultWrapper<T>,
+        onSuccess: (() -> Unit)? = null,
+        onError: (() -> Unit)? = null
+    ) {
+        viewModelScope.launch {
+            showLoading()
+            when (val response = requestFunc.invoke()) {
+                is ResultWrapper.Error -> {
+                    hideLoading()
+                    onError?.invoke()
+                    showError(handleErrorMessage(response.errorResponse))
+                }
+                is ResultWrapper.Success -> {
+                    hideLoading()
+                    onSuccess?.invoke()
+                }
+            }
+        }
     }
 
+
+    private fun handleErrorMessage(errorResponseModel: ErrorResponseModel?): String =
+        errorResponseModel?.result?.msg ?: ""
 
 }

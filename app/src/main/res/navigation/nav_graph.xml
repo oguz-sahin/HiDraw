@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/profileFragment">
+    app:startDestination="@id/signInFragment">
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.huawei.hidraw.ui.signin.SignInFragment"
@@ -23,4 +23,9 @@
         android:name="com.huawei.hidraw.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/drawDetailFragment"
+        android:name="com.huawei.hidraw.ui.drawdetail.DrawDetailFragment"
+        android:label="fragment_draw_detail"
+        tools:layout="@layout/fragment_draw_detail" />
 </navigation>
