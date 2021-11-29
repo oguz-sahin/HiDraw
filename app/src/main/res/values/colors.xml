@@ -18,6 +18,7 @@
     //purple
     <color name="lavender">#BB6BD9</color>
     <color name="icon_gray_for_btn">#666666</color>
+    <color name="transparent">#00000000</color>
 
 
 </resources>
