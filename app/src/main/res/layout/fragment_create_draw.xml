@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -71,34 +70,49 @@
         app:layout_constraintStart_toStartOf="@+id/guideStart"
         app:layout_constraintTop_toBottomOf="@+id/tilWinnerCounts"
         android:layout_marginTop="@dimen/_8sdp"
-        app:singleSelection="true">
+        app:singleSelection="true"
+        app:singleLine="true">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/cpCustom"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="@dimen/_140sdp"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/draw_type_custom"
-            android:textColor="@color/white"
-            app:chipBackgroundColor="@color/chip_blue"
-            app:chipIcon="@drawable/ic_baseline_custom_24"
-            app:chipIconEnabled="true"
-            app:chipStrokeColor="@color/chip_blue"
-            app:chipStrokeWidth="@dimen/_1sdp"
-            app:iconStartPadding="@dimen/_8sdp" />
+            android:orientation="horizontal"
+            android:id="@+id/chips"
+            android:weightSum="2">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/cpInstagram"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="@dimen/_140sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:text="@string/draw_type_instagram"
-            app:chipBackgroundColor="@android:color/transparent"
-            app:chipIcon="@drawable/ic_instagram"
-            app:chipIconEnabled="true"
-            app:chipStrokeColor="@color/chip_blue"
-            app:chipStrokeWidth="@dimen/_1sdp" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/cpCustom"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/draw_type_custom"
+                android:textColor="@color/white"
+                app:chipBackgroundColor="@color/chip_blue"
+                app:chipIcon="@drawable/ic_baseline_custom_24"
+                app:chipIconEnabled="true"
+                app:chipStrokeColor="@color/chip_blue"
+                app:chipStrokeWidth="@dimen/_1sdp"
+                app:iconStartPadding="@dimen/_8sdp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/cpInstagram"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:text="@string/draw_type_instagram"
+                app:chipBackgroundColor="@android:color/transparent"
+                app:chipIcon="@drawable/ic_instagram"
+                app:chipIconEnabled="true"
+                app:chipStrokeColor="@color/chip_blue"
+                app:chipStrokeWidth="@dimen/_1sdp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
 
     </com.google.android.material.chip.ChipGroup>
 
