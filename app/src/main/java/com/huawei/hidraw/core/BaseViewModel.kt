@@ -7,7 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.huawei.hidraw.data.ResultWrapper
+import com.huawei.hidraw.data.model.BaseException
 import com.huawei.hidraw.data.model.ErrorResponseModel
+import com.huawei.hidraw.data.model.HttpException
 import com.huawei.hidraw.util.Event
 import kotlinx.coroutines.launch
 
@@ -40,6 +42,8 @@ abstract class BaseViewModel : ViewModel() {
 
 
     @Suppress("MemberVisibilityCanBePrivate")
+    fun showErrorWithId(@StringRes message: Int) = sendEvent(BaseViewEvent.ShowErrorWithId(message))
+
     fun showError(message: String) = sendEvent(BaseViewEvent.ShowError(message))
 
     fun showSuccess(message: String) = sendEvent(BaseViewEvent.ShowSuccess(message))
@@ -58,7 +62,7 @@ abstract class BaseViewModel : ViewModel() {
                 is ResultWrapper.Error -> {
                     hideLoading()
                     onError?.invoke()
-                    showError(handleErrorMessage(response.errorResponse))
+                    handleError(response.value)
                 }
                 is ResultWrapper.Success -> {
                     hideLoading()
@@ -68,8 +72,20 @@ abstract class BaseViewModel : ViewModel() {
         }
     }
 
+    private fun handleError(exception: BaseException) {
+        when (exception) {
+            is HttpException -> {
+                val errorMessage = getErrorMessage(exception.errorResponseModel)
+                showError(errorMessage)
+            }
+            else -> {
+                showErrorWithId(exception.messageId)
+            }
+        }
+    }
 
-    private fun handleErrorMessage(errorResponseModel: ErrorResponseModel?): String =
+
+    private fun getErrorMessage(errorResponseModel: ErrorResponseModel?): String =
         errorResponseModel?.result?.msg ?: ""
 
 }
