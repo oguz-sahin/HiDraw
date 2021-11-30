@@ -34,4 +34,6 @@
     <string name="home">Home</string>
     <string name="profile">Profile</string>
     <string name="instagram_user_name">Instagram User Name</string>
+    <string name="selectStartDate">Select Start Date</string>
+    <string name="selectEndDate">Select End Date</string>
 </resources>
