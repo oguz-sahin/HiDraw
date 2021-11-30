@@ -60,13 +60,13 @@ abstract class BaseViewModel : ViewModel() {
             showLoading()
             when (val response = requestFunc.invoke()) {
                 is ResultWrapper.Error -> {
-                    hideLoading()
                     onError?.invoke()
+                    hideLoading()
                     handleError(response.value)
                 }
                 is ResultWrapper.Success -> {
-                    hideLoading()
                     onSuccess?.invoke()
+                    hideLoading()
                 }
             }
         }
@@ -84,8 +84,12 @@ abstract class BaseViewModel : ViewModel() {
         }
     }
 
-
     private fun getErrorMessage(errorResponseModel: ErrorResponseModel?): String =
         errorResponseModel?.result?.msg ?: ""
+
+
+    fun <T> sendEvent(mutableLiveData: MutableLiveData<Event<T>>, value: T) {
+        mutableLiveData.value = Event(value)
+    }
 
 }
