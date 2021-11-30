@@ -28,8 +28,6 @@
         android:name="com.huawei.hidraw.ui.drawdetail.DrawDetailFragment"
         android:label="fragment_draw_detail"
         tools:layout="@layout/fragment_draw_detail" />
-    <action android:id="@+id/action_global_homeFragment" app:destination="@id/homeFragment" />
-    <action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment" />
     <fragment
         android:id="@+id/createDrawFragment"
         android:name="com.huawei.hidraw.ui.createdraw.CreateDrawFragment"

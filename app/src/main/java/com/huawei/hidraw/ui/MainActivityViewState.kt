@@ -3,8 +3,8 @@ package com.huawei.hidraw.ui
 import com.huawei.hidraw.core.BaseViewState
 
 data class MainActivityViewState(
-    private val isFabVisible: Boolean = false,
-    private val isBottomNavigationVisible: Boolean = false
+    private val isFabVisible: Boolean,
+    private val isBottomNavigationVisible: Boolean
 ) : BaseViewState() {
 
     fun getFabVisibility() = getViewVisibility(isFabVisible)
