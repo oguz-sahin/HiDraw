@@ -14,5 +14,5 @@ interface UserService {
     @POST("api/user")
     suspend fun saveUser(
         @Body userModel: UserModel
-    ): BaseResponseModel<Boolean>
+    ): BaseResponseModel<UserModel>
 }

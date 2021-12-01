@@ -7,7 +7,7 @@ import com.huawei.hidraw.data.model.UserModel
  * Created by Oguz Sahin on 11/15/2021.
  */
 interface AuthRepository {
-    suspend fun register(userModel: UserModel): ResultWrapper<Boolean>
+    suspend fun register(userModel: UserModel): ResultWrapper<UserModel>
     fun isUserLogged(): Boolean
     fun saveUser(userModel: UserModel)
     fun removeUser()

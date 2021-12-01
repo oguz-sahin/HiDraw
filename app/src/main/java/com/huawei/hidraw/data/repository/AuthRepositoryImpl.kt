@@ -15,7 +15,7 @@ class AuthRepositoryImpl @Inject constructor(
     private val authRemoteDataSource: AuthRemoteDataSource
 ) : AuthRepository {
 
-    override suspend fun register(userModel: UserModel): ResultWrapper<Boolean> {
+    override suspend fun register(userModel: UserModel): ResultWrapper<UserModel> {
         return authRemoteDataSource.register(userModel)
     }
 

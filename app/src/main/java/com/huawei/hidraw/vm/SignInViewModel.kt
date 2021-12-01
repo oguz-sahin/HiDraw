@@ -55,7 +55,7 @@ class SignInViewModel @Inject constructor(private val authRepository: AuthReposi
 
     fun checkInstagramUserNameAndSignIn(instagramUserName: String) {
         if (instagramUserName.isNotEmpty()) {
-            sendEvent(_viewEvent, SignInWithHuaweiId)
+            sendEvent(mutableLiveData = _viewEvent, value = SignInWithHuaweiId)
         } else {
             showErrorWithId(R.string.empty_username_error)
         }
@@ -68,7 +68,7 @@ class SignInViewModel @Inject constructor(private val authRepository: AuthReposi
         makeNetworkRequest(
             requestFunc = { authRepository.register(userModel) },
             onSuccess = {
-                authRepository.saveUser(userModel)
+                authRepository.saveUser(it)
                 showSuccess(R.string.sign_in_successfully)
             }
         )

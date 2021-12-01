@@ -16,7 +16,7 @@ class AuthRemoteDataSource @Inject constructor(
 ) : BaseRemoteDataSource(ioDispatcher) {
 
 
-    suspend fun register(userModel: UserModel): ResultWrapper<Boolean> {
+    suspend fun register(userModel: UserModel): ResultWrapper<UserModel> {
         return safeApiCall { userService.saveUser(userModel) }
     }
 }

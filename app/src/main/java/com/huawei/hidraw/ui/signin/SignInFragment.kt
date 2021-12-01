@@ -29,16 +29,13 @@ class SignInFragment : BaseFragmentWithViewModel<FragmentSignInBinding, SignInVi
     @Inject
     lateinit var accountAuthService: AccountAuthService
 
-
     override fun initListener() {
-        super.initListener()
         binding.btnSignIn.setOnClickListener {
             viewModel.checkInstagramUserNameAndSignIn(instagramUserName)
         }
     }
 
     override fun initObserver() {
-        super.initObserver()
         observeEvent(viewModel.viewEvent, ::handleViewEvent)
     }
 

@@ -37,6 +37,7 @@ abstract class BaseViewModel : ViewModel() {
         _loading.postValue(false)
     }
 
+
     /** Navigate to specific direction **/
     fun navigate(directions: NavDirections) = sendEvent(BaseViewEvent.NavigateTo(directions))
 
@@ -53,7 +54,7 @@ abstract class BaseViewModel : ViewModel() {
 
     fun <T> makeNetworkRequest(
         requestFunc: suspend () -> ResultWrapper<T>,
-        onSuccess: (() -> Unit)? = null,
+        onSuccess: ((value: T) -> Unit)? = null,
         onError: (() -> Unit)? = null
     ) {
         viewModelScope.launch {
@@ -65,7 +66,7 @@ abstract class BaseViewModel : ViewModel() {
                     handleError(response.value)
                 }
                 is ResultWrapper.Success -> {
-                    onSuccess?.invoke()
+                    onSuccess?.invoke(response.value)
                     hideLoading()
                 }
             }
