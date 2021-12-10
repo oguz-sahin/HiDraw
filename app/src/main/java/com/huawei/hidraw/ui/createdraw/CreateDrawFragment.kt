@@ -1,12 +1,17 @@
 package com.huawei.hidraw.ui.createdraw
 
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.viewModels
+import com.google.android.material.chip.Chip
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.huawei.hidraw.R
+import com.huawei.hidraw.core.BaseDialogFragment
 import com.huawei.hidraw.core.BaseFragmentWithViewModel
+import com.huawei.hidraw.data.model.CustomDrawModel
+import com.huawei.hidraw.data.model.DialogModel
+import com.huawei.hidraw.data.model.InstagramDrawModel
 import com.huawei.hidraw.databinding.FragmentCreateDrawBinding
 import com.huawei.hidraw.ui.CreateDrawViewState
 import com.huawei.hidraw.ui.DrawTypes.CUSTOM
@@ -32,33 +37,51 @@ class CreateDrawFragment :
         }
     }
 
+
     override fun initObserver() {
         observe(viewModel.createDrawFragmentViewState, ::setViewState)
     }
 
     override fun initListener() {
 
-        binding.btnStartDate.setOnClickListener {
-            materialDatePickerForStart.show(childFragmentManager, "DATE")
-        }
+        with(binding) {
 
-        binding.btnEndDate.setOnClickListener {
-            materialDatePickerForEnd.show(childFragmentManager, "DATE")
-        }
+            btnStartDate.setOnClickListener {
+                materialDatePickerForStart.show(childFragmentManager, "DATE")
+            }
 
-        binding.cpCustom.setOnClickListener {
-            viewModel.setDrawType(CUSTOM)
-        }
+            btnEndDate.setOnClickListener {
+                materialDatePickerForEnd.show(childFragmentManager, "DATE")
+            }
 
-        binding.cpInstagram.setOnClickListener {
-            viewModel.setDrawType(INSTAGRAM)
-        }
+            cpCustom.setOnClickListener {
+                viewModel.setDrawType(CUSTOM)
+            }
 
-        binding.btnCreateDraw.setOnClickListener {
-            if (binding.viewState?.getCustomGroupVisibility() == View.VISIBLE)
-                createDrawWithCustomType()
-            else
-                createDrawWithInstagramType()
+            cpInstagram.setOnClickListener {
+                viewModel.setDrawType(INSTAGRAM)
+            }
+            btnCreateDraw.setOnClickListener {
+                if (binding.viewState?.getCustomGroupVisibility() == View.VISIBLE)
+                    createDrawWithCustomType()
+                else
+                    createDrawWithInstagramType()
+            }
+
+            tvInputInfo.setOnClickListener {
+                BaseDialogFragment(DialogModel(context!!, R.layout.dialog_input_info)).show(
+                    childFragmentManager,
+                    "InfoDialog"
+                )
+            }
+
+            cpGroupDrawType.setOnCheckedChangeListener { group, checkedId ->
+                val chip: Chip? = group.findViewById(checkedId)
+                chip?.let {chipView ->
+                    Toast.makeText(context, chip.text, Toast.LENGTH_SHORT).show()
+                } ?: kotlin.run {
+                }
+            }
         }
     }
 
@@ -75,34 +98,48 @@ class CreateDrawFragment :
         return materialDatePicker
     }
 
-    private fun createDrawWithInstagramType() {
-        with(binding) {
-            etDrawName.getContent()
-            etWinnerCounts.getContent()
-            etReserveCount.getContent()
-            btnStartDate.text
-            btnEndDate.text
-            etDrawUrl.getContent()
-            etInstagramDrawDescription.getContent()
-            etMinTagCount.getContent()
-            cbEachUserOnlyOnce.isChecked
-            cbScreenRecord.isChecked
-        }
+    private fun createDrawWithInstagramType(){
+        val data: InstagramDrawModel = getInstagramDrawContentFromInputs()
+        // TODO MAKE THE REQUEST
     }
-
     private fun createDrawWithCustomType() {
+        val data: CustomDrawModel = getCustomDrawContentFromInputs()
+        // TODO MAKE THE REQUEST
+    }
+
+
+    private fun getInstagramDrawContentFromInputs(): InstagramDrawModel {
+
         with(binding) {
-            etDrawName.getContent()
-            etWinnerCounts.getContent()
-            etReserveCount.getContent()
-            Log.e("date", btnStartDate.text.toString())
-            btnStartDate.text
-            btnEndDate.text
-            etCustomDrawDescription.getContent()
-            etDrawParticipantNames.getContent()
+            return InstagramDrawModel(
+                etDrawName.getContent(),
+                etWinnerCounts.getContent(),
+                etReserveCount.getContent(),
+                btnStartDate.text.toString(),
+                btnEndDate.text.toString(),
+                etCustomDrawDescription.getContent(),
+                etDrawUrl.getContent(),
+                etMinTagCount.getContent(),
+                cbEachUserOnlyOnce.isChecked,
+                cbScreenRecord.isChecked
+            )
         }
     }
 
+    private fun getCustomDrawContentFromInputs(): CustomDrawModel {
+
+        return with(binding) {
+             CustomDrawModel(
+                etDrawName.getContent(),
+                etWinnerCounts.getContent(),
+                etReserveCount.getContent(),
+                btnStartDate.text.toString(),
+                btnEndDate.text.toString(),
+                etCustomDrawDescription.getContent(),
+                etDrawParticipantNames.getContent()
+            )
+        }
+    }
 
     private fun setViewState(viewState: CreateDrawViewState) {
         binding.viewState = viewState

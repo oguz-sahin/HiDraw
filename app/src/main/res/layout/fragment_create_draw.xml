@@ -71,55 +71,50 @@
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/cpGroupDrawType"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
             app:layout_constraintEnd_toStartOf="@+id/guideEnd"
-            app:layout_constraintStart_toStartOf="@+id/guideStart"
+            app:layout_constraintStart_toStartOf="@id/guideStart"
             app:layout_constraintTop_toBottomOf="@+id/tilWinnerCounts"
             app:singleLine="true"
             app:singleSelection="true"
-            app:selectionRequired="true">
+            app:checkedChip="@+id/cpInstagram">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/chips"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
+            <com.google.android.material.chip.Chip
+                android:id="@+id/cpCustom"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="@dimen/_140sdp"
+                android:layout_height="match_parent"
+                android:minHeight="@dimen/_44sdp"
+                android:text="@string/draw_type_custom"
+                android:textSize="@dimen/_14sdp"
+                app:chipBackgroundColor="@color/chip_group_color_selector"
+                android:textColor="@color/chip_group_text_color_selector"
+                app:chipIcon="@drawable/ic_baseline_custom_24"
+                app:chipIconEnabled="true"
+                app:chipStrokeColor="@color/chip_blue"
+                app:chipStrokeWidth="@dimen/_1sdp"
+                app:iconStartPadding="@dimen/_8sdp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/cpCustom"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/draw_type_custom"
-                    android:textColor="@color/white"
-                    app:chipIcon="@drawable/ic_baseline_custom_24"
-                    app:chipIconEnabled="true"
-                    app:chipStrokeColor="@color/chip_blue"
-                    app:chipStrokeWidth="@dimen/_1sdp"
-                    app:iconStartPadding="@dimen/_8sdp" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/cpInstagram"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    android:layout_weight="1"
-                    android:text="@string/draw_type_instagram"
-                    app:chipIcon="@drawable/ic_instagram"
-                    app:chipIconEnabled="true"
-                    app:chipStrokeColor="@color/chip_blue"
-                    app:chipStrokeWidth="@dimen/_1sdp" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
+            <com.google.android.material.chip.Chip
+                android:id="@+id/cpInstagram"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="@dimen/_140sdp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:minHeight="@dimen/_44sdp"
+                android:textSize="@dimen/_14sdp"
+                android:text="@string/draw_type_instagram"
+                app:chipBackgroundColor="@color/chip_group_color_selector"
+                android:textColor="@color/chip_group_text_color_selector"
+                app:chipIcon="@drawable/ic_instagram"
+                app:chipIconEnabled="true"
+                app:chipStrokeColor="@color/chip_blue"
+                app:chipStrokeWidth="@dimen/_1sdp"
+                app:iconStartPadding="@dimen/_8sdp"/>
 
         </com.google.android.material.chip.ChipGroup>
 
@@ -283,10 +278,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:text="@string/take_screen_record"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideEnd"
             app:layout_constraintStart_toEndOf="@+id/tilMinTagCount"
-            app:layout_constraintTop_toTopOf="@+id/tilMinTagCount" />
+            app:layout_constraintTop_toBottomOf="@+id/tilInstagramDrawDescription" />
 
         <CheckBox
             android:id="@+id/cb_eachUserOnlyOnce"
@@ -294,7 +290,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_8sdp"
             android:text="@string/count_each_user_only_once"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideEnd"
             app:layout_constraintStart_toStartOf="@+id/cb_screenRecord"
             app:layout_constraintTop_toBottomOf="@+id/cb_screenRecord" />
 
@@ -313,15 +309,15 @@
             android:id="@+id/grpCustom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{viewState.CustomGroupVisibility}"
+            android:visibility="@{viewState.customGroupVisibility}"
             app:constraint_referenced_ids="tilCustomDrawDescription,tilDrawParticipantNames,tvInputInfo" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/grpInstagram"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{viewState.InstagramGroupVisibility}"
-            app:constraint_referenced_ids="tilDrawUrl,tilInstagramDrawDescription,tilMinTagCount,cb_eachUserOnlyOnce,cb_screenRecord" />
+            android:visibility="@{viewState.instagramGroupVisibility}"
+            app:constraint_referenced_ids="btnStartDate,btnEndDate,tilDrawUrl,tilInstagramDrawDescription,tilMinTagCount,cb_eachUserOnlyOnce,cb_screenRecord" />
 
 
         <androidx.constraintlayout.widget.Guideline

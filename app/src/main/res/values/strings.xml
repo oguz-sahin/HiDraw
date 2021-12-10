@@ -36,4 +36,6 @@
     <string name="instagram_user_name">Instagram User Name</string>
     <string name="selectStartDate">Select Start Date</string>
     <string name="selectEndDate">Select End Date</string>
+    <string name="dialog_info_title">Separate with comma</string>
+    <string name="dialog_info_description">Berkhan, Oğuz, Burak..</string>
 </resources>
