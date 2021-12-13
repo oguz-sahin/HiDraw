@@ -36,4 +36,13 @@
     <string name="instagram_user_name">Instagram User Name</string>
     <string name="empty_username_error">Please input valid username.</string>
     <string name="sign_in_successfully">Sign in successfully.</string>
+    <string name="selectStartDate">Select Start Date</string>
+    <string name="selectEndDate">Select End Date</string>
+    <string name="dialog_info_title">Separate with comma</string>
+    <string name="dialog_info_description">Berkhan, Oğuz, Burak..</string>
+    <string name="day_abbreviation">d</string>
+    <string name="month_abbreviation">m</string>
+    <string name="my_created">my Crated</string>
+    <string name="my_attended">my Attended</string>
+    <string name="no_draw_error">There is no draw showing</string>
 </resources>

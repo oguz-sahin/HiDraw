@@ -1,9 +1,10 @@
 package com.huawei.hidraw.data.repository
 
 import com.huawei.hidraw.data.ResultWrapper
-import com.huawei.hidraw.data.datasource.AuthRemoteDataSource
-import com.huawei.hidraw.data.datasource.PrefDataSource
+import com.huawei.hidraw.data.datasource.remote.AuthRemoteDataSource
+import com.huawei.hidraw.data.datasource.local.PrefDataSource
 import com.huawei.hidraw.data.model.UserModel
+import com.huawei.hidraw.util.ext.defaultForType
 import javax.inject.Inject
 
 /**
@@ -21,12 +22,12 @@ class AuthRepositoryImpl @Inject constructor(
 
     override fun isUserLogged(): Boolean = prefDataSource.isUserLogged()
 
-    override fun saveUser(userModel: UserModel) {
-        prefDataSource.userInfo = userModel
+    override fun saveUserId(userId: String) {
+        prefDataSource.userId = userId
     }
 
     override fun removeUser() {
-        prefDataSource.userInfo = null
+        prefDataSource.userId = defaultForType()
     }
 
 

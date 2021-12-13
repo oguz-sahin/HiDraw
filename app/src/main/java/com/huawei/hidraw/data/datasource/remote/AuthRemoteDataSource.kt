@@ -1,19 +1,16 @@
-package com.huawei.hidraw.data.datasource
+package com.huawei.hidraw.data.datasource.remote
 
 import com.huawei.hidraw.data.ResultWrapper
 import com.huawei.hidraw.data.model.UserModel
-import com.huawei.hidraw.di.IoDispatcher
-import com.huawei.hidraw.network.UserService
-import kotlinx.coroutines.CoroutineDispatcher
+import com.huawei.hidraw.network.service.UserService
 import javax.inject.Inject
 
 /**
  * Created by Oguz Sahin on 11/16/2021.
  */
 class AuthRemoteDataSource @Inject constructor(
-    @IoDispatcher ioDispatcher: CoroutineDispatcher,
     private val userService: UserService
-) : BaseRemoteDataSource(ioDispatcher) {
+) : BaseRemoteDataSource() {
 
 
     suspend fun register(userModel: UserModel): ResultWrapper<UserModel> {

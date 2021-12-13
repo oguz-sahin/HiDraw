@@ -6,8 +6,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.huawei.hidraw.R
 import com.huawei.hidraw.databinding.ActivityMainBinding
-import com.huawei.hidraw.util.ext.hide
-import com.huawei.hidraw.util.ext.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,10 +21,12 @@ class MainActivity : AppCompatActivity() {
             setContentView(it.root)
         }
 
+
+        setViewState(MainActivityViewState(isFabVisible = false, isBottomNavigationVisible = false))
         setupNavigation()
         setNavDestinationListener()
+        setupFabClickListener()
     }
-
 
     private fun setupNavigation() {
         binding.bottomNavigationView.setupWithNavController(navController)
@@ -35,12 +35,36 @@ class MainActivity : AppCompatActivity() {
     private fun setNavDestinationListener() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.signInFragment -> {
-                    binding.bottomNavigationView.hide()
+                R.id.signInFragment, R.id.createDrawFragment -> {
+                    setViewState(
+                        MainActivityViewState(
+                            isFabVisible = false,
+                            isBottomNavigationVisible = false
+                        )
+                    )
                 }
-                else -> binding.bottomNavigationView.show()
+                else -> {
+                    setViewState(
+                        MainActivityViewState(
+                            isFabVisible = true,
+                            isBottomNavigationVisible = true
+                        )
+                    )
+                }
             }
         }
+    }
+
+    private fun setupFabClickListener() {
+        binding.fab.setOnClickListener {
+            navController.navigate(R.id.action_global_createDrawFragment)
+            binding.bottomNavigationView.selectedItemId = R.id.menu_invisible
+        }
+    }
+
+    private fun setViewState(viewState: MainActivityViewState) {
+        binding.viewState = viewState
+        binding.executePendingBindings()
     }
 
 }

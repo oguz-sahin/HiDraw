@@ -9,6 +9,6 @@ import com.huawei.hidraw.data.model.UserModel
 interface AuthRepository {
     suspend fun register(userModel: UserModel): ResultWrapper<UserModel>
     fun isUserLogged(): Boolean
-    fun saveUser(userModel: UserModel)
+    fun saveUserId(userId: String)
     fun removeUser()
 }

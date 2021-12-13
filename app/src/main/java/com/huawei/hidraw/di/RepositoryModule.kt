@@ -1,7 +1,6 @@
 package com.huawei.hidraw.di
 
-import com.huawei.hidraw.data.repository.AuthRepository
-import com.huawei.hidraw.data.repository.AuthRepositoryImpl
+import com.huawei.hidraw.data.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -19,5 +18,14 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun provideAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository
+
+    @Binds
+    @Singleton
+    abstract fun provideHomeRepository(homeRepositoryImpl: HomeRepositoryImpl): HomeRepository
+
+
+    @Binds
+    @Singleton
+    abstract fun provideProfileRepository(profileRepositoryImpl: ProfileRepositoryImpl): ProfileRepository
 
 }

@@ -17,7 +17,7 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
-        buildConfigField "String", "BASE_URL", "\"http://159.138.96.192:8081/\""
+        buildConfigField "String", "BASE_URL", "\"http://159.138.96.192:8081/api/\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -34,7 +34,7 @@ android {
 
     buildTypes {
 
-        release {
+       release {
             signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources true

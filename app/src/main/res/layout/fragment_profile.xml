@@ -1,176 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="userInfoViewState"
+            type="com.huawei.hidraw.ui.profile.UserInfoViewState" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.profile.ProfileFragment">
 
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/ivProfileBackground"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:elevation="@dimen/_8sdp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/bg_common_designed_blue"
-        app:layout_constraintBottom_toTopOf="@+id/glImageBottom"
-        app:layout_constraintEnd_toEndOf="@id/glEnd"
-        app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toTopOf="@id/glTop"
-        app:shapeAppearanceOverlay="@style/RoundedSquare" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivProfileBackground"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_150sdp"
+            android:elevation="@dimen/_8sdp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/bg_common_designed_blue"
+            app:layout_constraintEnd_toEndOf="@id/glEnd"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintTop_toTopOf="@id/glTop"
+            app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/ivUserImage"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:scaleType="center"
-        android:src="@mipmap/ic_launcher"
-        android:translationZ="@dimen/_8sdp"
-        app:layout_constraintEnd_toEndOf="@id/ivProfileBackground"
-        app:layout_constraintStart_toStartOf="@id/ivProfileBackground"
-        app:layout_constraintTop_toTopOf="@id/ivProfileBackground"
-        app:shapeAppearanceOverlay="@style/Circular" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivUserImage"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:scaleType="center"
+            android:src="@mipmap/ic_launcher"
+            android:translationZ="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="@id/ivProfileBackground"
+            app:layout_constraintStart_toStartOf="@id/ivProfileBackground"
+            app:layout_constraintTop_toTopOf="@id/ivProfileBackground"
+            app:shapeAppearanceOverlay="@style/Circular" />
 
 
-    <TextView
-        android:id="@+id/tvUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/xlarge_text_size"
-        android:textStyle="bold"
-        android:translationZ="@dimen/_8sdp"
-        app:layout_constraintEnd_toEndOf="@id/ivUserImage"
-        app:layout_constraintStart_toStartOf="@id/ivUserImage"
-        app:layout_constraintTop_toBottomOf="@id/ivUserImage"
-        tools:text="Oguz Sahin" />
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="@{userInfoViewState.userName}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/xlarge_text_size"
+            android:textStyle="bold"
+            android:translationZ="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="@id/ivUserImage"
+            app:layout_constraintStart_toStartOf="@id/ivUserImage"
+            app:layout_constraintTop_toBottomOf="@id/ivUserImage"
+            tools:text="Oguz Sahin" />
 
-    <TextView
-        android:id="@+id/tvAttendedDraw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:text="@string/attended_draw"
-        android:textColor="@color/cream_can"
-        android:textSize="@dimen/large_text_size"
-        android:translationZ="@dimen/_8sdp"
-        app:layout_constraintEnd_toStartOf="@+id/tvCreatedDraw"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toEndOf="@+id/ivProfileBackground"
-        app:layout_constraintStart_toStartOf="@+id/ivProfileBackground"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
-
-
-    <TextView
-        android:id="@+id/tvCreatedDraw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:layout_marginEnd="@dimen/_16sdp"
-        android:text="@string/created_draw"
-        android:textColor="@color/cream_can"
-        android:textSize="@dimen/large_text_size"
-        android:translationZ="@dimen/_8sdp"
-        app:layout_constraintEnd_toEndOf="@+id/ivProfileBackground"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvAttendedDraw"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
-
-    <TextView
-        android:id="@+id/tvAttendedDrawCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/title_text_size"
-        android:translationZ="@dimen/_8sdp"
-        app:layout_constraintEnd_toEndOf="@+id/tvAttendedDraw"
-        app:layout_constraintStart_toStartOf="@id/tvAttendedDraw"
-        app:layout_constraintTop_toBottomOf="@id/tvAttendedDraw"
-        tools:text="13" />
+        <TextView
+            android:id="@+id/tvAttendedDraw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="@string/attended_draw"
+            android:textColor="@color/cream_can"
+            android:textSize="@dimen/large_text_size"
+            android:translationZ="@dimen/_8sdp"
+            app:layout_constraintEnd_toStartOf="@+id/tvCreatedDraw"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@+id/ivProfileBackground"
+            app:layout_constraintStart_toStartOf="@+id/ivProfileBackground"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
 
 
-    <TextView
-        android:id="@+id/tvCreatedDrawCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/title_text_size"
-        android:translationZ="@dimen/_8sdp"
-        app:layout_constraintEnd_toEndOf="@+id/tvCreatedDraw"
-        app:layout_constraintStart_toStartOf="@+id/tvCreatedDraw"
-        app:layout_constraintTop_toBottomOf="@+id/tvCreatedDraw"
-        tools:text="13" />
+        <TextView
+            android:id="@+id/tvCreatedDraw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:text="@string/created_draw"
+            android:textColor="@color/cream_can"
+            android:textSize="@dimen/large_text_size"
+            android:translationZ="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="@+id/ivProfileBackground"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvAttendedDraw"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
+
+        <TextView
+            android:id="@+id/tvAttendedDrawCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:text="@{userInfoViewState.attendedDrawCount}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_text_size"
+            android:translationZ="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="@+id/tvAttendedDraw"
+            app:layout_constraintStart_toStartOf="@id/tvAttendedDraw"
+            app:layout_constraintTop_toBottomOf="@id/tvAttendedDraw"
+            tools:text="13" />
 
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tlDraws"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:background="@drawable/bg_rounded_8"
-        android:backgroundTint="@color/cream_can"
-        app:layout_constraintEnd_toStartOf="@+id/glEnd"
-        app:layout_constraintStart_toStartOf="@+id/glStart"
-        app:layout_constraintTop_toBottomOf="@+id/ivProfileBackground"
-        app:tabIndicatorHeight="0dp"
-        app:tabMode="fixed"
-        app:tabTextColor="@color/white" />
+        <TextView
+            android:id="@+id/tvCreatedDrawCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:text="@{userInfoViewState.createdDrawCount}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_text_size"
+            android:translationZ="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="@+id/tvCreatedDraw"
+            app:layout_constraintStart_toStartOf="@+id/tvCreatedDraw"
+            app:layout_constraintTop_toBottomOf="@+id/tvCreatedDraw"
+            tools:text="13" />
 
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vpDraws"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/glBottom"
-        app:layout_constraintEnd_toStartOf="@+id/glEnd"
-        app:layout_constraintStart_toStartOf="@+id/glStart"
-        app:layout_constraintTop_toBottomOf="@+id/tlDraws" />
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tlDraws"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/bg_rounded_8"
+            android:backgroundTint="@color/cream_can"
+            app:layout_constraintEnd_toStartOf="@+id/glEnd"
+            app:layout_constraintStart_toStartOf="@+id/glStart"
+            app:layout_constraintTop_toBottomOf="@+id/ivProfileBackground"
+            app:tabIndicatorHeight="0dp"
+            app:tabMode="fixed"
+            app:tabTextColor="@color/white" />
 
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glTop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.03" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpDraws"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/glBottom"
+            app:layout_constraintEnd_toStartOf="@+id/glEnd"
+            app:layout_constraintStart_toStartOf="@+id/glStart"
+            app:layout_constraintTop_toBottomOf="@+id/tlDraws" />
 
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glImageBottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.03" />
 
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/_8sdp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/_8sdp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/_8sdp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/_8sdp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glBottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="@dimen/_16sdp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/_16sdp" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

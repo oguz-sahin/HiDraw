@@ -1,4 +1,4 @@
-package com.huawei.hidraw.util
+package com.huawei.hidraw.network
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -10,26 +10,31 @@ import android.os.Build
  */
 
 object NetworkUtils {
+
+    const val HEADER_KEY = "userId"
+
+    //Service
+    const val USER_REQUEST_PATH = "user"
+    const val GET_ACTIVE_DRAWS_REQUEST_PATH = "draw/active"
+    const val GET_CREATED_DRAW_REQUEST_PATH = "draw/createdDraw"
+    const val GET_ATTENDED_DRAW_REQUEST_PATH = "attendDraw/draw"
+
+    @Suppress("DEPRECATION")
     fun isNetworkAvailable(context: Context): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val capabilities =
                 connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
                     ?: return false
-            return when {
+            when {
                 capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
                 capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
                 capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
                 else -> false
             }
         } else {
-            if (connectivityManager.activeNetworkInfo != null &&
-                connectivityManager.activeNetworkInfo?.isConnectedOrConnecting == true
-            ) {
-                return true
-            }
+            connectivityManager.activeNetworkInfo?.isConnected ?: false
         }
-        return false
     }
 }

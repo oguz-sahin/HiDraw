@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.huawei.hidraw.data.ResultWrapper
-import com.huawei.hidraw.data.model.BaseException
 import com.huawei.hidraw.data.model.ErrorResponseModel
 import com.huawei.hidraw.data.model.HttpException
+import com.huawei.hidraw.data.model.IException
 import com.huawei.hidraw.util.Event
 import kotlinx.coroutines.launch
 
@@ -27,13 +27,13 @@ abstract class BaseViewModel : ViewModel() {
     val baseEvent: LiveData<Event<BaseViewEvent>> = _baseEvent
 
     /** An helper function for sending one-time events to [baseEvent] **/
-    private fun sendEvent(event: BaseViewEvent) = _baseEvent.postValue(Event(event))
+    private fun sendEvent(event: BaseViewEvent) = setEvent(_baseEvent, event)
 
-    private fun showLoading() {
+    fun showLoading() {
         _loading.postValue(true)
     }
 
-    private fun hideLoading() {
+    fun hideLoading() {
         _loading.postValue(false)
     }
 
@@ -73,14 +73,15 @@ abstract class BaseViewModel : ViewModel() {
         }
     }
 
-    private fun handleError(exception: BaseException) {
+
+    private fun handleError(exception: IException) {
         when (exception) {
             is HttpException -> {
                 val errorMessage = getErrorMessage(exception.errorResponseModel)
                 showError(errorMessage)
             }
             else -> {
-                showErrorWithId(exception.messageId)
+                showErrorWithId(exception.getMessage())
             }
         }
     }
@@ -89,8 +90,8 @@ abstract class BaseViewModel : ViewModel() {
         errorResponseModel?.result?.msg ?: ""
 
 
-    fun <T> sendEvent(mutableLiveData: MutableLiveData<Event<T>>, value: T) {
-        mutableLiveData.value = Event(value)
+    fun <T> setEvent(mutableLiveData: MutableLiveData<Event<T>>, value: T) {
+        mutableLiveData.postValue(Event(value))
     }
 
 }

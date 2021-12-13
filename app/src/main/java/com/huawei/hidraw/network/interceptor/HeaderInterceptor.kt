@@ -1,5 +1,6 @@
-package com.huawei.hidraw.util
+package com.huawei.hidraw.network.interceptor
 
+import com.huawei.hidraw.network.NetworkUtils.HEADER_KEY
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -9,7 +10,7 @@ import okhttp3.Response
 class HeaderInterceptor(private val userId: String) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val newRequest = chain.request().newBuilder()
-            .header("Authorization", "Bearer $userId")
+            .header(HEADER_KEY, userId)
             .build()
         return chain.proceed(newRequest)
     }

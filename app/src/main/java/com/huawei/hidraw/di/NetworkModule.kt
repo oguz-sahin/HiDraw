@@ -2,11 +2,11 @@ package com.huawei.hidraw.di
 
 import android.content.Context
 import com.huawei.hidraw.BuildConfig
-import com.huawei.hidraw.data.datasource.PrefDataSource
-import com.huawei.hidraw.network.DrawService
-import com.huawei.hidraw.network.UserService
-import com.huawei.hidraw.util.HeaderInterceptor
-import com.huawei.hidraw.util.NetworkConnectionInterceptor
+import com.huawei.hidraw.data.datasource.local.PrefDataSource
+import com.huawei.hidraw.network.interceptor.HeaderInterceptor
+import com.huawei.hidraw.network.interceptor.NetworkConnectionInterceptor
+import com.huawei.hidraw.network.service.DrawService
+import com.huawei.hidraw.network.service.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -60,8 +60,7 @@ object NetworkModule {
     @Provides
     @Header
     fun provideHeaderInterceptor(prefDataSource: PrefDataSource): Interceptor {
-        val userId = prefDataSource.userInfo?.userId ?: ""
-        return HeaderInterceptor(userId)
+        return HeaderInterceptor(prefDataSource.userId)
     }
 
     @Provides
