@@ -2,7 +2,6 @@ package com.huawei.hidraw.util.ext
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.google.gson.Gson
 
 /**
  * Created by Oguz Sahin on 11/15/2021.
@@ -17,22 +16,23 @@ inline operator fun <reified T> SharedPreferences.set(key: String, value: T) {
             is Boolean -> putBoolean(key, value)
             is Float -> putFloat(key, value)
             is Long -> putLong(key, value)
-            else -> Gson().toJson(value).also { putString(key, it) }
+            else -> throw UnsupportedOperationException("Type ${T::class} is not supported yet")
         }
     }
 }
 
 
 inline operator fun <reified T> SharedPreferences.get(
-    key: String
+    key: String,
+    defaultValue: T = defaultForType()
 ) =
-    when (T::class) {
-        String::class -> getString(key, defaultForType<String>()) as T
-        Int::class -> getInt(key, defaultForType()) as T
-        Boolean::class -> getBoolean(key, defaultForType()) as T
-        Float::class -> getFloat(key, defaultForType()) as T
-        Long::class -> getLong(key, defaultForType()) as T
-        else -> Gson().fromJson(getString(key, defaultForType<String>()), T::class.java)
+    when (defaultValue) {
+        is String -> getString(key, defaultValue) as T
+        is Int -> getInt(key, defaultValue) as T
+        is Boolean -> getBoolean(key, defaultValue) as T
+        is Float -> getFloat(key, defaultValue) as T
+        is Long -> getLong(key, defaultValue) as T
+        else -> throw UnsupportedOperationException("Type ${T::class} is not supported yet")
     }
 
 
@@ -45,4 +45,3 @@ inline fun <reified T> defaultForType(): T =
         Long::class -> 0L as T
         else -> throw IllegalArgumentException("Default value not found for type ${T::class}")
     }
-

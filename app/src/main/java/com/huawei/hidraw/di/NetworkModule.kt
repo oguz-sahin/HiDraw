@@ -2,13 +2,17 @@ package com.huawei.hidraw.di
 
 import android.content.Context
 import com.huawei.hidraw.BuildConfig
-import com.huawei.hidraw.network.UserService
-import com.huawei.hidraw.util.NetworkConnectionInterceptor
+import com.huawei.hidraw.data.datasource.local.PrefDataSource
+import com.huawei.hidraw.network.interceptor.HeaderInterceptor
+import com.huawei.hidraw.network.interceptor.NetworkConnectionInterceptor
+import com.huawei.hidraw.network.service.DrawService
+import com.huawei.hidraw.network.service.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -29,7 +33,6 @@ object NetworkModule {
 
 
     @Provides
-    @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
@@ -40,14 +43,36 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient {
-        val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
+    @HttpLogging
+    fun provideHttpLoggingInterceptor(): Interceptor {
+        return HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
             else HttpLoggingInterceptor.Level.NONE
         }
+    }
+
+    @Provides
+    @NetworkConnection
+    fun provideNetworkConnectionInterceptor(@ApplicationContext context: Context): Interceptor {
+        return NetworkConnectionInterceptor(context)
+    }
+
+    @Provides
+    @Header
+    fun provideHeaderInterceptor(prefDataSource: PrefDataSource): Interceptor {
+        return HeaderInterceptor(prefDataSource.userId)
+    }
+
+    @Provides
+    fun provideOkHttpClient(
+        @HttpLogging httpLoggingInterceptor: Interceptor,
+        @Header headerInterceptor: Interceptor,
+        @NetworkConnection networkConnectionInterceptor: Interceptor
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(NetworkConnectionInterceptor(context))
+            .addInterceptor(headerInterceptor)
+            .addInterceptor(networkConnectionInterceptor)
             .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
@@ -55,9 +80,13 @@ object NetworkModule {
     }
 
     @Provides
-    @Singleton
     fun provideUserService(retrofit: Retrofit): UserService {
         return retrofit.create(UserService::class.java)
+    }
+
+    @Provides
+    fun provideDrawService(retrofit: Retrofit): DrawService {
+        return retrofit.create(DrawService::class.java)
     }
 
 }

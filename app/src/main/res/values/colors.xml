@@ -22,5 +22,11 @@
     <color name="icon_gray_for_btn">#666666</color>
     <color name="transparent">#00000000</color>
 
+    //red
+    <color name="red">#FF0000</color>
+
+    //green
+    <color name="green">#00FF00</color>
+
 
 </resources>

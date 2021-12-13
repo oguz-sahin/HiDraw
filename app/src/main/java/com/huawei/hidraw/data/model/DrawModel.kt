@@ -1,6 +1,6 @@
 package com.huawei.hidraw.data.model
 
-abstract class DrawModel {
+abstract class BaseDrawModel {
     abstract val name: String
     abstract val winnerCounts: String
     abstract val reserveCount: String
@@ -21,7 +21,7 @@ data class InstagramDrawModel(
     val minTagCount: String,
     val eachUserOnlyOnce: Boolean,
     val screenRecord: Boolean
-) : DrawModel()
+) : BaseDrawModel()
 
 data class CustomDrawModel(
     override var name: String,
@@ -32,6 +32,28 @@ data class CustomDrawModel(
     override var description: String,
 
     val participantNames: String
-) : DrawModel()
+) : BaseDrawModel()
 
 
+/**
+ * Created by Oguz Sahin on 12/1/2021.
+ */
+data class DrawModel(
+    val creatorId: String,
+    val startDate: Long, // string
+    val endDate: Long, //string
+    val participantCount: Int,
+    val winner: String,
+    val drawName: String,
+    val platform: String,
+    val singleComment: Boolean,
+    val minLabelCount: Int,
+    val permenantUserCount: Int,
+    val spareUserCount: Int,
+    val status: Int,
+    val description: String,
+    val postUrl: String
+    // creator photo
+    // instagram post url background url
+
+)

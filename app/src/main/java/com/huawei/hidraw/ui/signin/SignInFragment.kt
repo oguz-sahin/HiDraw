@@ -7,6 +7,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import com.huawei.hidraw.core.BaseFragmentWithViewModel
 import com.huawei.hidraw.databinding.FragmentSignInBinding
+import com.huawei.hidraw.ui.signin.SignInViewEvent.SignInWithHuaweiId
+import com.huawei.hidraw.util.ext.getContent
+import com.huawei.hidraw.util.ext.observeEvent
 import com.huawei.hidraw.vm.SignInViewModel
 import com.huawei.hms.support.account.service.AccountAuthService
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,15 +23,20 @@ class SignInFragment : BaseFragmentWithViewModel<FragmentSignInBinding, SignInVi
 
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
+    private val instagramUserName
+        get() = binding.etInstagramUserName.getContent()
+
     @Inject
     lateinit var accountAuthService: AccountAuthService
 
-
     override fun initListener() {
-        super.initListener()
         binding.btnSignIn.setOnClickListener {
-            signInHuaweiId()
+            viewModel.checkInstagramUserNameAndSignIn(instagramUserName)
         }
+    }
+
+    override fun initObserver() {
+        observeEvent(viewModel.viewEvent, ::handleViewEvent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,10 +44,16 @@ class SignInFragment : BaseFragmentWithViewModel<FragmentSignInBinding, SignInVi
         setResultLauncher()
     }
 
+    private fun handleViewEvent(signInViewEvent: SignInViewEvent) {
+        when (signInViewEvent) {
+            SignInWithHuaweiId -> signInHuaweiId()
+        }
+    }
+
     private fun setResultLauncher() {
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                viewModel.signIn(result)
+                viewModel.signIn(result, instagramUserName)
             }
     }
 

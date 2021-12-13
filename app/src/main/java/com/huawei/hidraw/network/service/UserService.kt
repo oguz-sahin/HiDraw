@@ -1,8 +1,10 @@
-package com.huawei.hidraw.network
+package com.huawei.hidraw.network.service
 
 import com.huawei.hidraw.data.model.BaseResponseModel
 import com.huawei.hidraw.data.model.UserModel
+import com.huawei.hidraw.network.NetworkUtils.USER_REQUEST_PATH
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 /**
@@ -11,8 +13,12 @@ import retrofit2.http.POST
 
 interface UserService {
 
-    @POST("api/user")
+    @POST(USER_REQUEST_PATH)
     suspend fun saveUser(
         @Body userModel: UserModel
-    ): BaseResponseModel<Boolean>
+    ): BaseResponseModel<UserModel>
+
+
+    @GET(USER_REQUEST_PATH)
+    suspend fun getUser(): BaseResponseModel<UserModel>
 }

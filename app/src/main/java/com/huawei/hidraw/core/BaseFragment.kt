@@ -65,8 +65,8 @@ abstract class BaseFragment<VB : ViewBinding>(
 
     private fun showMessage(type: SnackBarType, message: String) {
         val backgroundColor = when (type) {
-            SUCCESS -> R.color.black
-            ERROR -> R.color.material_on_primary_disabled
+            SUCCESS -> R.color.green
+            ERROR -> R.color.red
         }
         Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
             .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))

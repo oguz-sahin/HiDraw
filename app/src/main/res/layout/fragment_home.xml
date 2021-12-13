@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/_8sdp"
+    android:padding="@dimen/_4sdp"
     tools:context=".ui.home.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDraws"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_common_draw" />
 

@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.huawei.hidraw.data.ResultWrapper
-import com.huawei.hidraw.data.model.BaseException
 import com.huawei.hidraw.data.model.ErrorResponseModel
 import com.huawei.hidraw.data.model.HttpException
+import com.huawei.hidraw.data.model.IException
 import com.huawei.hidraw.util.Event
 import kotlinx.coroutines.launch
 
@@ -27,15 +27,16 @@ abstract class BaseViewModel : ViewModel() {
     val baseEvent: LiveData<Event<BaseViewEvent>> = _baseEvent
 
     /** An helper function for sending one-time events to [baseEvent] **/
-    private fun sendEvent(event: BaseViewEvent) = _baseEvent.postValue(Event(event))
+    private fun sendEvent(event: BaseViewEvent) = setEvent(_baseEvent, event)
 
-    private fun showLoading() {
+    fun showLoading() {
         _loading.postValue(true)
     }
 
-    private fun hideLoading() {
+    fun hideLoading() {
         _loading.postValue(false)
     }
+
 
     /** Navigate to specific direction **/
     fun navigate(directions: NavDirections) = sendEvent(BaseViewEvent.NavigateTo(directions))
@@ -53,39 +54,44 @@ abstract class BaseViewModel : ViewModel() {
 
     fun <T> makeNetworkRequest(
         requestFunc: suspend () -> ResultWrapper<T>,
-        onSuccess: (() -> Unit)? = null,
+        onSuccess: ((value: T) -> Unit)? = null,
         onError: (() -> Unit)? = null
     ) {
         viewModelScope.launch {
             showLoading()
             when (val response = requestFunc.invoke()) {
                 is ResultWrapper.Error -> {
-                    hideLoading()
                     onError?.invoke()
+                    hideLoading()
                     handleError(response.value)
                 }
                 is ResultWrapper.Success -> {
+                    onSuccess?.invoke(response.value)
                     hideLoading()
-                    onSuccess?.invoke()
                 }
             }
         }
     }
 
-    private fun handleError(exception: BaseException) {
+
+    private fun handleError(exception: IException) {
         when (exception) {
             is HttpException -> {
                 val errorMessage = getErrorMessage(exception.errorResponseModel)
                 showError(errorMessage)
             }
             else -> {
-                showErrorWithId(exception.messageId)
+                showErrorWithId(exception.getMessage())
             }
         }
     }
 
-
     private fun getErrorMessage(errorResponseModel: ErrorResponseModel?): String =
         errorResponseModel?.result?.msg ?: ""
+
+
+    fun <T> setEvent(mutableLiveData: MutableLiveData<Event<T>>, value: T) {
+        mutableLiveData.postValue(Event(value))
+    }
 
 }

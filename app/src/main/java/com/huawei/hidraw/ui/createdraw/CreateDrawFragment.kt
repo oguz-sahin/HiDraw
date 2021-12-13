@@ -77,7 +77,7 @@ class CreateDrawFragment :
 
             cpGroupDrawType.setOnCheckedChangeListener { group, checkedId ->
                 val chip: Chip? = group.findViewById(checkedId)
-                chip?.let {chipView ->
+                chip?.let { chipView ->
                     Toast.makeText(context, chip.text, Toast.LENGTH_SHORT).show()
                 } ?: kotlin.run {
                 }
@@ -98,10 +98,11 @@ class CreateDrawFragment :
         return materialDatePicker
     }
 
-    private fun createDrawWithInstagramType(){
+    private fun createDrawWithInstagramType() {
         val data: InstagramDrawModel = getInstagramDrawContentFromInputs()
         // TODO MAKE THE REQUEST
     }
+
     private fun createDrawWithCustomType() {
         val data: CustomDrawModel = getCustomDrawContentFromInputs()
         // TODO MAKE THE REQUEST
@@ -129,7 +130,7 @@ class CreateDrawFragment :
     private fun getCustomDrawContentFromInputs(): CustomDrawModel {
 
         return with(binding) {
-             CustomDrawModel(
+            CustomDrawModel(
                 etDrawName.getContent(),
                 etWinnerCounts.getContent(),
                 etReserveCount.getContent(),

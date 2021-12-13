@@ -21,3 +21,5 @@ fun EditText.getContent(): String {
 }
 
 
+
+
