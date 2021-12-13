@@ -2,43 +2,51 @@ package com.huawei.hidraw.data.model
 
 import androidx.annotation.StringRes
 import com.huawei.hidraw.R
+import java.io.IOException
 
 /**
  * Created by Oguz Sahin on 11/29/2021.
  */
 
-open class BaseException : Throwable() {
-    open val messageId: Int = R.string.sign_in
+interface IException {
+    fun getMessage(): Int {
+        return 0
+    }
 }
 
-data class HttpException(val errorResponseModel: ErrorResponseModel?) : BaseException()
+data class HttpException(val errorResponseModel: ErrorResponseModel?) : IException
 
 
-class GeneralException : BaseException() {
-    override val messageId: Int
-        get() = R.string.general_exception_message
-}
-
-
-class NoConnectionException : BaseException() {
-    override val messageId: Int
-        get() = R.string.no_connection_exception_message
+class GeneralException : IException {
+    override fun getMessage(): Int {
+        return R.string.general_exception_message
+    }
 }
 
 
-class ServiceUnreachableException : BaseException() {
-    override val messageId: Int
-        get() = R.string.service_unreachable_exception_message
+class NoConnectionException : IOException(), IException {
+    override fun getMessage(): Int {
+        return R.string.no_connection_exception_message
+    }
 }
 
-class TimeOutException : BaseException() {
-    override val messageId: Int
-        get() = R.string.time_out_exception_message
+
+class ServiceUnreachableException : IException {
+    override fun getMessage(): Int {
+        return R.string.service_unreachable_exception_message
+    }
 }
 
-data class CustomException(@StringRes val exceptionRes: Int) : BaseException() {
-    override val messageId: Int
-        get() = exceptionRes
+class TimeOutException : IException {
+    override fun getMessage(): Int {
+        return R.string.time_out_exception_message
+    }
+}
+
+data class CustomException(@StringRes val exceptionRes: Int) : IException {
+    override fun getMessage(): Int {
+        return exceptionRes
+    }
 }
 
 
