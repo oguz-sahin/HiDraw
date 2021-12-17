@@ -1,6 +1,7 @@
 package com.huawei.hidraw.util.bindigadapter
 
 import android.widget.ImageView
+import androidx.annotation.IdRes
 import androidx.databinding.BindingAdapter
 import com.huawei.hidraw.util.ext.load
 
@@ -13,4 +14,10 @@ fun ImageView.loadImage(url: String?) {
     if (!url.isNullOrEmpty()) {
         load(url)
     }
+}
+
+
+@BindingAdapter("imageSrc")
+fun ImageView.loadImage(resId: Int) {
+    setImageResource(resId)
 }

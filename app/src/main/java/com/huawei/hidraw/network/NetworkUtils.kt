@@ -18,6 +18,7 @@ object NetworkUtils {
     const val GET_ACTIVE_DRAWS_REQUEST_PATH = "draw/active"
     const val GET_CREATED_DRAW_REQUEST_PATH = "draw/createdDraw"
     const val GET_ATTENDED_DRAW_REQUEST_PATH = "attendDraw/draw"
+    const val GET_DRAW_BY_ID_REQUEST_PATH = "draw"
 
     @Suppress("DEPRECATION")
     fun isNetworkAvailable(context: Context): Boolean {

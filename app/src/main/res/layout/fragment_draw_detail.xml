@@ -1,245 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.drawdetail.DrawDetailFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <variable
+            name="viewState"
+            type="com.huawei.hidraw.ui.drawdetail.DrawDetailFragmentViewState" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        tools:context=".ui.drawdetail.DrawDetailFragment">
 
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivDrawImage"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_150sdp"
-            android:layout_margin="@dimen/_16sdp"
-            android:elevation="@dimen/_4sdp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/bg_common_designed_blue"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/RoundedSquare" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivDrawInfoBackground"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:elevation="@dimen/_8sdp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/bg_common_designed_white"
-            app:layout_constraintBottom_toBottomOf="@id/tvParticipant"
-            app:layout_constraintEnd_toEndOf="@id/ivDrawImage"
-            app:layout_constraintStart_toStartOf="@id/ivDrawImage"
-            app:layout_constraintTop_toBottomOf="@+id/ivDrawImage"
-            app:shapeAppearanceOverlay="@style/RoundedSquare" />
-
-        <TextView
-            android:id="@+id/tvDrawName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textColor="@color/black"
-            android:textSize="@dimen/xlarge_text_size"
-            android:translationZ="@dimen/_8sdp"
-            app:layout_constraintEnd_toStartOf="@+id/tvRemainingTime"
-            app:layout_constraintStart_toStartOf="@+id/ivDrawInfoBackground"
-            app:layout_constraintTop_toTopOf="@+id/ivDrawInfoBackground"
-            tools:text="Coffee Draw" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivDrawImage"
+                imageUrl="@{viewState.postImageUrl}"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_150sdp"
+                android:layout_margin="@dimen/_16sdp"
+                android:elevation="@dimen/_2sdp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/bg_common_designed_blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
 
-        <TextView
-            android:id="@+id/tvRemainingTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:drawablePadding="@dimen/_8sdp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="@dimen/medium_text_size"
-            android:translationZ="@dimen/_8sdp"
-            app:drawableStartCompat="@drawable/ic_remaining_time"
-            app:layout_constraintBottom_toBottomOf="@+id/tvDrawName"
-            app:layout_constraintEnd_toEndOf="@+id/ivDrawInfoBackground"
-            app:layout_constraintTop_toTopOf="@+id/tvDrawName"
-            tools:text="3 day passed." />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivDrawInfoBackground"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:elevation="@dimen/_8sdp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/bg_common_designed_white"
+                app:layout_constraintBottom_toBottomOf="@id/tvParticipant"
+                app:layout_constraintEnd_toEndOf="@id/ivDrawImage"
+                app:layout_constraintStart_toStartOf="@id/ivDrawImage"
+                app:layout_constraintTop_toBottomOf="@+id/ivDrawImage"
+                app:shapeAppearanceOverlay="@style/RoundedSquare" />
+
+            <TextView
+                android:id="@+id/tvDrawName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{viewState.drawTitle}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/xlarge_text_size"
+                android:translationZ="@dimen/_8sdp"
+                app:layout_constraintEnd_toStartOf="@+id/tvRemainingTime"
+                app:layout_constraintStart_toStartOf="@+id/ivDrawInfoBackground"
+                app:layout_constraintTop_toTopOf="@+id/ivDrawInfoBackground"
+                tools:text="Coffee Draw" />
 
 
-        <TextView
-            android:id="@+id/tvDrawDescription"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:maxLength="250"
-            android:paddingVertical="@dimen/_16sdp"
-            android:textSize="@dimen/small_text_size"
-            android:translationZ="@dimen/_8sdp"
-            app:layout_constraintEnd_toEndOf="@+id/tvRemainingTime"
-            app:layout_constraintStart_toStartOf="@+id/tvDrawName"
-            app:layout_constraintTop_toBottomOf="@+id/tvDrawName"
-            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor  Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
+            <TextView
+                android:id="@+id/tvRemainingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:drawablePadding="@dimen/_8sdp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/medium_text_size"
+                android:translationZ="@dimen/_8sdp"
+                app:drawableStartCompat="@drawable/ic_remaining_time"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDrawName"
+                app:layout_constraintEnd_toEndOf="@+id/ivDrawInfoBackground"
+                app:layout_constraintTop_toTopOf="@+id/tvDrawName"
+                tools:text="3 day passed." />
 
 
-        <TextView
-            android:id="@+id/tvWinnerInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="@dimen/_8sdp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="@dimen/small_text_size"
-            android:translationZ="@dimen/_8sdp"
-            app:drawableStartCompat="@drawable/ic_winner"
-            app:layout_constraintStart_toStartOf="@+id/tvDrawDescription"
-            app:layout_constraintTop_toBottomOf="@+id/tvDrawDescription"
-            tools:text="2 Asil" />
+            <TextView
+                android:id="@+id/tvDrawDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLength="250"
+                android:paddingVertical="@dimen/_16sdp"
+                android:text="@{viewState.drawDescription}"
+                android:textSize="@dimen/small_text_size"
+                android:translationZ="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="@+id/tvRemainingTime"
+                app:layout_constraintStart_toStartOf="@+id/tvDrawName"
+                app:layout_constraintTop_toBottomOf="@+id/tvDrawName"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor  Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
 
 
-        <TextView
-            android:id="@+id/tvBackupWinnerInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:drawablePadding="@dimen/_8sdp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="@dimen/small_text_size"
-            android:translationZ="@dimen/_8sdp"
-            app:drawableStartCompat="@drawable/ic_winner"
-            app:layout_constraintStart_toStartOf="@+id/tvWinnerInfo"
-            app:layout_constraintTop_toBottomOf="@+id/tvWinnerInfo"
-            tools:text="2 Yedek" />
-
-        <TextView
-            android:id="@+id/tvParticipant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:drawablePadding="@dimen/_8sdp"
-            android:gravity="center"
-            android:paddingBottom="@dimen/_16sdp"
-            android:textColor="@color/black"
-            android:textSize="@dimen/small_text_size"
-            android:translationZ="@dimen/_8sdp"
-            app:drawableStartCompat="@drawable/ic_partipicant"
-            app:layout_constraintBottom_toBottomOf="@id/ivDrawInfoBackground"
-            app:layout_constraintStart_toStartOf="@+id/tvBackupWinnerInfo"
-            app:layout_constraintTop_toBottomOf="@+id/tvBackupWinnerInfo"
-            tools:text="210 person Attended." />
+            <TextView
+                android:id="@+id/tvWinnerInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/_8sdp"
+                android:gravity="center"
+                android:text="@{viewState.getDrawWinnerCount(context)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/small_text_size"
+                android:translationZ="@dimen/_8sdp"
+                app:drawableStartCompat="@drawable/ic_winner"
+                app:layout_constraintStart_toStartOf="@+id/tvDrawDescription"
+                app:layout_constraintTop_toBottomOf="@+id/tvDrawDescription"
+                tools:text="2 Asil" />
 
 
-        <ImageView
-            android:id="@+id/ivDrawStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_16sdp"
-            android:contentDescription="@string/draw_status_image"
-            android:translationZ="@dimen/_8sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/ivDrawInfoBackground"
-            app:layout_constraintEnd_toEndOf="@+id/tvDrawDescription"
-            app:layout_constraintTop_toBottomOf="@+id/tvDrawDescription"
-            tools:src="@mipmap/delayed" />
+            <TextView
+                android:id="@+id/tvBackupWinnerInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:drawablePadding="@dimen/_8sdp"
+                android:gravity="center"
+                android:text="@{viewState.getDrawBackupWinnerCount(context)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/small_text_size"
+                android:translationZ="@dimen/_8sdp"
+                app:drawableStartCompat="@drawable/ic_winner"
+                app:layout_constraintStart_toStartOf="@+id/tvWinnerInfo"
+                app:layout_constraintTop_toBottomOf="@+id/tvWinnerInfo"
+                tools:text="2 Yedek" />
+
+            <TextView
+                android:id="@+id/tvParticipant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:drawablePadding="@dimen/_8sdp"
+                android:gravity="center"
+                android:paddingBottom="@dimen/_16sdp"
+                android:text="@{viewState.getDrawParticipantCount(context)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/small_text_size"
+                android:translationZ="@dimen/_8sdp"
+                app:drawableStartCompat="@drawable/ic_partipicant"
+                app:layout_constraintBottom_toBottomOf="@id/ivDrawInfoBackground"
+                app:layout_constraintStart_toStartOf="@+id/tvBackupWinnerInfo"
+                app:layout_constraintTop_toBottomOf="@+id/tvBackupWinnerInfo"
+                tools:text="210 person Attended." />
 
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivWinnerBackground"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:elevation="@dimen/_8sdp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/bg_common_designed_white"
-            app:layout_constraintBottom_toBottomOf="@id/rvWinners"
-            app:layout_constraintEnd_toEndOf="@+id/ivDrawInfoBackground"
-            app:layout_constraintStart_toStartOf="@+id/ivDrawInfoBackground"
-            app:layout_constraintTop_toBottomOf="@+id/ivDrawInfoBackground"
-            app:shapeAppearanceOverlay="@style/RoundedSquare" />
+            <ImageView
+                android:id="@+id/ivDrawStatus"
+                imageSrc="@{viewState.getStatusImage}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:contentDescription="@string/draw_status_image"
+                android:translationZ="@dimen/_8sdp"
+                android:visibility="@{viewState.statusImageVisibility}"
+                app:layout_constraintBottom_toBottomOf="@+id/ivDrawInfoBackground"
+                app:layout_constraintEnd_toEndOf="@+id/tvDrawDescription"
+                app:layout_constraintTop_toBottomOf="@+id/tvDrawDescription"
+                tools:src="@mipmap/delayed" />
 
 
-        <TextView
-            android:id="@+id/tvWinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_8sdp"
-            android:text="@string/Winners"
-            android:textColor="@color/black"
-            android:textSize="@dimen/title_text_size"
-            android:translationZ="@dimen/_8sdp"
-            app:layout_constraintStart_toStartOf="@+id/ivWinnerBackground"
-            app:layout_constraintTop_toTopOf="@+id/ivWinnerBackground" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvWinners"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:translationZ="@dimen/_8sdp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="@+id/ivWinnerBackground"
-            app:layout_constraintStart_toStartOf="@+id/ivWinnerBackground"
-            app:layout_constraintTop_toBottomOf="@+id/tvWinner"
-            tools:listitem="2" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivWinnerBackground"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:elevation="@dimen/_8sdp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/bg_common_designed_white"
+                app:layout_constraintBottom_toBottomOf="@id/rvWinners"
+                app:layout_constraintEnd_toEndOf="@+id/ivDrawInfoBackground"
+                app:layout_constraintStart_toStartOf="@+id/ivDrawInfoBackground"
+                app:layout_constraintTop_toBottomOf="@+id/ivDrawInfoBackground"
+                app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivBackupWinnerBackground"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:elevation="@dimen/_8sdp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/bg_common_designed_white"
-            app:layout_constraintBottom_toBottomOf="@id/rvBackupWinners"
-            app:layout_constraintEnd_toEndOf="@+id/ivWinnerBackground"
-            app:layout_constraintStart_toStartOf="@+id/ivWinnerBackground"
-            app:layout_constraintTop_toBottomOf="@+id/ivWinnerBackground"
-            app:shapeAppearanceOverlay="@style/RoundedSquare" />
+            <TextView
+                android:id="@+id/tvWinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:text="@string/Winners"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_size"
+                android:translationZ="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="@+id/ivWinnerBackground"
+                app:layout_constraintTop_toTopOf="@+id/ivWinnerBackground" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvWinners"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:translationZ="@dimen/_8sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@+id/ivWinnerBackground"
+                app:layout_constraintStart_toStartOf="@+id/ivWinnerBackground"
+                app:layout_constraintTop_toBottomOf="@+id/tvWinner"
+                tools:listitem="2" />
 
 
-        <TextView
-            android:id="@+id/tvBackupWinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_8sdp"
-            android:text="@string/Winners"
-            android:textColor="@color/black"
-            android:textSize="@dimen/title_text_size"
-            android:translationZ="@dimen/_8sdp"
-            app:layout_constraintStart_toStartOf="@+id/ivBackupWinnerBackground"
-            app:layout_constraintTop_toTopOf="@+id/ivBackupWinnerBackground" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvBackupWinners"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:translationZ="@dimen/_8sdp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="@+id/ivBackupWinnerBackground"
-            app:layout_constraintStart_toStartOf="@+id/ivBackupWinnerBackground"
-            app:layout_constraintTop_toBottomOf="@+id/tvBackupWinner"
-            tools:listitem="2" />
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/grpWinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewState.winnerGroupVisibility}"
+                app:constraint_referenced_ids="ivWinnerBackground,tvWinner,rvWinners" />
 
 
-        <Button
-            android:id="@+id/btnAction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:backgroundTint="@color/cream_can"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@id/ivBackupWinnerBackground"
-            app:layout_constraintStart_toStartOf="@id/ivBackupWinnerBackground"
-            app:layout_constraintTop_toBottomOf="@id/ivBackupWinnerBackground"
-            tools:text="ATTEND" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivBackupWinnerBackground"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:elevation="@dimen/_8sdp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/bg_common_designed_white"
+                app:layout_constraintBottom_toBottomOf="@id/rvBackupWinners"
+                app:layout_constraintEnd_toEndOf="@+id/ivWinnerBackground"
+                app:layout_constraintStart_toStartOf="@+id/ivWinnerBackground"
+                app:layout_constraintTop_toBottomOf="@+id/ivWinnerBackground"
+                app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+            <TextView
+                android:id="@+id/tvBackupWinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:text="@string/Winners"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_size"
+                android:translationZ="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="@+id/ivBackupWinnerBackground"
+                app:layout_constraintTop_toTopOf="@+id/ivBackupWinnerBackground" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBackupWinners"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:translationZ="@dimen/_8sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@+id/ivBackupWinnerBackground"
+                app:layout_constraintStart_toStartOf="@+id/ivBackupWinnerBackground"
+                app:layout_constraintTop_toBottomOf="@+id/tvBackupWinner"
+                tools:listitem="2" />
+
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/grpBackupWinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewState.backupWinnerGroupVisibility}"
+                app:constraint_referenced_ids="ivBackupWinnerBackground,tvBackupWinner,rvBackupWinners" />
+
+
+            <Button
+                android:id="@+id/btnAction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:backgroundTint="@color/cream_can"
+                android:paddingHorizontal="@dimen/_16sdp"
+                android:text="ATTEND"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@id/ivBackupWinnerBackground"
+                app:layout_constraintStart_toStartOf="@id/ivBackupWinnerBackground"
+                app:layout_constraintTop_toBottomOf="@id/ivBackupWinnerBackground" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

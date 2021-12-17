@@ -47,4 +47,7 @@
     <string name="no_draw_error">There is no draw showing</string>
     <string name="common_error">ERROR</string>
     <string name="success">Success</string>
+    <string name="winner_count">%1$d winner</string>
+    <string name="backup_winner_count">%1$d backup winner</string>
+    <string name="participant_count">%1$d backup winner</string>
 </resources>

@@ -27,6 +27,7 @@ class ProfileFragment : BaseFragmentWithViewModel<FragmentProfileBinding, Profil
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         initTabLayout()
+   defaultViewModelProviderFactory
     }
 
 
