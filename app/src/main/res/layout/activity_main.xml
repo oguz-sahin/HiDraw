@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewState"
             type="com.huawei.hidraw.ui.MainActivityViewState" />
@@ -21,27 +22,26 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginBottom="@dimen/_10sdp"
             app:navGraph="@navigation/nav_graph" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_fab_button"
             android:layout_marginBottom="@dimen/_16sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_fab_button"
+            android:visibility="@{viewState.fabVisibility}"
             app:backgroundTint="@color/transparent"
             app:layout_constraintBottom_toBottomOf="@id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="@id/bottomNavigationView"
             app:layout_constraintStart_toStartOf="@id/bottomNavigationView"
             app:maxImageSize="@dimen/_56sdp"
-            app:tint="@null"
-            android:visibility="@{viewState.fabVisibility}"
-            android:contentDescription="@string/app_name" />
+            app:tint="@null" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
@@ -49,14 +49,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_8sdp"
             android:background="@drawable/bg_rounded_8"
-            app:backgroundTint="@color/space_blue"
-            app:itemIconTint="@color/bottom_nav_color_selector"
-            app:itemIconSize="@dimen/_32sdp"
             android:translationZ="-4dp"
             android:visibility="@{viewState.bottomNavigationVisibility}"
-            app:layout_constraintStart_toStartOf="parent"
+            app:backgroundTint="@color/space_blue"
+            app:itemIconSize="@dimen/_32sdp"
+            app:itemIconTint="@color/bottom_nav_color_selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_nav_menu" />
 
 

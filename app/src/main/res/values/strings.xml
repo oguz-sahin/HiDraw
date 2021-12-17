@@ -45,4 +45,8 @@
     <string name="my_created">my Crated</string>
     <string name="my_attended">my Attended</string>
     <string name="no_draw_error">There is no draw showing</string>
+    <string name="winner_count">%1$d winner</string>
+    <string name="backup_winner_count">%1$d backup winner</string>
+    <string name="participant_count">%1$d backup winner</string>
+
 </resources>

@@ -8,6 +8,7 @@ import com.huawei.hidraw.core.BaseFragmentWithViewModel
 import com.huawei.hidraw.data.model.DrawModel
 import com.huawei.hidraw.databinding.FragmentDrawListBinding
 import com.huawei.hidraw.ui.adapter.draw.DrawAdapter
+import com.huawei.hidraw.ui.profile.ProfileFragmentDirections.actionProfileFragmentToDrawDetailFragment
 import com.huawei.hidraw.util.ext.observe
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -43,6 +44,10 @@ class DrawListFragment : BaseFragmentWithViewModel<FragmentDrawListBinding, Draw
     }
 
     private fun setAdapter() {
+        drawAdapter.onDrawClicked = { drawId ->
+            val action = actionProfileFragmentToDrawDetailFragment().setDrawId(drawId)
+            navigateDirections(action)
+        }
         binding.rvDrawList.adapter = drawAdapter
     }
 

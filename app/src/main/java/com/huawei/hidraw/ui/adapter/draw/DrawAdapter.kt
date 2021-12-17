@@ -19,7 +19,7 @@ class DrawAdapter @Inject constructor() : RecyclerView.Adapter<DrawViewHolder>()
             notifyDataSetChanged()
         }
 
-    var onDrawClicked: (() -> Unit)? = null
+    var onDrawClicked: ((drawId: Long) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrawViewHolder =
         DrawViewHolder.create(parent, onDrawClicked)

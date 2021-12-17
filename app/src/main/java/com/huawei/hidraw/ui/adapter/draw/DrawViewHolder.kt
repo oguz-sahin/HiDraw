@@ -10,24 +10,24 @@ import com.huawei.hidraw.util.ext.inflate
  * Created by Oguz Sahin on 12/2/2021.
  */
 
-class DrawViewHolder(private val binding: ItemCommonDrawBinding, onDrawClicked: (() -> Unit)?) :
+class DrawViewHolder(
+    private val binding: ItemCommonDrawBinding,
+    private val onDrawClicked: ((drawId: Long) -> Unit)?
+) :
     RecyclerView.ViewHolder(binding.root) {
-
-    init {
-        binding.root.setOnClickListener { onDrawClicked?.invoke() }
-    }
 
     fun bind(drawModel: DrawModel) {
         with(binding) {
             viewState = DrawItemViewState(drawModel)
             executePendingBindings()
         }
+        binding.root.setOnClickListener { onDrawClicked?.invoke(10003) }
     }
 
     companion object {
         fun create(
             parent: ViewGroup,
-            onDrawClicked: (() -> Unit)?
+            onDrawClicked: ((drawId: Long) -> Unit)?
         ): DrawViewHolder {
             val binding = parent.inflate(ItemCommonDrawBinding::inflate)
             return DrawViewHolder(binding, onDrawClicked)

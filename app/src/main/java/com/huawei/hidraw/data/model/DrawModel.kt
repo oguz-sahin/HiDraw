@@ -40,8 +40,8 @@ data class CustomDrawModel(
  */
 data class DrawModel(
     val creatorId: String,
-    val startDate: Long, // string
-    val endDate: Long, //string
+    val startDate: Long,
+    val endDate: Long,
     val participantCount: Int,
     val winner: String,
     val drawName: String,

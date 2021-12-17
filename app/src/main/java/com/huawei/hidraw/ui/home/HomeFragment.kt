@@ -7,6 +7,7 @@ import com.huawei.hidraw.core.BaseFragmentWithViewModel
 import com.huawei.hidraw.data.model.DrawModel
 import com.huawei.hidraw.databinding.FragmentHomeBinding
 import com.huawei.hidraw.ui.adapter.draw.DrawAdapter
+import com.huawei.hidraw.ui.home.HomeFragmentDirections.actionHomeFragmentToDrawDetailFragment
 import com.huawei.hidraw.util.ext.observe
 import com.huawei.hidraw.vm.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +30,13 @@ class HomeFragment : BaseFragmentWithViewModel<FragmentHomeBinding, HomeViewMode
     }
 
     private fun initAdapter() {
+        drawAdapter.onDrawClicked = { drawId -> navigateDrawDetail(drawId) }
         binding.rvDraws.adapter = drawAdapter
+    }
+
+    private fun navigateDrawDetail(drawId: Long) {
+        val action = actionHomeFragmentToDrawDetailFragment().setDrawId(drawId)
+        navigateDirections(action)
     }
 
     private fun loadDraws(draws: List<DrawModel>) {

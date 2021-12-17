@@ -28,4 +28,8 @@ abstract class RepositoryModule {
     @Singleton
     abstract fun provideProfileRepository(profileRepositoryImpl: ProfileRepositoryImpl): ProfileRepository
 
+    @Binds
+    @Singleton
+    abstract fun provideDrawDetailRepository(drawDetailRepositoryImpl: DrawDetailRepositoryImpl): DrawDetailRepository
+
 }
