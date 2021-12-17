@@ -45,4 +45,6 @@
     <string name="my_created">my Crated</string>
     <string name="my_attended">my Attended</string>
     <string name="no_draw_error">There is no draw showing</string>
+    <string name="common_error">ERROR</string>
+    <string name="success">Success</string>
 </resources>

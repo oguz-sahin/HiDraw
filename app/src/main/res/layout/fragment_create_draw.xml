@@ -118,46 +118,8 @@
 
         </com.google.android.material.chip.ChipGroup>
 
-        <Button
-            android:id="@+id/btnStartDate"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:gravity="center_vertical"
-            android:hint="@string/start_date"
-            android:minHeight="@dimen/_42sdp"
-            android:text="@{viewState.selectedStartDate}"
-            app:icon="@drawable/ic_baseline_date_range_24"
-            app:iconTint="@color/icon_gray_for_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnEndDate"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cpGroupDrawType" />
-
-
-        <Button
-            android:id="@+id/btnEndDate"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:gravity="start|center_vertical"
-            android:hint="@string/end_date"
-            android:minHeight="@dimen/_42sdp"
-            android:text="@{viewState.selectedEndDate}"
-            app:icon="@drawable/ic_baseline_date_range_24"
-            app:iconTint="@color/icon_gray_for_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnStartDate"
-            app:layout_constraintTop_toTopOf="@+id/btnStartDate" />
-
-
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilCustomDrawDescription"
+            android:id="@+id/tilDrawDescription"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -166,10 +128,10 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toStartOf="@id/guideEnd"
             app:layout_constraintStart_toStartOf="@id/guideStart"
-            app:layout_constraintTop_toBottomOf="@+id/btnStartDate">
+            app:layout_constraintTop_toBottomOf="@+id/cpGroupDrawType">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etCustomDrawDescription"
+                android:id="@+id/etDrawDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
@@ -187,7 +149,7 @@
             android:hint="@string/names"
             app:layout_constraintEnd_toEndOf="@id/guideEnd"
             app:layout_constraintStart_toStartOf="@id/guideStart"
-            app:layout_constraintTop_toBottomOf="@+id/tilCustomDrawDescription">
+            app:layout_constraintTop_toBottomOf="@+id/tilDrawDescription">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDrawParticipantNames"
@@ -210,6 +172,44 @@
             app:layout_constraintStart_toStartOf="@+id/tilDrawParticipantNames"
             app:layout_constraintTop_toBottomOf="@+id/tilDrawParticipantNames" />
 
+
+        <Button
+            android:id="@+id/btnStartDate"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:gravity="center_vertical"
+            android:hint="@string/start_date"
+            android:minHeight="@dimen/_42sdp"
+            android:text="@{viewState.selectedStartDate}"
+            app:icon="@drawable/ic_baseline_date_range_24"
+            app:iconTint="@color/icon_gray_for_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnEndDate"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilDrawDescription" />
+
+
+        <Button
+            android:id="@+id/btnEndDate"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:gravity="start|center_vertical"
+            android:hint="@string/end_date"
+            android:minHeight="@dimen/_42sdp"
+            android:text="@{viewState.selectedEndDate}"
+            app:icon="@drawable/ic_baseline_date_range_24"
+            app:iconTint="@color/icon_gray_for_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnStartDate"
+            app:layout_constraintTop_toTopOf="@+id/btnStartDate" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilDrawUrl"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -231,30 +231,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilInstagramDrawDescription"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:hint="@string/description"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilDrawUrl">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etInstagramDrawDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:maxLines="10"
-                android:minLines="3" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilMinTagCount"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="@dimen/_100sdp"
@@ -263,7 +239,7 @@
             android:layout_marginTop="@dimen/_16sdp"
             android:hint="@string/tag_count"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilInstagramDrawDescription"
+            app:layout_constraintTop_toBottomOf="@+id/tilDrawUrl"
             app:startIconDrawable="@drawable/ic_at_tag">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -282,7 +258,7 @@
             android:text="@string/take_screen_record"
             app:layout_constraintEnd_toEndOf="@id/guideEnd"
             app:layout_constraintStart_toEndOf="@+id/tilMinTagCount"
-            app:layout_constraintTop_toBottomOf="@+id/tilInstagramDrawDescription" />
+            app:layout_constraintTop_toBottomOf="@+id/tilDrawUrl" />
 
         <CheckBox
             android:id="@+id/cb_eachUserOnlyOnce"
@@ -309,15 +285,15 @@
             android:id="@+id/grpCustom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{viewState.customGroupVisibility}"
-            app:constraint_referenced_ids="tilCustomDrawDescription,tilDrawParticipantNames,tvInputInfo" />
+            android:visibility="@{viewState.CustomGroupVisibility}"
+            app:constraint_referenced_ids="tilDrawParticipantNames,tvInputInfo" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/grpInstagram"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{viewState.instagramGroupVisibility}"
-            app:constraint_referenced_ids="btnStartDate,btnEndDate,tilDrawUrl,tilInstagramDrawDescription,tilMinTagCount,cb_eachUserOnlyOnce,cb_screenRecord" />
+            android:visibility="@{viewState.InstagramGroupVisibility}"
+            app:constraint_referenced_ids="btnStartDate,btnEndDate,tilDrawUrl,tilMinTagCount,cb_eachUserOnlyOnce,cb_screenRecord" />
 
 
         <androidx.constraintlayout.widget.Guideline
