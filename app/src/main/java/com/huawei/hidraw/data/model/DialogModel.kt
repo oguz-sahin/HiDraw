@@ -8,8 +8,8 @@ data class DialogModel (
     val dialogViewId: Int,
     val isCancelable: Boolean = true,
 
-    val dialogTitle: R.string? = null,
-    val dialogMessage: Int? = null,
+    val dialogTitle: String? = null,
+    val dialogMessage: String? = null,
     val positiveButtonText: R.string? = null,
     val positiveButtonClickListener: (() -> Unit)? = null,
     val negativeButtonText: R.string? = null,
