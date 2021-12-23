@@ -11,7 +11,6 @@ import dagger.hilt.android.HiltAndroidApp
  * Created by Oguz Sahin on 10/26/2021.
  */
 
-
 @HiltAndroidApp
 class App : Application() {
 
@@ -30,9 +29,7 @@ class App : Application() {
         }
     }
 
-
     private fun initCrashService() {
         AGConnectCrash.getInstance().enableCrashCollection(true)
     }
-
 }

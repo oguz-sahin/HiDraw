@@ -3,8 +3,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven {url 'https://developer.huawei.com/repo/'}
+        maven(url = "https://developer.huawei.com/repo/")
     }
 }
 rootProject.name = "HiDraw"
-include ':app'
+include(":app")

@@ -6,7 +6,6 @@ import javax.inject.Qualifier
  * Created by Oguz Sahin on 11/15/2021.
  */
 
-
 @Retention(AnnotationRetention.RUNTIME)
 @Qualifier
 annotation class DefaultDispatcher

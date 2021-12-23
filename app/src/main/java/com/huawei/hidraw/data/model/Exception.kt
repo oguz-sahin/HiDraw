@@ -16,20 +16,17 @@ interface IException {
 
 data class HttpException(val errorResponseModel: ErrorResponseModel?) : IException
 
-
 class GeneralException : IException {
     override fun getMessage(): Int {
         return R.string.general_exception_message
     }
 }
 
-
 class NoConnectionException : IOException(), IException {
     override fun getMessage(): Int {
         return R.string.no_connection_exception_message
     }
 }
-
 
 class ServiceUnreachableException : IException {
     override fun getMessage(): Int {
@@ -48,6 +45,3 @@ data class CustomException(@StringRes val exceptionRes: Int) : IException {
         return exceptionRes
     }
 }
-
-
-

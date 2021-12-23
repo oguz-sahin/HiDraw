@@ -7,7 +7,6 @@ import androidx.core.content.edit
  * Created by Oguz Sahin on 11/15/2021.
  */
 
-
 inline operator fun <reified T> SharedPreferences.set(key: String, value: T) {
     edit {
         when (value) {
@@ -21,7 +20,6 @@ inline operator fun <reified T> SharedPreferences.set(key: String, value: T) {
     }
 }
 
-
 inline operator fun <reified T> SharedPreferences.get(
     key: String,
     defaultValue: T = defaultForType()
@@ -34,7 +32,6 @@ inline operator fun <reified T> SharedPreferences.get(
         is Long -> getLong(key, defaultValue) as T
         else -> throw UnsupportedOperationException("Type ${T::class} is not supported yet")
     }
-
 
 inline fun <reified T> defaultForType(): T =
     when (T::class) {

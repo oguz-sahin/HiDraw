@@ -9,7 +9,6 @@ import com.huawei.hidraw.data.model.DialogModel
 class BaseDialogFragment(private val dialogModel: DialogModel) :
     DialogFragment() {
 
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         val builder: AlertDialog.Builder

@@ -17,22 +17,18 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
 class SignInViewModel @Inject constructor(private val authRepository: AuthRepository) :
     BaseViewModel() {
 
-
     private val _viewEvent = MutableLiveData<Event<SignInViewEvent>>()
     val viewEvent: LiveData<Event<SignInViewEvent>> get() = _viewEvent
-
 
     init {
         if (isUserLogged()) {
             navigate(actionSignInFragmentToHomeFragment())
         }
     }
-
 
     fun signIn(result: ActivityResult, instagramUserName: String) {
         viewModelScope.launch {
@@ -48,7 +44,6 @@ class SignInViewModel @Inject constructor(private val authRepository: AuthReposi
                     )
                 }
                 register(userModel)
-
             }
         }
     }
@@ -63,13 +58,13 @@ class SignInViewModel @Inject constructor(private val authRepository: AuthReposi
 
     private fun isUserLogged(): Boolean = authRepository.isUserLogged()
 
-
     private fun register(userModel: UserModel) {
         makeNetworkRequest(
             requestFunc = { authRepository.register(userModel) },
             onSuccess = {
-                authRepository.saveUserId(it.userId)
                 showSuccess(R.string.sign_in_successfully)
+                authRepository.saveUserId(it.userId)
+                navigate(actionSignInFragmentToHomeFragment())
             }
         )
     }

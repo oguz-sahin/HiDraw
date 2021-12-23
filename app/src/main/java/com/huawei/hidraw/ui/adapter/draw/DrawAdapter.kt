@@ -11,7 +11,6 @@ import javax.inject.Inject
  */
 class DrawAdapter @Inject constructor() : RecyclerView.Adapter<DrawViewHolder>() {
 
-
     var draws = listOf<DrawModel>()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
@@ -29,9 +28,4 @@ class DrawAdapter @Inject constructor() : RecyclerView.Adapter<DrawViewHolder>()
     }
 
     override fun getItemCount(): Int = draws.size
-
-
 }
-
-
-

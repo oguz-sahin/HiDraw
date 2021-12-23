@@ -31,7 +31,6 @@ object NetworkModule {
     private const val READ_TIMEOUT = 60L
     private const val WRITE_TIMEOUT = 120L
 
-
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
@@ -88,5 +87,4 @@ object NetworkModule {
     fun provideDrawService(retrofit: Retrofit): DrawService {
         return retrofit.create(DrawService::class.java)
     }
-
 }

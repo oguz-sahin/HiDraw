@@ -15,7 +15,6 @@ class ProfileRemoteDataSource @Inject constructor(
     private val userService: UserService
 ) : BaseRemoteDataSource() {
 
-
     suspend fun getUser(): ResultWrapper<UserModel> {
         return safeApiCall { userService.getUser() }
     }

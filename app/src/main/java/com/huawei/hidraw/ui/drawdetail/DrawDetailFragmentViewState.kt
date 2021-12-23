@@ -11,7 +11,6 @@ import com.huawei.hidraw.data.model.DrawStatusTypes
  */
 data class DrawDetailFragmentViewState(private val drawModel: DrawModel) : BaseViewState() {
 
-
     fun getPostImageUrl() = drawModel.postUrl
 
     fun getDrawTitle() = drawModel.drawName
@@ -42,10 +41,8 @@ data class DrawDetailFragmentViewState(private val drawModel: DrawModel) : BaseV
     fun getBackupWinnerGroupVisibility() =
         getViewVisibility(drawModel.status == DrawStatusTypes.PASSIVE.value && drawModel.spareUserCount > 0)
 
-
     fun getButtonVisibility() =
         getViewVisibility(isViewVisible = drawModel.status == DrawStatusTypes.PASSIVE.value)
 
     //   fun getButtonText() = if
-
 }

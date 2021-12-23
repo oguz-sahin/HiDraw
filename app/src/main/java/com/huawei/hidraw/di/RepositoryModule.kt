@@ -23,7 +23,6 @@ abstract class RepositoryModule {
     @Singleton
     abstract fun provideHomeRepository(homeRepositoryImpl: HomeRepositoryImpl): HomeRepository
 
-
     @Binds
     @Singleton
     abstract fun provideProfileRepository(profileRepositoryImpl: ProfileRepositoryImpl): ProfileRepository
@@ -31,5 +30,4 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun provideDrawDetailRepository(drawDetailRepositoryImpl: DrawDetailRepositoryImpl): DrawDetailRepository
-
 }

@@ -22,7 +22,6 @@ class HomeFragment : BaseFragmentWithViewModel<FragmentHomeBinding, HomeViewMode
     @Inject
     lateinit var drawAdapter: DrawAdapter
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
@@ -42,5 +41,4 @@ class HomeFragment : BaseFragmentWithViewModel<FragmentHomeBinding, HomeViewMode
     private fun loadDraws(draws: List<DrawModel>) {
         drawAdapter.draws = draws
     }
-
 }

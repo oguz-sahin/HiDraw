@@ -18,15 +18,12 @@ class ProfileViewModel @Inject constructor(
     private val profileRepository: ProfileRepository
 ) : BaseViewModel() {
 
-
     private val _userInfoViewState = MutableLiveData(UserInfoViewState.initial())
     val userInfoViewState get() = _userInfoViewState
-
 
     init {
         getProfileDetail()
     }
-
 
     private fun getProfileDetail() {
         viewModelScope.launch {
@@ -34,8 +31,8 @@ class ProfileViewModel @Inject constructor(
                 requestFunc = { profileRepository.getUser() },
                 onSuccess = {
                     _userInfoViewState.postValue(UserInfoViewState(it))
-                })
+                }
+            )
         }
-
     }
 }

@@ -33,7 +33,6 @@ class CreateDrawFragment :
         observe(viewModel.createDrawFragmentViewState, ::setViewState)
     }
 
-
     private val materialDatePickerForEnd = lazy {
         buildDatePicker(R.string.selectEndDate) { selectedEndDate ->
             viewModel.setSelectedEndDate(selectedEndDate)
@@ -87,22 +86,21 @@ class CreateDrawFragment :
 
     private fun createDraw() {
         val values: DrawModel = contentFromInputs()
-        val createDrawResult  = viewModel.createDraw(values)
+        val createDrawResult = viewModel.createDraw(values)
         showDialogWithResult(createDrawResult)
     }
 
-    private fun contentFromInputs(): DrawModel{
+    private fun contentFromInputs(): DrawModel {
 
-
-        val startDate = if (materialDatePickerForStart.isInitialized()){
+        val startDate = if (materialDatePickerForStart.isInitialized()) {
             materialDatePickerForStart.value.selection as Long
-        }else{
+        } else {
             System.currentTimeMillis()
         }
 
-        val endDate = if (materialDatePickerForEnd.isInitialized()){
+        val endDate = if (materialDatePickerForEnd.isInitialized()) {
             materialDatePickerForEnd.value.selection as Long
-        }else{
+        } else {
             System.currentTimeMillis()
         }
 

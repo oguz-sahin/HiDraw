@@ -13,7 +13,7 @@ object NetworkUtils {
 
     const val HEADER_KEY = "userId"
 
-    //Service
+    // Service
     const val USER_REQUEST_PATH = "user"
     const val GET_ACTIVE_DRAWS_REQUEST_PATH = "draw/active"
     const val GET_CREATED_DRAW_REQUEST_PATH = "draw/createdDraw"

@@ -30,5 +30,4 @@ object AccountKitModule {
                 .createParams()
         return AccountAuthManager.getService(context, accountAuthParams)
     }
-
 }

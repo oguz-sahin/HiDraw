@@ -36,11 +36,9 @@ abstract class BaseFragmentWithViewModel<VB : ViewBinding, out VM : BaseViewMode
             }
     }
 
-
     private fun handleLoadingStatus(isLoading: Boolean) {
         if (isLoading) loadingDialog.show() else loadingDialog.cancel()
     }
-
 
     private fun onViewEvent(event: BaseViewEvent) {
         when (event) {
@@ -53,8 +51,6 @@ abstract class BaseFragmentWithViewModel<VB : ViewBinding, out VM : BaseViewMode
             is BaseViewEvent.ShowErrorWithId -> showError(event.messageId)
 
             is BaseViewEvent.NavigateTo -> navigateDirections(event.directions)
-
         }
     }
-
 }

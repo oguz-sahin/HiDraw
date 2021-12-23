@@ -12,7 +12,6 @@ class AuthRemoteDataSource @Inject constructor(
     private val userService: UserService
 ) : BaseRemoteDataSource() {
 
-
     suspend fun register(userModel: UserModel): ResultWrapper<UserModel> {
         return safeApiCall { userService.saveUser(userModel) }
     }

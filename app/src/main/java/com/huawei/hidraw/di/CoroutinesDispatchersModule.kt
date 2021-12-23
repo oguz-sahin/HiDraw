@@ -11,7 +11,6 @@ import kotlinx.coroutines.Dispatchers
  * Created by Oguz Sahin on 11/15/2021.
  */
 
-
 @InstallIn(SingletonComponent::class)
 @Module
 object CoroutinesDispatchersModule {
@@ -27,5 +26,4 @@ object CoroutinesDispatchersModule {
     @MainDispatcher
     @Provides
     fun providesMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
-
 }

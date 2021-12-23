@@ -57,7 +57,6 @@ class SignInFragment : BaseFragmentWithViewModel<FragmentSignInBinding, SignInVi
             }
     }
 
-
     private fun signInHuaweiId() {
         resultLauncher.launch(accountAuthService.signInIntent)
     }

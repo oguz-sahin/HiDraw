@@ -24,36 +24,37 @@ class DrawListViewModel @Inject constructor(
     private val _draws = MutableLiveData<List<DrawModel>>()
     val draws: LiveData<List<DrawModel>> get() = _draws
 
-
     fun getDrawsByType(drawListTypes: DrawListTypes?) {
         when (drawListTypes) {
             USER_ATTENDED -> getAttendedDrawsOfUser()
             USER_CREATED -> getCreatedDrawsByUser()
             null -> showErrorWithId(R.string.general_exception_message)
         }
-
     }
 
     private fun getAttendedDrawsOfUser() {
         viewModelScope.launch {
-            makeNetworkRequest(requestFunc = {
-                profileRepositoryImpl.getAttendedDrawsOfUser()
-            },
+            makeNetworkRequest(
+                requestFunc = {
+                    profileRepositoryImpl.getAttendedDrawsOfUser()
+                },
                 onSuccess = {
                     _draws.postValue(it)
-                })
+                }
+            )
         }
     }
 
     private fun getCreatedDrawsByUser() {
         viewModelScope.launch {
-            makeNetworkRequest(requestFunc = {
-                profileRepositoryImpl.getCreatedDrawsByUser()
-            },
+            makeNetworkRequest(
+                requestFunc = {
+                    profileRepositoryImpl.getCreatedDrawsByUser()
+                },
                 onSuccess = {
                     _draws.postValue(it)
-                })
+                }
+            )
         }
     }
-
 }

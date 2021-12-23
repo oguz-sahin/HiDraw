@@ -25,7 +25,6 @@ class DrawListFragment : BaseFragmentWithViewModel<FragmentDrawListBinding, Draw
 
     override val viewModel: DrawListViewModel by viewModels()
 
-
     override fun initObserver() {
         observe(viewModel.draws, ::setDrawList)
     }
@@ -66,13 +65,10 @@ class DrawListFragment : BaseFragmentWithViewModel<FragmentDrawListBinding, Draw
         }
     }
 
-
     companion object {
         private const val DRAW_LIST_TYPE = "DRAW_LIST_TYPE"
         fun newInstance(drawListType: DrawListTypes) = DrawListFragment().apply {
             arguments = bundleOf(DRAW_LIST_TYPE to drawListType.name)
         }
     }
-
-
 }

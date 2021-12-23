@@ -24,6 +24,4 @@ class ProfileRepositoryImpl @Inject constructor(
     override suspend fun getCreatedDrawsByUser(): ResultWrapper<List<DrawModel>> {
         return profileRemoteDataSource.getCreatedDrawsByUser()
     }
-
-
 }

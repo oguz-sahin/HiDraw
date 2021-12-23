@@ -27,5 +27,4 @@ interface DrawService {
     suspend fun getDrawById(
         @Query("drawId") drawId: Long
     ): BaseResponseModel<DrawModel>
-
 }

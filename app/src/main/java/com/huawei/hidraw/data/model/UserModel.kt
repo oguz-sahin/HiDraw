@@ -13,5 +13,5 @@ data class UserModel(
     val notificationStatus: Boolean = false,
     val pushTokenId: Long = 0L,
     val userId: String = ""
-//user profile photo mevzusu
+// user profile photo mevzusu
 )

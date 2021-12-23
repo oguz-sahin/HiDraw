@@ -3,7 +3,7 @@ package com.huawei.hidraw.data.model
 import android.content.Context
 import com.huawei.hidraw.R
 
-data class DialogModel (
+data class DialogModel(
     val dialogContext: Context,
     val dialogViewId: Int,
     val isCancelable: Boolean = true,

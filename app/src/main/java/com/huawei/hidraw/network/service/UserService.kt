@@ -18,7 +18,6 @@ interface UserService {
         @Body userModel: UserModel
     ): BaseResponseModel<UserModel>
 
-
     @GET(USER_REQUEST_PATH)
     suspend fun getUser(): BaseResponseModel<UserModel>
 }

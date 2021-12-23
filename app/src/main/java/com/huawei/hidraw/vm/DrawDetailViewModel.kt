@@ -19,10 +19,8 @@ class DrawDetailViewModel @Inject constructor(
     private val drawDetailRepositoryImpl: DrawDetailRepositoryImpl
 ) : BaseViewModel() {
 
-
     private val _drawDetailFragmentViewState = MutableLiveData<DrawDetailFragmentViewState>()
     val drawDetailFragmentViewState: LiveData<DrawDetailFragmentViewState> get() = _drawDetailFragmentViewState
-
 
     fun getDrawDetail(drawId: Long) {
         viewModelScope.launch {
@@ -32,9 +30,8 @@ class DrawDetailViewModel @Inject constructor(
                 },
                 onSuccess = {
                     _drawDetailFragmentViewState.postValue(DrawDetailFragmentViewState(it))
-                })
+                }
+            )
         }
     }
-
-
 }

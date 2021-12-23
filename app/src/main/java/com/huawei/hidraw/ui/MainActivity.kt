@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
             setContentView(it.root)
         }
 
-
         setViewState(MainActivityViewState(isFabVisible = false, isBottomNavigationVisible = false))
         setupNavigation()
         setNavDestinationListener()
@@ -66,5 +65,4 @@ class MainActivity : AppCompatActivity() {
         binding.viewState = viewState
         binding.executePendingBindings()
     }
-
 }

@@ -21,7 +21,6 @@ class CreateDrawViewModel @Inject constructor() : BaseViewModel() {
     val createDrawFragmentViewState
         get() = _createDrawFragmentViewState
 
-
     private var currentViewState = CreateDrawViewState(
         selectedDrawType = INSTAGRAM
     )
@@ -73,12 +72,10 @@ class CreateDrawViewModel @Inject constructor() : BaseViewModel() {
         }
     }
 
-
     private fun checkDrawInputs(
         model: DrawModel,
         types: DrawTypes
     ): CommonBasicResultModel<String> {
         return InputValidation().checkInputs(model, types)
     }
-
 }

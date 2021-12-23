@@ -37,10 +37,8 @@ abstract class BaseViewModel : ViewModel() {
         _loading.postValue(false)
     }
 
-
     /** Navigate to specific direction **/
     fun navigate(directions: NavDirections) = sendEvent(BaseViewEvent.NavigateTo(directions))
-
 
     @Suppress("MemberVisibilityCanBePrivate")
     fun showErrorWithId(@StringRes message: Int) = sendEvent(BaseViewEvent.ShowErrorWithId(message))
@@ -50,7 +48,6 @@ abstract class BaseViewModel : ViewModel() {
     fun showSuccess(message: String) = sendEvent(BaseViewEvent.ShowSuccess(message))
 
     fun showSuccess(@StringRes message: Int) = sendEvent(BaseViewEvent.ShowSuccessWithId(message))
-
 
     fun <T> makeNetworkRequest(
         requestFunc: suspend () -> ResultWrapper<T>,
@@ -73,7 +70,6 @@ abstract class BaseViewModel : ViewModel() {
         }
     }
 
-
     private fun handleError(exception: IException) {
         when (exception) {
             is HttpException -> {
@@ -89,9 +85,7 @@ abstract class BaseViewModel : ViewModel() {
     private fun getErrorMessage(errorResponseModel: ErrorResponseModel?): String =
         errorResponseModel?.result?.msg ?: ""
 
-
     fun <T> setEvent(mutableLiveData: MutableLiveData<Event<T>>, value: T) {
         mutableLiveData.postValue(Event(value))
     }
-
 }

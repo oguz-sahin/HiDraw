@@ -11,4 +11,3 @@ data class MainActivityViewState(
 
     fun getBottomNavigationVisibility() = getViewVisibility(isBottomNavigationVisible)
 }
-

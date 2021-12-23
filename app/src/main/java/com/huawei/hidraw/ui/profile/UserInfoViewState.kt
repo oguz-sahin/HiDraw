@@ -15,7 +15,6 @@ data class UserInfoViewState(
 
     fun getAttendedDrawCount() = userInfo?.joinedDraw?.toString() ?: ""
 
-
     companion object {
         fun initial() = UserInfoViewState()
     }

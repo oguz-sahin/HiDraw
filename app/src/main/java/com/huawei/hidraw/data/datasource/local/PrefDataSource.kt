@@ -10,7 +10,6 @@ import javax.inject.Inject
  * Created by Oguz Sahin on 11/15/2021.
  */
 
-
 class PrefDataSource @Inject constructor(private val sharedPref: SharedPreferences) {
 
     var userId: String
@@ -19,12 +18,9 @@ class PrefDataSource @Inject constructor(private val sharedPref: SharedPreferenc
             sharedPref.set(USER_ID, value)
         }
 
-
     fun isUserLogged(): Boolean = userId != defaultForType<String>()
-
 
     companion object {
         private const val USER_ID = "USER_ID"
     }
-
 }

@@ -12,7 +12,6 @@ import com.huawei.hidraw.ui.profile.DrawListTypes.USER_CREATED
 class UserDrawFragmentStateAdapter constructor(fragment: Fragment) :
     FragmentStateAdapter(fragment) {
 
-
     override fun getItemCount(): Int = NUM_PAGES
 
     override fun createFragment(position: Int): Fragment {

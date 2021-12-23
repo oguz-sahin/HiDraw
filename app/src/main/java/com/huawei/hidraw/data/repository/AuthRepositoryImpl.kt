@@ -1,8 +1,8 @@
 package com.huawei.hidraw.data.repository
 
 import com.huawei.hidraw.data.ResultWrapper
-import com.huawei.hidraw.data.datasource.remote.AuthRemoteDataSource
 import com.huawei.hidraw.data.datasource.local.PrefDataSource
+import com.huawei.hidraw.data.datasource.remote.AuthRemoteDataSource
 import com.huawei.hidraw.data.model.UserModel
 import com.huawei.hidraw.util.ext.defaultForType
 import javax.inject.Inject
@@ -29,6 +29,4 @@ class AuthRepositoryImpl @Inject constructor(
     override fun removeUser() {
         prefDataSource.userId = defaultForType()
     }
-
-
 }

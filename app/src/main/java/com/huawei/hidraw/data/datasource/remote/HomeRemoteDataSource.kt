@@ -15,5 +15,4 @@ class HomeRemoteDataSource @Inject constructor(
     suspend fun getActiveDraws(): ResultWrapper<List<DrawModel>> {
         return safeApiCall { drawService.getActiveDraws() }
     }
-
 }

@@ -10,7 +10,6 @@ import kotlin.math.abs
  * Created by Oguz Sahin on 12/3/2021.
  */
 
-
 @SuppressLint("SimpleDateFormat")
 fun Long.convertToDate(formatPattern: String = "dd.MM.yyyy"): String? {
     return try {
@@ -27,8 +26,3 @@ fun Long.getDifferenceDayByNow(): Int {
     val difference = abs(this - now)
     return TimeUnit.MILLISECONDS.toDays(difference).toInt()
 }
-
-
-
-
-

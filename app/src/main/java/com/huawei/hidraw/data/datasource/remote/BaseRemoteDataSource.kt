@@ -14,7 +14,6 @@ import java.net.UnknownHostException
  * Created by Oguz Sahin on 11/15/2021.
  */
 
-
 open class BaseRemoteDataSource {
 
     suspend fun <T> safeApiCall(apiCall: suspend () -> BaseResponseModel<T>): ResultWrapper<T> {
@@ -22,7 +21,6 @@ open class BaseRemoteDataSource {
             try {
                 val response = apiCall.invoke().data
                 ResultWrapper.Success(response)
-
             } catch (throwable: Throwable) {
                 when (throwable) {
                     is NoConnectionException -> Error(throwable)
@@ -39,7 +37,6 @@ open class BaseRemoteDataSource {
             }
         }
     }
-
 
     private fun convertErrorBody(throwable: HttpException): ErrorResponseModel? {
         return try {

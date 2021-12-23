@@ -28,11 +28,9 @@ abstract class BaseFragment<VB : ViewBinding>(
     private var _binding: VB? = null
     val binding get() = _binding!!
 
-
     open fun initListener() {}
 
     open fun initObserver() {}
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,7 +47,6 @@ abstract class BaseFragment<VB : ViewBinding>(
         initListener()
     }
 
-
     fun showSuccess(@StringRes message: Int) = showMessage(SUCCESS, getString(message))
 
     fun showSuccess(message: String) = showMessage(SUCCESS, message)
@@ -57,7 +54,6 @@ abstract class BaseFragment<VB : ViewBinding>(
     fun showError(@StringRes message: Int) = showMessage(ERROR, getString(message))
 
     fun showError(message: String) = showMessage(ERROR, message)
-
 
     fun navigateDirections(directions: NavDirections) {
         findNavController().navigate(directions)
@@ -74,7 +70,6 @@ abstract class BaseFragment<VB : ViewBinding>(
             .show()
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -83,5 +78,4 @@ abstract class BaseFragment<VB : ViewBinding>(
     enum class SnackBarType {
         SUCCESS, ERROR
     }
-
 }

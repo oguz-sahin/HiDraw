@@ -8,7 +8,7 @@ import com.google.gson.annotations.Expose
 data class DrawModel(
     val creatorId: String,
     val startDate: Long = 0L, // string
-    val endDate: Long = 0L, //string
+    val endDate: Long = 0L, // string
     val participantCount: Int = 0,
     val winner: String = "",
     val drawName: String,

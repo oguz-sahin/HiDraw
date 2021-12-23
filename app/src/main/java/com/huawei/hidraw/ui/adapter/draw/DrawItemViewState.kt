@@ -30,6 +30,4 @@ data class DrawItemViewState(
     }
 
     fun getDrawEndDate() = draw.endDate.convertToDate()
-
-
 }
