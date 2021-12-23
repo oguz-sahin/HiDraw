@@ -6,4 +6,6 @@ package com.huawei.hidraw.data.model
 data class BaseResponseModel<T>(
     val result: Boolean,
     val data: T
-)
+){
+
+}
