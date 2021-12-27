@@ -22,10 +22,8 @@ task<Delete>("Delete") {
 }
 
 task<Copy>("installGitHook") {
-    from(File(rootProject.rootDir, "scripts/pre-commit"))
-    into(File(rootProject.rootDir, "git/hooks"))
+    from("scripts/pre-commit")
+    into(".git/hooks")
     fileMode = 777
 }
-
-tasks.getByPath("::app::preBuild").dependsOn("installGitHook")
 
