@@ -3,46 +3,47 @@ package com.huawei.hidraw.ui.drawdetail
 import android.content.Context
 import com.huawei.hidraw.R
 import com.huawei.hidraw.core.BaseViewState
-import com.huawei.hidraw.data.model.DrawModel
+import com.huawei.hidraw.data.model.DrawDetailModel
 import com.huawei.hidraw.data.model.DrawStatusTypes
 
 /**
  * Created by Oguz Sahin on 12/13/2021.
  */
-data class DrawDetailFragmentViewState(private val drawModel: DrawModel) : BaseViewState() {
+data class DrawDetailFragmentViewState(private val drawDetailModel: DrawDetailModel) :
+    BaseViewState() {
 
-    fun getPostImageUrl() = drawModel.postUrl
+    fun getPostImageUrl() = drawDetailModel.postUrl
 
-    fun getDrawTitle() = drawModel.drawName
+    fun getDrawTitle() = drawDetailModel.drawName
 
-    fun getDrawDescription() = drawModel.description
+    fun getDrawDescription() = drawDetailModel.description
 
     fun getDrawWinnerCount(context: Context) =
-        context.getString(R.string.winner_count, drawModel.permenantUserCount)
+        context.getString(R.string.winner_count, drawDetailModel.permenantUserCount)
 
     fun getDrawBackupWinnerCount(context: Context) =
-        context.getString(R.string.backup_winner_count, drawModel.spareUserCount)
+        context.getString(R.string.backup_winner_count, drawDetailModel.spareUserCount)
 
     fun getDrawParticipantCount(context: Context) =
-        context.getString(R.string.participant_count, drawModel.participantCount)
+        context.getString(R.string.participant_count, drawDetailModel.participantCount)
 
     fun getStatusImageVisibility() =
-        getViewVisibility(drawModel.status != DrawStatusTypes.ACTIVE.value)
+        getViewVisibility(drawDetailModel.status != DrawStatusTypes.ACTIVE.value)
 
-    fun getStatusImage() = when (drawModel.status) {
+    fun getStatusImage() = when (drawDetailModel.status) {
         DrawStatusTypes.PASSIVE.value -> R.mipmap.completed
         DrawStatusTypes.DELAYED.value -> R.mipmap.delayed
         else -> R.mipmap.completed
     }
 
     fun getWinnerGroupVisibility() =
-        getViewVisibility(drawModel.status == DrawStatusTypes.PASSIVE.value && drawModel.permenantUserCount > 0)
+        getViewVisibility(drawDetailModel.status == DrawStatusTypes.PASSIVE.value && drawDetailModel.permenantUserCount > 0)
 
     fun getBackupWinnerGroupVisibility() =
-        getViewVisibility(drawModel.status == DrawStatusTypes.PASSIVE.value && drawModel.spareUserCount > 0)
+        getViewVisibility(drawDetailModel.status == DrawStatusTypes.PASSIVE.value && drawDetailModel.spareUserCount > 0)
 
     fun getButtonVisibility() =
-        getViewVisibility(isViewVisible = drawModel.status == DrawStatusTypes.PASSIVE.value)
+        getViewVisibility(isViewVisible = drawDetailModel.status == DrawStatusTypes.PASSIVE.value)
 
     //   fun getButtonText() = if
 }

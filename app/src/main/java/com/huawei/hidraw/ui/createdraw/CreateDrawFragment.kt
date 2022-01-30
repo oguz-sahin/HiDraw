@@ -29,6 +29,7 @@ class CreateDrawFragment :
             viewModel.setSelectedStartDate(selectedStartDate)
         }
     }
+
     override fun initObserver() {
         observe(viewModel.createDrawFragmentViewState, ::setViewState)
     }
@@ -119,8 +120,7 @@ class CreateDrawFragment :
                 etReserveCount.getIntContent(),
                 0,
                 etDrawDescription.getContent(),
-                etDrawUrl.getContent(),
-                etDrawParticipantNames.getContent()
+                etDrawUrl.getContent()
             )
         }
     } // TODO cbScreenRecord.isChecked ??

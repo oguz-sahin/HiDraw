@@ -20,12 +20,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
         }
-
         setViewState(MainActivityViewState(isFabVisible = false, isBottomNavigationVisible = false))
         setupNavigation()
         setNavDestinationListener()
         setupFabClickListener()
     }
+
 
     private fun setupNavigation() {
         binding.bottomNavigationView.setupWithNavController(navController)

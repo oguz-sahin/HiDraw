@@ -17,16 +17,11 @@ class DrawDetailFragment :
     ) {
     override val viewModel: DrawDetailViewModel by viewModels()
 
-    private val args: DrawDetailFragmentArgs by navArgs()
 
     override fun initObserver() {
         observe(viewModel.drawDetailFragmentViewState, ::setViewState)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.getDrawDetail(args.drawId)
-    }
 
     private fun setViewState(drawDetailFragmentViewState: DrawDetailFragmentViewState) {
         with(binding) {

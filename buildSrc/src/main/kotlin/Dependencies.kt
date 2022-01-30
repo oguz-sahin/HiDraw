@@ -40,6 +40,8 @@ object Libs {
     const val analytic_kit = "com.huawei.hms:hianalytics:${Versions.analytic_kit}"
     const val crash_service = "com.huawei.agconnect:agconnect-crash:${Versions.crash_service}"
     const val account_kit = "com.huawei.hms:hwid:${Versions.account_kit}"
+    const val push_kit = "com.huawei.hms:push:${Versions.push_kit}"
+
 }
 
 object ClassPaths {

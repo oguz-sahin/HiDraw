@@ -11,4 +11,5 @@ interface AuthRepository {
     fun isUserLogged(): Boolean
     fun saveUserId(userId: String)
     fun removeUser()
+    fun getUserId(): String
 }

@@ -29,4 +29,6 @@ class AuthRepositoryImpl @Inject constructor(
     override fun removeUser() {
         prefDataSource.userId = defaultForType()
     }
+
+    override fun getUserId(): String = prefDataSource.userId
 }

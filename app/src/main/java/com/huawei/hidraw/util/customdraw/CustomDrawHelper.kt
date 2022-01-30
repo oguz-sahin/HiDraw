@@ -14,7 +14,7 @@ class CustomDrawHelper {
     private var totalNameCount: Int = 0
 
     fun draw(model: DrawModel): CommonBasicResultModel<String> {
-        return draw(model.permenantUserCount, model.spareUserCount, model.participantNames) // CHECK !!
+        return draw(model.permenantUserCount, model.spareUserCount, "model,participantNames") // CHECK !!
     }
 
     private fun draw(_winnerCount: Int, _reserveCount: Int, namesWithComma: String): CommonBasicResultModel<String> {

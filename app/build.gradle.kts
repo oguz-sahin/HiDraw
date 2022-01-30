@@ -108,4 +108,5 @@ dependencies {
     implementation(Libs.analytic_kit)
     implementation(Libs.crash_service)
     implementation(Libs.account_kit)
+    implementation(Libs.push_kit)
 }

@@ -2,9 +2,11 @@ package com.huawei.hidraw.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.huawei.hidraw.core.BaseViewModel
 import com.huawei.hidraw.data.repository.DrawDetailRepositoryImpl
+import com.huawei.hidraw.ui.drawdetail.DrawDetailFragmentArgs
 import com.huawei.hidraw.ui.drawdetail.DrawDetailFragmentViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,13 +18,21 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DrawDetailViewModel @Inject constructor(
-    private val drawDetailRepositoryImpl: DrawDetailRepositoryImpl
+    private val drawDetailRepositoryImpl: DrawDetailRepositoryImpl,
+    savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
     private val _drawDetailFragmentViewState = MutableLiveData<DrawDetailFragmentViewState>()
     val drawDetailFragmentViewState: LiveData<DrawDetailFragmentViewState> get() = _drawDetailFragmentViewState
 
-    fun getDrawDetail(drawId: Long) {
+
+    init {
+        //for the type safety
+        val args = DrawDetailFragmentArgs.fromSavedStateHandle(savedStateHandle)
+        getDrawDetail(args.drawId)
+    }
+
+    private fun getDrawDetail(drawId: Long) {
         viewModelScope.launch {
             makeNetworkRequest(
                 requestFunc = {

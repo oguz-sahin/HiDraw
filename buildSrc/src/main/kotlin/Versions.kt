@@ -34,5 +34,6 @@ object Versions {
     const val account_kit = "6.1.0.302"
     const val kt_lint = "10.2.0"
     const val detekt = "1.19.0"
+    const val push_kit = "6.1.0.300"
 
 }

@@ -82,10 +82,10 @@ class InputValidation {
                 result.passed = false
                 appendToInfo("Reserve")
             }
-            if (participantNames.isEmpty()) {
-                result.passed = false
-                appendToInfo("Participant Names")
-            }
+            // if (participantNames.isEmpty()) {
+            //   result.passed = false
+            // appendToInfo("Participant Names")
+            // }
         }
         return result
     }

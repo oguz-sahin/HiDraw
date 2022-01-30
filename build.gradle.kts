@@ -16,7 +16,6 @@ buildscript {
 }
 
 
-
 task<Delete>("Delete") {
     delete = setOf(rootProject.buildDir)
 }
@@ -26,4 +25,6 @@ task<Copy>("installGitHook") {
     into(".git/hooks")
     fileMode = 777
 }
+
+
 

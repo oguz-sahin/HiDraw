@@ -18,6 +18,10 @@
             android:name="install_channel"
             android:value="AppGallery" />
 
+        <meta-data
+            android:name="push_kit_auto_init_enabled"
+            android:value="true" />
+
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
@@ -28,6 +32,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name="com.huawei.hidraw.ui.notification.PushService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
+
+
+    <queries>
+        <intent>
+            <action android:name="com.huawei.hms.core.aidlservice" />
+        </intent>
+    </queries>
 
 </manifest>
