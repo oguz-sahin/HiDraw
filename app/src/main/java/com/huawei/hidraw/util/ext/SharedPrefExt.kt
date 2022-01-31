@@ -7,7 +7,7 @@ import androidx.core.content.edit
  * Created by Oguz Sahin on 11/15/2021.
  */
 
-inline operator fun <reified T> SharedPreferences.set(key: String, value: T) {
+inline fun <reified T> SharedPreferences.setValue(key: String, value: T) {
     edit {
         when (value) {
             is String -> putString(key, value)
@@ -20,7 +20,7 @@ inline operator fun <reified T> SharedPreferences.set(key: String, value: T) {
     }
 }
 
-inline operator fun <reified T> SharedPreferences.get(
+inline fun <reified T> SharedPreferences.getValue(
     key: String,
     defaultValue: T = defaultForType()
 ) =
