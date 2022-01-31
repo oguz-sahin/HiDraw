@@ -56,10 +56,6 @@ captures/
 # Comment next line if keeping position of elements in Navigation Editor is relevant for you
 .idea/navEditor.xml
 
-# Keystore files
-# Uncomment the following lines if you do not want to check your keystore files in.
-#*.jks
-#*.keystore
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
@@ -169,9 +165,6 @@ hs_err_pid*
 *~
 *.swp
 
-# Keystore files
-*.jks
-*.keystore
 
 # Google Services (e.g. APIs or Firebase)
 # google-services.json
