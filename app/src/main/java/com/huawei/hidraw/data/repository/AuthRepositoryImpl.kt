@@ -3,6 +3,7 @@ package com.huawei.hidraw.data.repository
 import com.huawei.hidraw.data.ResultWrapper
 import com.huawei.hidraw.data.datasource.local.PrefDataSource
 import com.huawei.hidraw.data.datasource.remote.AuthRemoteDataSource
+import com.huawei.hidraw.data.model.PushTokenBodyModel
 import com.huawei.hidraw.data.model.UserModel
 import com.huawei.hidraw.util.ext.defaultForType
 import javax.inject.Inject
@@ -31,4 +32,11 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override fun getUserId(): String = prefDataSource.userId
+
+
+    override suspend fun sendPushTokenToServer(pushTokenBodyModel: PushTokenBodyModel): ResultWrapper<PushTokenBodyModel> {
+        return authRemoteDataSource.sendPushTokenToServer(pushTokenBodyModel)
+    }
+
+
 }

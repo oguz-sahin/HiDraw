@@ -1,12 +1,8 @@
 package com.huawei.hidraw.ui.notification
 
-import android.os.Bundle
-import android.util.Log
-import com.huawei.hidraw.data.datasource.local.PrefDataSource
 import com.huawei.hms.push.HmsMessageService
 import com.huawei.hms.push.RemoteMessage
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 /**
  * Created by Oguz Sahin on 20.01.2022.
@@ -14,24 +10,11 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class PushService : HmsMessageService() {
 
-    @Inject
-    lateinit var prefDataSource: PrefDataSource
 
     companion object {
         const val CHANNEL_ID = "drawNotificationChannelId"
     }
 
-    override fun onNewToken(token: String?, bundle: Bundle?) {
-        Log.d("pushToken", "have received refresh token:$token")
-
-        token?.let {
-            prefDataSource.pushToken = token
-        }
-
-
-        //UpdateUserToken
-
-    }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
         super.onMessageReceived(remoteMessage)

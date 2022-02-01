@@ -1,6 +1,7 @@
 package com.huawei.hidraw.data.repository
 
 import com.huawei.hidraw.data.ResultWrapper
+import com.huawei.hidraw.data.model.PushTokenBodyModel
 import com.huawei.hidraw.data.model.UserModel
 
 /**
@@ -12,4 +13,5 @@ interface AuthRepository {
     fun saveUserId(userId: String)
     fun removeUser()
     fun getUserId(): String
+    suspend fun sendPushTokenToServer(pushTokenBodyModel: PushTokenBodyModel): ResultWrapper<PushTokenBodyModel>
 }

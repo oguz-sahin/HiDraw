@@ -1,7 +1,9 @@
 package com.huawei.hidraw.network.service
 
 import com.huawei.hidraw.data.model.BaseResponseModel
+import com.huawei.hidraw.data.model.PushTokenBodyModel
 import com.huawei.hidraw.data.model.UserModel
+import com.huawei.hidraw.network.NetworkUtils.SAVE_PUSH_TOKEN_PATH
 import com.huawei.hidraw.network.NetworkUtils.USER_REQUEST_PATH
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -20,4 +22,9 @@ interface UserService {
 
     @GET(USER_REQUEST_PATH)
     suspend fun getUser(): BaseResponseModel<UserModel>
+
+    @POST(SAVE_PUSH_TOKEN_PATH)
+    suspend fun sendPushTokenToServer(
+        @Body pushTokenBodyModel: PushTokenBodyModel
+    ): BaseResponseModel<PushTokenBodyModel>
 }

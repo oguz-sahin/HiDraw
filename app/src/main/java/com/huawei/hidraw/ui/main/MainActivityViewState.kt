@@ -1,4 +1,4 @@
-package com.huawei.hidraw.ui
+package com.huawei.hidraw.ui.main
 
 import com.huawei.hidraw.core.BaseViewState
 

@@ -1,7 +1,9 @@
 package com.huawei.hidraw.data.datasource.local
 
 import android.content.SharedPreferences
-import com.huawei.hidraw.util.ext.*
+import com.huawei.hidraw.util.ext.defaultForType
+import com.huawei.hidraw.util.ext.getValue
+import com.huawei.hidraw.util.ext.setValue
 import javax.inject.Inject
 
 /**
@@ -17,16 +19,10 @@ class PrefDataSource @Inject constructor(private val sharedPref: SharedPreferenc
         }
 
 
-    var pushToken: String
-        get() = sharedPref.getValue(PUSH_TOKEN)
-        set(value) {
-            sharedPref.setValue(PUSH_TOKEN, value)
-        }
-
     fun isUserLogged(): Boolean = userId != defaultForType<String>()
+
 
     companion object {
         private const val USER_ID = "USER_ID"
-        private const val PUSH_TOKEN = "PUSH_TOKEN"
     }
 }
