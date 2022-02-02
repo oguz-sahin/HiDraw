@@ -11,9 +11,9 @@ data class UserInfoViewState(
 
     fun getUserName() = userInfo?.name ?: ""
 
-    fun getCreatedDrawCount() = userInfo?.createdDraw?.toString() ?: ""
+    fun getCreatedDrawCount() = "12" // TODO("Backendden data istenecek)
 
-    fun getAttendedDrawCount() = userInfo?.joinedDraw?.toString() ?: ""
+    fun getAttendedDrawCount() = "12" // TODO("Backendden data istenecek)
 
     companion object {
         fun initial() = UserInfoViewState()

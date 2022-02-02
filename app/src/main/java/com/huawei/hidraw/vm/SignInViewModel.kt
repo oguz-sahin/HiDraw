@@ -36,18 +36,18 @@ class SignInViewModel @Inject constructor(
     fun signIn(result: ActivityResult) {
         viewModelScope.launch {
             val authAccountTask = AccountAuthManager.parseAuthResultFromIntent(result.data)
+            if (authAccountTask.isSuccessful.not()) return@launch
 
-            if (authAccountTask.isSuccessful) {
-                // The sign-in is successful, and the user's ID information and ID token are obtained.
-                val userModel = authAccountTask.result.let {
-                    UserModel(
-                        email = it.email ?: "",
-                        name = it.displayName ?: "",
-                        userId = it.unionId
-                    )
-                }
-                register(userModel)
+            // The sign-in is successful, and the user's ID information and ID token are obtained.
+            val userModel = with(authAccountTask.result) {
+                UserModel(
+                    email = email ?: "",
+                    name = displayName ?: "",
+                    userId = unionId
+                )
             }
+
+            register(userModel)
         }
     }
 
