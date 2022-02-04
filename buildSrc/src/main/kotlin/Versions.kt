@@ -3,6 +3,7 @@
  */
 object Versions {
 
+    const val desugaring = "1.0.9"
     const val gradle = "7.0.3"
     const val kotlin = "1.5.20"
     const val core = "1.7.0"
@@ -16,6 +17,7 @@ object Versions {
     const val fragment_ktx = "1.4.0"
     const val lifecycle_ext = "2.2.0"
     const val lifecycle_common = "2.3.1"
+    const val lifecycle_runtime = "2.4.0"
     const val lifecycle_view_model = "2.4.0"
     const val retrofit = "2.9.0"
     const val okhttp_interceptor = "5.0.0-alpha.2"

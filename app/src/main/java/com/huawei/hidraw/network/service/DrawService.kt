@@ -1,12 +1,11 @@
 package com.huawei.hidraw.network.service
 
 import com.huawei.hidraw.data.model.BaseResponseModel
+import com.huawei.hidraw.data.model.DrawBodyModel
 import com.huawei.hidraw.data.model.DrawModel
-import com.huawei.hidraw.network.NetworkUtils.GET_ACTIVE_DRAWS_REQUEST_PATH
-import com.huawei.hidraw.network.NetworkUtils.GET_ATTENDED_DRAW_REQUEST_PATH
-import com.huawei.hidraw.network.NetworkUtils.GET_CREATED_DRAW_REQUEST_PATH
-import com.huawei.hidraw.network.NetworkUtils.GET_DRAW_BY_ID_REQUEST_PATH
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 /**
@@ -23,8 +22,21 @@ interface DrawService {
     @GET(GET_CREATED_DRAW_REQUEST_PATH)
     suspend fun getCreatedDrawsByUser(): BaseResponseModel<List<DrawModel>>
 
-    @GET(GET_DRAW_BY_ID_REQUEST_PATH)
+    @GET(DRAW_REQUEST_PATH)
     suspend fun getDrawById(
         @Query("drawId") drawId: Long
     ): BaseResponseModel<DrawModel>
+
+    @POST(DRAW_REQUEST_PATH)
+    suspend fun saveDraw(
+        @Body draw: DrawBodyModel
+    ): BaseResponseModel<DrawModel>
+
+
+    companion object {
+        const val GET_ACTIVE_DRAWS_REQUEST_PATH = "draw/active"
+        const val GET_CREATED_DRAW_REQUEST_PATH = "draw/createdDraw"
+        const val GET_ATTENDED_DRAW_REQUEST_PATH = "attendDraw/draw"
+        const val DRAW_REQUEST_PATH = "draw"
+    }
 }

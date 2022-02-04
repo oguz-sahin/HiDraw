@@ -16,14 +16,3 @@ fun View.hide() {
     visibility = View.GONE
 }
 
-fun EditText.getContent(): String {
-    return text?.toString()?.trim() ?: ""
-}
-
-fun EditText.getIntContent(): Int {
-    return try {
-        text?.toString()?.trim()?.toInt() ?: 0
-    } catch (e: Exception) {
-        -1
-    }
-}

@@ -38,7 +38,7 @@ class HomeFragment : BaseFragmentWithViewModel<FragmentHomeBinding, HomeViewMode
         navigateDirections(action)
     }
 
-    private fun loadDraws(draws: List<DrawModel>) {
-        drawAdapter.draws = draws
+    private fun loadDraws(drawRespons: List<DrawModel>) {
+        drawAdapter.draws = drawRespons
     }
 }

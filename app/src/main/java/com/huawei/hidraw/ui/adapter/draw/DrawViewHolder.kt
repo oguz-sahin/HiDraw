@@ -21,7 +21,7 @@ class DrawViewHolder(
             viewState = DrawItemViewState(drawModel)
             executePendingBindings()
         }
-        binding.root.setOnClickListener { onDrawClicked?.invoke(10003) }
+        binding.root.setOnClickListener { onDrawClicked?.invoke(drawModel.id) }
     }
 
     companion object {

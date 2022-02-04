@@ -19,6 +19,7 @@ android {
         targetSdk = Config.target_sdk_version
         versionCode = Config.version_code
         versionName = Config.version_name
+        multiDexEnabled = true
         buildConfigField("String", "BASE_URL", "\"http://159.138.96.192:8081/api/\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -51,6 +52,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -76,7 +78,7 @@ fun getProperty(propertyName: String): String {
 }
 
 dependencies {
-
+    coreLibraryDesugaring(Libs.desugaring)
     implementation(Libs.core)
     implementation(Libs.appcompat)
     implementation(Libs.material_design)
@@ -88,6 +90,7 @@ dependencies {
     implementation(Libs.activity_ktx)
     implementation(Libs.fragment_ktx)
     implementation(Libs.lifecycle_ext)
+    implementation(Libs.lifecycleRuntime)
     implementation(Libs.lifecycle_common)
     implementation(Libs.lifecycle_view_model)
     implementation(Libs.retrofit)

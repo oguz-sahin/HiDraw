@@ -30,4 +30,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun provideDrawDetailRepository(drawDetailRepositoryImpl: DrawDetailRepositoryImpl): DrawDetailRepository
+
+    @Binds
+    @Singleton
+    abstract fun provideSaveDrawRepository(saveDrawRepositoryImpl: SaveDrawRepositoryImpl): SaveDrawRepository
 }

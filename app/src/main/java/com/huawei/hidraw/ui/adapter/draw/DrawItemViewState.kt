@@ -1,11 +1,11 @@
 package com.huawei.hidraw.ui.adapter.draw
 
 import android.content.Context
-import android.view.View
 import com.huawei.hidraw.R
+import com.huawei.hidraw.core.BaseViewState
 import com.huawei.hidraw.data.model.DrawModel
-import com.huawei.hidraw.data.model.DrawStatusTypes.ACTIVE
-import com.huawei.hidraw.util.ext.convertToDate
+import com.huawei.hidraw.data.model.DrawStatusTypes
+import com.huawei.hidraw.util.ext.convertTimeStampWithFormat
 import com.huawei.hidraw.util.ext.getDifferenceDayByNow
 
 /**
@@ -13,21 +13,24 @@ import com.huawei.hidraw.util.ext.getDifferenceDayByNow
  */
 data class DrawItemViewState(
     private val draw: DrawModel
-) {
+) : BaseViewState() {
 
     fun getDrawDescription() = draw.description
 
-    fun getDrawNamea() = draw.drawName
+    fun getDrawName() = draw.title
 
-    fun getRemainingVisibility() = if (draw.status == ACTIVE.value) View.VISIBLE else View.GONE
+    fun getImageUrl() = draw.photoUrl
+
+    fun getRemainingVisibility() =
+        getViewVisibility(isViewVisible = draw.status == DrawStatusTypes.ACTIVE.value)
 
     fun getDrawRemainingDay(context: Context): String? {
-        return if (draw.status == ACTIVE.value) {
+        return if (draw.status) {
             val remainingDay = draw.endDate.getDifferenceDayByNow()
             return if (remainingDay < 30) "$remainingDay${context.getString(R.string.day_abbreviation)}"
             else "${remainingDay / 30}${context.getString(R.string.month_abbreviation)}"
         } else null
     }
 
-    fun getDrawEndDate() = draw.endDate.convertToDate()
+    fun getDrawEndDate() = draw.endDate.convertTimeStampWithFormat()
 }

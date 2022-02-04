@@ -8,14 +8,10 @@ import com.huawei.hidraw.util.ext.load
  * Created by Oguz Sahin on 12/2/2021.
  */
 
-@BindingAdapter("imageUrl")
-fun ImageView.loadImage(url: String?) {
-    if (!url.isNullOrEmpty()) {
-        load(url)
+@BindingAdapter("imageSrc")
+fun ImageView.loadImage(url: Any?) {
+    url?.let {
+        load(it)
     }
 }
 
-@BindingAdapter("imageSrc")
-fun ImageView.loadImage(resId: Int) {
-    setImageResource(resId)
-}

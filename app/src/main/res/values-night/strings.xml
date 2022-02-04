@@ -20,7 +20,7 @@
     <string name="names">Names</string>
     <string name="click_for_the_input_type">Click For The Input Type</string>
     <string name="create_draw">Create</string>
-    <string name="create_draw_reserve">Reserve</string>
+    <string name="create_draw_substitute">Substitute</string>
     <string name="create_draw_winner_count">Winner Count</string>
     <string name="draw_name">Name</string>
     <string name="draw_type_custom">Custom</string>
@@ -45,5 +45,18 @@
     <string name="winner_count">%1$d winner</string>
     <string name="backup_winner_count">%1$d backup winner</string>
     <string name="participant_count">%1$d backup winner</string>
+    <string name="substitute_count_must_not_more_from_winner_count">Substitute count must not more from winner count.</string>
+    <string name="star_date_must_not_be_after_or_same_end_date">Start date must not be after or same end date.</string>
+    <string name="please_enter_draw_title">Please enter draw title.</string>
+    <string name="please_enter_draw_description">Please enter draw description.</string>
+    <string name="please_enter_winner_count">Please enter winner count.</string>
+    <string name="please_enter_substitute_count">Please enter substitute count.</string>
+    <string name="please_enter_url">Please enter url.</string>
+    <string name="please_select_start_date">Please select start date.</string>
+    <string name="please_select_end_date">Please select end date.</string>
+    <string name="permission_needd">Permission Need</string>
+    <string name="give_permission">Give Permission</string>
+    <string name="cancel">Cancel</string>
+    <string name="content_permission_explanation">You need to give permission get content from gallery.</string>
 
 </resources>

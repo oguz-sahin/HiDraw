@@ -13,14 +13,6 @@ object NetworkUtils {
 
     const val HEADER_KEY = "userId"
 
-    // Service
-    const val USER_REQUEST_PATH = "user"
-    const val GET_ACTIVE_DRAWS_REQUEST_PATH = "draw/active"
-    const val GET_CREATED_DRAW_REQUEST_PATH = "draw/createdDraw"
-    const val GET_ATTENDED_DRAW_REQUEST_PATH = "attendDraw/draw"
-    const val GET_DRAW_BY_ID_REQUEST_PATH = "draw"
-    const val SAVE_PUSH_TOKEN_PATH = "pushToken"
-
     @Suppress("DEPRECATION")
     fun isNetworkAvailable(context: Context): Boolean {
         val connectivityManager =

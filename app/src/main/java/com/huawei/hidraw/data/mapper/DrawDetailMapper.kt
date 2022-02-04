@@ -9,18 +9,8 @@ import com.huawei.hidraw.data.model.DrawModel
 class DrawDetailMapper(private val userId: String) : Mapper<DrawModel, DrawDetailModel>() {
     override fun map(from: DrawModel): DrawDetailModel = with(from) {
         DrawDetailModel(
-            creatorId,
-            startDate,
-            endDate,
-            participantCount,
-            winner,
-            drawName,
-            permenantUserCount,
-            spareUserCount,
-            status,
-            description,
-            postUrl,
-            userId == creatorId
+            this,
+            userId == this.creator.userId
         )
     }
 

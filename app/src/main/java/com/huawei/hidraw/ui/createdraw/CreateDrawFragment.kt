@@ -1,152 +1,231 @@
 package com.huawei.hidraw.ui.createdraw
 
+import android.app.AlertDialog
+import android.os.Build
+import android.os.Build.VERSION.SDK_INT
+import android.os.Bundle
+import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.textfield.TextInputEditText
 import com.huawei.hidraw.R
-import com.huawei.hidraw.core.BaseDialogFragment
 import com.huawei.hidraw.core.BaseFragmentWithViewModel
-import com.huawei.hidraw.data.model.CommonBasicResultModel
-import com.huawei.hidraw.data.model.DialogModel
-import com.huawei.hidraw.data.model.DrawModel
 import com.huawei.hidraw.databinding.FragmentCreateDrawBinding
-import com.huawei.hidraw.ui.CreateDrawViewState
-import com.huawei.hidraw.ui.DrawTypes.CUSTOM
-import com.huawei.hidraw.ui.DrawTypes.INSTAGRAM
-import com.huawei.hidraw.util.ext.getContent
-import com.huawei.hidraw.util.ext.getIntContent
-import com.huawei.hidraw.util.ext.observe
+import com.huawei.hidraw.ui.createdraw.CalendarTypes.END
+import com.huawei.hidraw.ui.createdraw.CalendarTypes.START
+import com.huawei.hidraw.util.AppPermission
+import com.huawei.hidraw.util.ext.*
 import com.huawei.hidraw.vm.CreateDrawViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CreateDrawFragment :
     BaseFragmentWithViewModel<FragmentCreateDrawBinding, CreateDrawViewModel>(
         FragmentCreateDrawBinding::inflate
     ) {
     override val viewModel: CreateDrawViewModel by viewModels()
 
-    private val materialDatePickerForStart = lazy {
-        buildDatePicker(R.string.selectStartDate) { selectedStartDate ->
-            viewModel.setSelectedStartDate(selectedStartDate)
+
+    private val permissionExplanationDialog by lazy { createPermissionExplanationDialog() }
+
+    private val permissionMustGiveExplanationDialogForPermanentlyDenied by lazy { createPermissionExplanationDialogForPermanentlyDenied() }
+
+    private val getContentLauncher = getContentLauncher { contentUri ->
+        viewModel.setContent(contentUri)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    private val manageExternalStorageLauncher =
+        getManageExternalStorageResultLauncher { handlePermissionStatusAndGetContentForAndroid11AndAbove() }
+
+    private val readExternalStoragePermissionResultLauncher = getPermissionResultLauncher(
+        permission = AppPermission.ReadExternalStorage,
+        onPermissionDenied = { permissionExplanationDialog.show() },
+        onPermissionGranted = { openGalleryForImage() },
+        onPermissionDeniedPermanently = { permissionMustGiveExplanationDialogForPermanentlyDenied.show() }
+    )
+
+
+    private val materialDatePickerForStart by lazy {
+        buildDatePicker(
+            title = R.string.selectStartDate,
+            calendarType = START
+        ) { selectedStartDateText, selectedStartDate ->
+            viewModel.setSelectedStartDate(selectedStartDateText, selectedStartDate)
         }
     }
+
+    private val materialDatePickerForEnd by lazy {
+        buildDatePicker(
+            title = R.string.selectEndDate,
+            calendarType = END
+        ) { selectedEndDateText, selectedEndDate ->
+            viewModel.setSelectedEndDate(selectedEndDateText, selectedEndDate)
+        }
+    }
+
 
     override fun initObserver() {
-        observe(viewModel.createDrawFragmentViewState, ::setViewState)
-    }
-
-    private val materialDatePickerForEnd = lazy {
-        buildDatePicker(R.string.selectEndDate) { selectedEndDate ->
-            viewModel.setSelectedEndDate(selectedEndDate)
-        }
+        viewLifecycleOwner.collectLast(viewModel.drawViewState, ::setViewState)
     }
 
     override fun initListener() {
-
         with(binding) {
 
+            btnSelectImage.setOnClickListener {
+                handlePermissionStatusAndGetContentByBuildVersion()
+            }
+
+            etDrawName.doAfterTextChanged {
+                viewModel.setDrawTitle(it)
+            }
+
+            etDrawDescription.doAfterTextChanged {
+                viewModel.setDrawDescription(it)
+            }
+
+            etWinnerCounts.doAfterTextChanged {
+                viewModel.setWinnerCount(it)
+            }
+
+            etSubstituteCount.doAfterTextChanged {
+                viewModel.setSubstituteCount(it)
+            }
+
             btnStartDate.setOnClickListener {
-                materialDatePickerForStart.value.show(childFragmentManager, "DATE")
+                materialDatePickerForStart.show(childFragmentManager, START_DATE_TAG)
             }
 
             btnEndDate.setOnClickListener {
-                materialDatePickerForEnd.value.show(childFragmentManager, "DATE")
+                materialDatePickerForEnd.show(childFragmentManager, END_DATE_TAG)
             }
 
-            cpCustom.setOnClickListener {
-                viewModel.setDrawType(CUSTOM)
+            etDrawUrl.doAfterTextChanged {
+                viewModel.setPostUrl(it)
             }
 
-            cpInstagram.setOnClickListener {
-                viewModel.setDrawType(INSTAGRAM)
+            cbScreenRecord.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.setTakeScreenRecordStatus(isChecked)
             }
+
+            cbEachUserOnlyOnce.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.setCountEachUserOnlyOnceStatus(isChecked)
+            }
+
             btnCreateDraw.setOnClickListener {
-                createDraw()
-            }
-
-            tvInputInfo.setOnClickListener {
-                BaseDialogFragment(DialogModel(context!!, R.layout.dialog_input_info)).show(
-                    childFragmentManager,
-                    "InfoDialog"
-                )
+                viewModel.createDraw()
             }
         }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(binding) {
+            etWinnerCounts.clearTransformationMethod()
+            etSubstituteCount.clearTransformationMethod()
+        }
+    }
+
+
+    private fun handlePermissionStatusAndGetContentByBuildVersion() {
+        if (SDK_INT >= Build.VERSION_CODES.R) {
+            handlePermissionStatusAndGetContentForAndroid11AndAbove()
+        } else {
+            handlePermissionStatusAndGetContentForAndroid11Below()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    private fun handlePermissionStatusAndGetContentForAndroid11AndAbove() {
+        if (checkManageExternalPermission()) {
+            openGalleryForImage()
+
+        } else {
+            manageExternalStorageLauncher.launch("")
+        }
+    }
+
+    private fun handlePermissionStatusAndGetContentForAndroid11Below() {
+        if (hasPermission(AppPermission.ReadExternalStorage)) {
+            openGalleryForImage()
+        } else {
+            readExternalStoragePermissionResultLauncher.launch(AppPermission.ReadExternalStorage.name)
+        }
+    }
+
+    private fun openGalleryForImage() {
+        getContentLauncher.launch("image/*")
+    }
+
+    private fun createPermissionExplanationDialog() = AlertDialog.Builder(requireContext())
+        .setTitle(getString(R.string.permission_needd))
+        .setMessage(getString(R.string.content_permission_explanation))
+        .setCancelable(true)
+        .setPositiveButton(getString(R.string.give_permission)) { _, _ ->
+            handlePermissionStatusAndGetContentByBuildVersion()
+        }
+        .setNegativeButton(getString(R.string.cancel)) { dialog, _ -> dialog.dismiss() }
+        .create()
+
+
+    private fun createPermissionExplanationDialogForPermanentlyDenied() =
+        AlertDialog.Builder(requireContext())
+            .setTitle(getString(R.string.permission_needd))
+            .setMessage(getString(R.string.content_permission_explanation))
+            .setCancelable(true)
+            .setPositiveButton(getString(R.string.give_permission)) { _, _ ->
+                goSettings()
+            }.create()
+
+
     private fun buildDatePicker(
         @StringRes title: Int,
-        onPositiveClickListener: (date: String) -> Unit
+        calendarType: CalendarTypes,
+        onPositiveClickListener: (dateText: String, date: Long) -> Unit
     ): MaterialDatePicker<*> {
-
-        val materialDatePicker = MaterialDatePicker.Builder.datePicker().setTitleText(title).build()
-
+        val calendarConstraints = CalendarConstraints.Builder()
+            .setValidator(
+                getDatePickerSelectionValidator(calendarType)
+            ).build()
+        val materialDatePicker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText(title)
+            .setCalendarConstraints(calendarConstraints)
+            .build()
         materialDatePicker.addOnPositiveButtonClickListener {
-            onPositiveClickListener.invoke(materialDatePicker.headerText)
+            onPositiveClickListener.invoke(materialDatePicker.headerText, it)
         }
         return materialDatePicker
     }
 
-    private fun createDraw() {
-        val values: DrawModel = contentFromInputs()
-        val createDrawResult = viewModel.createDraw(values)
-        showDialogWithResult(createDrawResult)
+
+    private fun setViewState(drawViewState: DrawViewState) {
+        binding.executeWithAction {
+            this.drawViewState = drawViewState
+        }
     }
 
-    private fun contentFromInputs(): DrawModel {
 
-        val startDate = if (materialDatePickerForStart.isInitialized()) {
-            materialDatePickerForStart.value.selection as Long
-        } else {
-            System.currentTimeMillis()
-        }
-
-        val endDate = if (materialDatePickerForEnd.isInitialized()) {
-            materialDatePickerForEnd.value.selection as Long
-        } else {
-            System.currentTimeMillis()
-        }
-
-        with(binding) {
-            return DrawModel(
-                "1",
-                startDate,
-                endDate,
-                0,
-                "",
-                etDrawName.getContent(),
-                INSTAGRAM.toString(),
-                cbEachUserOnlyOnce.isChecked,
-                etMinTagCount.getIntContent(),
-                etWinnerCounts.getIntContent(),
-                etReserveCount.getIntContent(),
-                0,
-                etDrawDescription.getContent(),
-                etDrawUrl.getContent()
-            )
-        }
-    } // TODO cbScreenRecord.isChecked ??
-
-    private fun showDialogWithResult(result: CommonBasicResultModel<String>) {
-
-        val title = if (result.passed)
-            getString(R.string.success)
-        else
-            getString(R.string.common_error)
-
-        BaseDialogFragment(
-            DialogModel(
-                context!!,
-                R.layout.dialog_blank,
-                dialogTitle = title,
-                dialogMessage = result.info
-            )
-        ).show(
-            childFragmentManager,
-            "ResultDialog"
-        )
+    private fun TextInputEditText.clearTransformationMethod() {
+        transformationMethod = null
     }
 
-    private fun setViewState(viewState: CreateDrawViewState) {
-        binding.viewState = viewState
-        binding.executePendingBindings()
+    private fun getDatePickerSelectionValidator(calendarType: CalendarTypes): CalendarConstraints.DateValidator {
+        return when (calendarType) {
+            START -> DateValidatorPointForward.now()
+            END -> NextDaySelectionValidator()
+        }
     }
+
+
+    companion object {
+        const val START_DATE_TAG = "START_DATE_TAG"
+        const val END_DATE_TAG = "END_DATE_TAG"
+    }
+
+
 }

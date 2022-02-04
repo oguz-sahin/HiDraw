@@ -2,6 +2,7 @@
  * Created by Oguz Sahin on 12/20/2021.
  */
 object Libs {
+    const val desugaring= "com.android.tools:desugar_jdk_libs:${Versions.desugaring}"
     const val core = "androidx.core:core-ktx:${Versions.core}"
     const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
     const val material_design = "com.google.android.material:material:${Versions.material_design}"
@@ -18,6 +19,8 @@ object Libs {
         "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle_common}"
     const val lifecycle_view_model =
         "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_view_model}"
+    const val lifecycleRuntime =
+        "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle_runtime}"
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val gson_converter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val okhttp_interceptor =
