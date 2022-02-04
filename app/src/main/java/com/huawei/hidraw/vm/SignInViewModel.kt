@@ -26,13 +26,6 @@ class SignInViewModel @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : BaseViewModel() {
 
-
-    init {
-        if (isUserLogged()) {
-            navigate(actionSignInFragmentToHomeFragment())
-        }
-    }
-
     fun signIn(result: ActivityResult) {
         viewModelScope.launch {
             val authAccountTask = AccountAuthManager.parseAuthResultFromIntent(result.data)
@@ -51,8 +44,6 @@ class SignInViewModel @Inject constructor(
         }
     }
 
-
-    private fun isUserLogged(): Boolean = authRepositoryImpl.isUserLogged()
 
     private fun register(userModel: UserModel) {
         makeNetworkRequest(
