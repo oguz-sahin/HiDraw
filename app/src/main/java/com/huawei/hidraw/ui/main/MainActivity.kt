@@ -6,6 +6,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.huawei.hidraw.R
 import com.huawei.hidraw.databinding.ActivityMainBinding
+import com.huawei.hidraw.util.ext.executeWithAction
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -62,8 +63,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setViewState(viewState: MainActivityViewState) {
-        binding.viewState = viewState
-        binding.executePendingBindings()
+    private fun setViewState(mainActivityViewState: MainActivityViewState) {
+        binding.executeWithAction {
+            viewState = mainActivityViewState
+        }
     }
 }

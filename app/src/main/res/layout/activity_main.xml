@@ -22,40 +22,36 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/nav_graph" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <ImageView
             android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_16sdp"
-            android:contentDescription="@string/app_name"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:elevation="@dimen/_8sdp"
             android:src="@drawable/ic_fab_button"
             android:visibility="@{viewState.fabVisibility}"
-            app:backgroundTint="@color/transparent"
-            app:layout_constraintBottom_toBottomOf="@id/bottomNavigationView"
-            app:layout_constraintEnd_toEndOf="@id/bottomNavigationView"
-            app:layout_constraintStart_toStartOf="@id/bottomNavigationView"
-            app:maxImageSize="@dimen/_56sdp"
-            app:tint="@null" />
+            app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"
+            app:layout_constraintEnd_toEndOf="@+id/bottomNavigationView"
+            app:layout_constraintStart_toStartOf="@+id/bottomNavigationView"
+            app:layout_constraintTop_toTopOf="@+id/bottomNavigationView"
+            tools:ignore="ContentDescription" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_8sdp"
-            android:background="@drawable/bg_rounded_8"
-            android:translationZ="-4dp"
             android:visibility="@{viewState.bottomNavigationVisibility}"
             app:backgroundTint="@color/space_blue"
             app:itemIconSize="@dimen/_32sdp"
             app:itemIconTint="@color/bottom_nav_color_selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_nav_menu" />
 

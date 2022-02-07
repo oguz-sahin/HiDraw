@@ -17,7 +17,10 @@ class AuthRemoteDataSource @Inject constructor(
         return safeApiCall { userService.saveUser(userModel) }
     }
 
-    suspend fun sendPushTokenToServer(pushTokenBodyModel: PushTokenBodyModel): ResultWrapper<PushTokenBodyModel> {
-        return safeApiCall { userService.sendPushTokenToServer(pushTokenBodyModel) }
+    suspend fun sendPushTokenToServer(
+        userId: String,
+        pushTokenBodyModel: PushTokenBodyModel
+    ): ResultWrapper<PushTokenBodyModel> {
+        return safeApiCall { userService.sendPushTokenToServer(userId, pushTokenBodyModel) }
     }
 }

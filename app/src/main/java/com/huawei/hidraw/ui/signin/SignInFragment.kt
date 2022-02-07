@@ -1,12 +1,9 @@
 package com.huawei.hidraw.ui.signin
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import com.huawei.hidraw.core.BaseFragmentWithViewModel
 import com.huawei.hidraw.databinding.FragmentSignInBinding
+import com.huawei.hidraw.util.ext.getStartActivityForResultLauncher
 import com.huawei.hidraw.vm.SignInViewModel
 import com.huawei.hms.support.account.service.AccountAuthService
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +15,9 @@ class SignInFragment : BaseFragmentWithViewModel<FragmentSignInBinding, SignInVi
 ) {
     override val viewModel: SignInViewModel by viewModels()
 
-    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
+    private val signInResultLauncher = getStartActivityForResultLauncher { result ->
+        viewModel.signIn(result)
+    }
 
     @Inject
     lateinit var accountAuthService: AccountAuthService
@@ -29,20 +28,8 @@ class SignInFragment : BaseFragmentWithViewModel<FragmentSignInBinding, SignInVi
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setResultLauncher()
-    }
-
-
-    private fun setResultLauncher() {
-        resultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                viewModel.signIn(result)
-            }
-    }
-
     private fun signInHuaweiId() {
-        resultLauncher.launch(accountAuthService.signInIntent)
+        signInResultLauncher.launch(accountAuthService.signInIntent)
     }
+
 }

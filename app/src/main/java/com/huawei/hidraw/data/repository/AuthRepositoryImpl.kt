@@ -35,7 +35,7 @@ class AuthRepositoryImpl @Inject constructor(
 
 
     override suspend fun sendPushTokenToServer(pushTokenBodyModel: PushTokenBodyModel): ResultWrapper<PushTokenBodyModel> {
-        return authRemoteDataSource.sendPushTokenToServer(pushTokenBodyModel)
+        return authRemoteDataSource.sendPushTokenToServer(prefDataSource.userId, pushTokenBodyModel)
     }
 
 

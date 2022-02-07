@@ -20,7 +20,6 @@ abstract class RepositoryModule {
     abstract fun provideAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository
 
     @Binds
-    @Singleton
     abstract fun provideHomeRepository(homeRepositoryImpl: HomeRepositoryImpl): HomeRepository
 
     @Binds
