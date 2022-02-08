@@ -2,6 +2,7 @@ package com.huawei.hidraw.network.service
 
 import com.huawei.hidraw.data.model.BaseResponseModel
 import com.huawei.hidraw.data.model.DrawBodyModel
+import com.huawei.hidraw.data.model.DrawDetailModel
 import com.huawei.hidraw.data.model.DrawModel
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -25,7 +26,7 @@ interface DrawService {
     @GET(DRAW_REQUEST_PATH)
     suspend fun getDrawById(
         @Query("drawId") drawId: Long
-    ): BaseResponseModel<DrawModel>
+    ): BaseResponseModel<DrawDetailModel>
 
     @POST(DRAW_REQUEST_PATH)
     suspend fun saveDraw(

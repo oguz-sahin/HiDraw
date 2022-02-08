@@ -3,6 +3,7 @@ package com.huawei.hidraw.data.repository
 import com.huawei.hidraw.data.ResultWrapper
 import com.huawei.hidraw.data.datasource.remote.ProfileRemoteDataSource
 import com.huawei.hidraw.data.model.DrawModel
+import com.huawei.hidraw.data.model.UserDetailModel
 import com.huawei.hidraw.data.model.UserModel
 import javax.inject.Inject
 
@@ -13,7 +14,7 @@ class ProfileRepositoryImpl @Inject constructor(
     private val profileRemoteDataSource: ProfileRemoteDataSource
 ) : ProfileRepository {
 
-    override suspend fun getUser(): ResultWrapper<UserModel> {
+    override suspend fun getUser(): ResultWrapper<UserDetailModel> {
         return profileRemoteDataSource.getUser()
     }
 

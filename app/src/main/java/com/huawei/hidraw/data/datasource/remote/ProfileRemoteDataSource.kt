@@ -2,6 +2,7 @@ package com.huawei.hidraw.data.datasource.remote
 
 import com.huawei.hidraw.data.ResultWrapper
 import com.huawei.hidraw.data.model.DrawModel
+import com.huawei.hidraw.data.model.UserDetailModel
 import com.huawei.hidraw.data.model.UserModel
 import com.huawei.hidraw.network.service.DrawService
 import com.huawei.hidraw.network.service.UserService
@@ -15,7 +16,7 @@ class ProfileRemoteDataSource @Inject constructor(
     private val userService: UserService
 ) : BaseRemoteDataSource() {
 
-    suspend fun getUser(): ResultWrapper<UserModel> {
+    suspend fun getUser(): ResultWrapper<UserDetailModel> {
         return safeApiCall { userService.getUser() }
     }
 

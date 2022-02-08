@@ -2,6 +2,7 @@ package com.huawei.hidraw.data.repository
 
 import com.huawei.hidraw.data.ResultWrapper
 import com.huawei.hidraw.data.model.DrawModel
+import com.huawei.hidraw.data.model.UserDetailModel
 import com.huawei.hidraw.data.model.UserModel
 
 /**
@@ -9,7 +10,7 @@ import com.huawei.hidraw.data.model.UserModel
  */
 interface ProfileRepository {
 
-    suspend fun getUser(): ResultWrapper<UserModel>
+    suspend fun getUser(): ResultWrapper<UserDetailModel>
 
     suspend fun getAttendedDrawsOfUser(): ResultWrapper<List<DrawModel>>
 

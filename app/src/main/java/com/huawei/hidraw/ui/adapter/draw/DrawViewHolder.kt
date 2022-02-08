@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.huawei.hidraw.data.model.DrawModel
 import com.huawei.hidraw.databinding.ItemCommonDrawBinding
+import com.huawei.hidraw.util.ext.executeWithAction
 import com.huawei.hidraw.util.ext.inflate
 
 /**
@@ -17,9 +18,8 @@ class DrawViewHolder(
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(drawModel: DrawModel) {
-        with(binding) {
+        binding.executeWithAction {
             viewState = DrawItemViewState(drawModel)
-            executePendingBindings()
         }
         binding.root.setOnClickListener { onDrawClicked?.invoke(drawModel.id) }
     }

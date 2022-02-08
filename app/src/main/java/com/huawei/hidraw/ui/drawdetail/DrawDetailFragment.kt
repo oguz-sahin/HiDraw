@@ -17,13 +17,13 @@ class DrawDetailFragment :
 
 
     override fun initObserver() {
-        observe(viewModel.drawDetailFragmentViewState, ::setViewState)
+        observe(viewModel.drawDetailViewState, ::setViewState)
     }
 
 
-    private fun setViewState(drawDetailFragmentViewState: DrawDetailFragmentViewState) {
+    private fun setViewState(drawDetailViewState: DrawDetailViewState) {
         binding.executeWithAction {
-            viewState = drawDetailFragmentViewState
+            viewState = drawDetailViewState
         }
     }
 }

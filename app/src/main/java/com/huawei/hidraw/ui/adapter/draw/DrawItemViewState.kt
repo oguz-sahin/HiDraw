@@ -7,6 +7,7 @@ import com.huawei.hidraw.data.model.DrawModel
 import com.huawei.hidraw.data.model.DrawStatusTypes
 import com.huawei.hidraw.util.ext.convertTimeStampWithFormat
 import com.huawei.hidraw.util.ext.getDifferenceDayByNow
+import com.huawei.hidraw.util.ext.getServerUrl
 
 /**
  * Created by Oguz Sahin on 12/2/2021.
@@ -19,7 +20,7 @@ data class DrawItemViewState(
 
     fun getDrawName() = draw.title
 
-    fun getImageUrl() = draw.photoUrl
+    fun getImageUrl() = draw.photoUrl?.getServerUrl()
 
     fun getRemainingVisibility() =
         getViewVisibility(isViewVisible = draw.status == DrawStatusTypes.ACTIVE.value)

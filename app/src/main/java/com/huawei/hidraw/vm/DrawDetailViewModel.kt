@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.huawei.hidraw.core.BaseViewModel
 import com.huawei.hidraw.data.repository.DrawDetailRepository
 import com.huawei.hidraw.ui.drawdetail.DrawDetailFragmentArgs
-import com.huawei.hidraw.ui.drawdetail.DrawDetailFragmentViewState
+import com.huawei.hidraw.ui.drawdetail.DrawDetailViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,8 +22,8 @@ class DrawDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
-    private val _drawDetailFragmentViewState = MutableLiveData<DrawDetailFragmentViewState>()
-    val drawDetailFragmentViewState: LiveData<DrawDetailFragmentViewState> get() = _drawDetailFragmentViewState
+    private val _drawDetailViewState = MutableLiveData<DrawDetailViewState>()
+    val drawDetailViewState: LiveData<DrawDetailViewState> get() = _drawDetailViewState
 
 
     init {
@@ -39,7 +39,7 @@ class DrawDetailViewModel @Inject constructor(
                     drawDetailRepositoryImpl.getDrawById(drawId)
                 },
                 onSuccess = {
-                    _drawDetailFragmentViewState.postValue(DrawDetailFragmentViewState(it))
+                    _drawDetailViewState.postValue(DrawDetailViewState(it))
                 }
             )
         }

@@ -9,6 +9,7 @@ import com.huawei.hidraw.core.BaseFragmentWithViewModel
 import com.huawei.hidraw.databinding.FragmentProfileBinding
 import com.huawei.hidraw.ui.adapter.draw.UserDrawFragmentStateAdapter
 import com.huawei.hidraw.ui.profile.DrawListTypes.USER_ATTENDED
+import com.huawei.hidraw.util.ext.executeWithAction
 import com.huawei.hidraw.util.ext.observe
 import com.huawei.hidraw.vm.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +28,6 @@ class ProfileFragment : BaseFragmentWithViewModel<FragmentProfileBinding, Profil
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         initTabLayout()
-        defaultViewModelProviderFactory
     }
 
     private fun initAdapter() {
@@ -44,9 +44,8 @@ class ProfileFragment : BaseFragmentWithViewModel<FragmentProfileBinding, Profil
     }
 
     private fun setUserInfoViewState(viewState: UserInfoViewState) {
-        with(binding) {
+        binding.executeWithAction {
             userInfoViewState = viewState
-            executePendingBindings()
         }
     }
 }

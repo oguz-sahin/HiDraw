@@ -8,7 +8,7 @@ data class DrawModel(
     val title: String,
     val description: String,
     val postUrl: String,
-    val photoUrl: String,
+    val photoUrl: String?,
     val startDate: Long,
     val endDate: Long,
     val participantCount: Int = 0,
@@ -19,4 +19,3 @@ data class DrawModel(
     val status: Boolean,
     val creator: UserModel
 )
-
