@@ -18,22 +18,24 @@ data class DrawDetailViewState(private val drawDetailModel: DrawDetailModel) :
     BaseViewState() {
 
 
-    fun getPostImageUrl() = drawDetailModel.photoUrl?.getServerUrl()
+    val draw = drawDetailModel.draw
 
-    fun getDrawTitle() = drawDetailModel.title
+    fun getPostImageUrl() = draw.photoUrl?.getServerUrl()
 
-    fun getDrawDescription() = drawDetailModel.description
+    fun getDrawTitle() = draw.title
 
-    fun getDrawEndDate() = drawDetailModel.endDate.convertTimeStampWithFormat()
+    fun getDrawDescription() = draw.description
+
+    fun getDrawEndDate() = draw.endDate.convertTimeStampWithFormat()
 
     fun getDrawWinnerCount(context: Context) =
-        context.getString(R.string.winner_count, drawDetailModel.winnerCount)
+        context.getString(R.string.winner_count, draw.winnerCount)
 
     fun getDrawBackupWinnerCount(context: Context) =
-        context.getString(R.string.backup_winner_count, drawDetailModel.substituteCount)
+        context.getString(R.string.substitutes_count, draw.substituteCount)
 
     fun getDrawParticipantCount(context: Context) =
-        context.getString(R.string.participant_count, drawDetailModel.participantCount)
+        context.getString(R.string.participant_count, draw.participantCount)
 
     fun getStatusImageVisibility() = when {
         isDrawCompleted() -> View.VISIBLE
@@ -58,21 +60,26 @@ data class DrawDetailViewState(private val drawDetailModel: DrawDetailModel) :
         else -> View.VISIBLE
     }
 
-    fun getButtonText() = when {
-        drawDetailModel.createdUser -> "Star Draw"
-        drawDetailModel.userAttended -> "Attended"
-        else -> "Attend"
+    fun getButtonText(context: Context) = when {
+        drawDetailModel.createdUser -> context.getString(R.string.start_draw)
+        else -> context.getString(R.string.attended)
     }
 
-    fun getButtonColor() =
-        if (drawDetailModel.userAttended) R.color.hwid_auth_button_color_black else R.color.black
+    fun getButtonColor() = if (drawDetailModel.userAttended) R.color.emperor else R.color.cream_can
 
 
-    private fun isDrawDateDelayed() =
-        drawDetailModel.status == ACTIVE.value && drawDetailModel.endDate.isPassed()
+    private fun isDrawDateDelayed() = draw.status == ACTIVE.value && draw.endDate.isPassed()
 
-    private fun isDrawCompleted() = drawDetailModel.status == PASSIVE.value
+    private fun isDrawCompleted() = draw.status == PASSIVE.value
 
-    private fun hasBackupWinner() = drawDetailModel.substituteCount > 0
+    private fun hasBackupWinner() = draw.substituteCount > 0
+
+
+    fun getWinnersItemViewState() =
+        drawDetailModel.winners?.map { winnerModel -> ItemWinnerViewState(winnerModel) } ?: listOf()
+
+    fun getSubstitutesItemViewState() =
+        drawDetailModel.substitutes?.map { winnerModel -> ItemWinnerViewState(winnerModel) }
+            ?: listOf()
 
 }

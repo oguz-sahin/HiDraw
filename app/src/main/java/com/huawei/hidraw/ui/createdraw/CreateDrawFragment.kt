@@ -163,7 +163,7 @@ class CreateDrawFragment :
     }
 
     private fun createPermissionExplanationDialog() = AlertDialog.Builder(requireContext())
-        .setTitle(getString(R.string.permission_needd))
+        .setTitle(getString(R.string.permission_need))
         .setMessage(getString(R.string.content_permission_explanation))
         .setCancelable(true)
         .setPositiveButton(getString(R.string.give_permission)) { _, _ ->
@@ -175,7 +175,7 @@ class CreateDrawFragment :
 
     private fun createPermissionExplanationDialogForPermanentlyDenied() =
         AlertDialog.Builder(requireContext())
-            .setTitle(getString(R.string.permission_needd))
+            .setTitle(getString(R.string.permission_need))
             .setMessage(getString(R.string.content_permission_explanation))
             .setCancelable(true)
             .setPositiveButton(getString(R.string.give_permission)) { _, _ ->

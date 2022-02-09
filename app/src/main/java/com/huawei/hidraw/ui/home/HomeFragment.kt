@@ -26,6 +26,7 @@ class HomeFragment : BaseFragmentWithViewModel<FragmentHomeBinding, HomeViewMode
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         observe(viewModel.activeDraws, ::loadDraws)
+        viewModel.getActiveDraws()
     }
 
     private fun initAdapter() {
@@ -38,7 +39,7 @@ class HomeFragment : BaseFragmentWithViewModel<FragmentHomeBinding, HomeViewMode
         navigateDirections(action)
     }
 
-    private fun loadDraws(drawRespons: List<DrawModel>) {
-        drawAdapter.draws = drawRespons
+    private fun loadDraws(drawResponse: List<DrawModel>) {
+        drawAdapter.draws = drawResponse
     }
 }

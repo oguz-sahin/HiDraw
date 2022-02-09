@@ -8,23 +8,20 @@
     <string name="time_out_exception_message">Connection Request timed out</string>
 
     <string name="sign_in">Sign in</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="remaining_time_icon">remaining Time Icon</string>
     <string name="draw_status_image">draw_status_image</string>
     <string name="draw_image">draw_image</string>
     <string name="attended_draw">Attended Draw</string>
     <string name="created_draw">Created Draw</string>
     <string name="Winners">Winners</string>
+    <string name="substitutes">Substitutes</string>
     <string name="description">Description</string>
-    <string name="names">Names</string>
-    <string name="click_for_the_input_type">Click For The Input Type</string>
     <string name="create_draw">Create</string>
     <string name="create_draw_substitute">Substitute</string>
     <string name="create_draw_winner_count">Winner Count</string>
     <string name="draw_name">Name</string>
     <string name="draw_type_custom">Custom</string>
     <string name="draw_type_instagram">Instagram</string>
-    <string name="random_date">11.11.2021</string>
     <string name="url">Url</string>
     <string name="tag_count">Min. Tag</string>
     <string name="take_screen_record">Take screen record</string>
@@ -33,13 +30,9 @@
     <string name="end_date">End Date</string>
     <string name="home">Home</string>
     <string name="profile">Profile</string>
-    <string name="instagram_user_name">Instagram User Name</string>
-    <string name="empty_username_error">Please input valid username.</string>
     <string name="sign_in_successfully">Sign in successfully.</string>
     <string name="selectStartDate">Select Start Date</string>
     <string name="selectEndDate">Select End Date</string>
-    <string name="dialog_info_title">Separate with comma</string>
-    <string name="dialog_info_description">Berkhan, Oğuz, Burak..</string>
     <string name="day_abbreviation">d</string>
     <string name="month_abbreviation">m</string>
     <string name="my_created">my Crated</string>
@@ -48,8 +41,8 @@
     <string name="common_error">ERROR</string>
     <string name="success">Success</string>
     <string name="winner_count">%1$d winner</string>
-    <string name="backup_winner_count">%1$d backup winner</string>
-    <string name="participant_count">%1$d backup winner</string>
+    <string name="substitutes_count">%1$d substitutes winner</string>
+    <string name="participant_count">%1$d participant</string>
     <string name="substitute_count_must_not_more_from_winner_count">Substitute count must not more from winner count.</string>
     <string name="star_date_must_not_be_after_or_same_end_date">Start date must not be after or same end date.</string>
     <string name="please_enter_draw_title">Please enter draw title.</string>
@@ -61,8 +54,11 @@
     <string name="please_select_end_date">Please select end date.</string>
 
     <string name="common_permission_explanation_message">Please give necessary permission.</string>
-    <string name="permission_needd">Permission Need</string>
+    <string name="permission_need">Permission Need</string>
     <string name="give_permission">Give Permission</string>
     <string name="cancel">Cancel</string>
     <string name="content_permission_explanation">You need to give permission get content from gallery.</string>
+    <string name="please_enter_valid_winner_count">Please enter valid winner count.</string>
+    <string name="start_draw">Start Draw</string>
+    <string name="attended">Attended</string>
 </resources>

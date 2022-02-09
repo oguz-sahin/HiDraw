@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.huawei.hidraw.ui.drawdetail.ItemWinnerViewState" />
+    </data>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_8sdp"
+        android:text="@{viewState.name}"
+        android:textColor="@color/black"
+        android:textSize="@dimen/large_text_size"
+        tools:text="Oğuz Şahin" />
+
+</layout>

@@ -85,7 +85,12 @@ abstract class BaseViewModel : ViewModel() {
     private fun getErrorMessage(errorResponseModel: ErrorResponseModel?): String =
         errorResponseModel?.result?.msg ?: ""
 
-    fun <T> setEvent(mutableLiveData: MutableLiveData<Event<T>>, value: T) {
-        mutableLiveData.postValue(Event(value))
+    private fun <T> setEvent(mutableLiveData: MutableLiveData<Event<T>>, value: T) {
+        mutableLiveData.value = Event(value)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        hideLoading()
     }
 }

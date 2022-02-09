@@ -113,7 +113,7 @@ class CreateDrawViewModel @Inject constructor(
                 requestFunc = {
                     saveDrawRepositoryImpl.saveDraw(drawBodyModel)
                 },
-                onSuccess = { showSuccess("Mevzu bitti") }
+                onSuccess = { showSuccess("") }
             )
         }
     }
@@ -134,6 +134,11 @@ class CreateDrawViewModel @Inject constructor(
             }
             drawViewState.value.substituteCount.isBlank() -> {
                 showErrorWithId(R.string.please_enter_substitute_count)
+                false
+            }
+
+            isValidWinnerCount().not() -> {
+                showErrorWithId(R.string.please_enter_valid_winner_count)
                 false
             }
 
@@ -167,6 +172,8 @@ class CreateDrawViewModel @Inject constructor(
         }
     }
 
+
+    private fun isValidWinnerCount() = drawViewState.value.winnerCount.toInt() > 0
 
     private fun isSubstituteCountMoreWinnerCount(): Boolean {
         return drawViewState.value.winnerCount.toInt() < drawViewState.value.substituteCount.toInt()

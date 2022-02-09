@@ -21,14 +21,13 @@ class ProfileViewModel @Inject constructor(
     private val _userInfoViewState = MutableLiveData(UserInfoViewState.initial())
     val userInfoViewState get() = _userInfoViewState
 
-    init {
-        getProfileDetail()
-    }
 
-    private fun getProfileDetail() {
+    fun getProfileDetail() {
         viewModelScope.launch {
             makeNetworkRequest(
-                requestFunc = { profileRepository.getUser() },
+                requestFunc = {
+                    profileRepository.getUser()
+                },
                 onSuccess = {
                     _userInfoViewState.postValue(UserInfoViewState(it))
                 }

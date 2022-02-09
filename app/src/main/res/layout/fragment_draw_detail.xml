@@ -18,7 +18,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/_8sdp">
 
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -26,7 +27,7 @@
                 imageSrc="@{viewState.postImageUrl}"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_150sdp"
-                android:layout_margin="@dimen/_16sdp"
+                android:layout_margin="@dimen/_8sdp"
                 android:elevation="@dimen/_2sdp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -155,14 +156,16 @@
             <ImageView
                 android:id="@+id/ivDrawStatus"
                 imageSrc="@{viewState.getStatusImage}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_16sdp"
                 android:contentDescription="@string/draw_status_image"
                 android:translationZ="@dimen/_8sdp"
                 android:visibility="@{viewState.statusImageVisibility}"
                 app:layout_constraintBottom_toBottomOf="@+id/ivDrawInfoBackground"
                 app:layout_constraintEnd_toEndOf="@+id/tvDrawDescription"
+                app:layout_constraintStart_toEndOf="@+id/barrier"
                 app:layout_constraintTop_toBottomOf="@+id/tvDrawDescription"
                 tools:src="@mipmap/delayed" />
 
@@ -170,7 +173,7 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivWinnerBackground"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="@dimen/_150sdp"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:elevation="@dimen/_8sdp"
                 android:scaleType="centerCrop"
@@ -197,9 +200,11 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvWinners"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:padding="@dimen/_8sdp"
                 android:translationZ="@dimen/_8sdp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="@id/ivWinnerBackground"
                 app:layout_constraintEnd_toEndOf="@+id/ivWinnerBackground"
                 app:layout_constraintStart_toStartOf="@+id/ivWinnerBackground"
                 app:layout_constraintTop_toBottomOf="@+id/tvWinner"
@@ -210,19 +215,18 @@
                 android:id="@+id/grpWinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="@{viewState.winnerGroupVisibility}"
+                android:visibility="@{viewState.winnerGroupVisibility,default=gone}"
                 app:constraint_referenced_ids="ivWinnerBackground,tvWinner,rvWinners" />
 
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivBackupWinnerBackground"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="@dimen/_150sdp"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:elevation="@dimen/_8sdp"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/bg_common_designed_white"
-                app:layout_constraintBottom_toBottomOf="@id/rvBackupWinners"
                 app:layout_constraintEnd_toEndOf="@+id/ivWinnerBackground"
                 app:layout_constraintStart_toStartOf="@+id/ivWinnerBackground"
                 app:layout_constraintTop_toBottomOf="@+id/ivWinnerBackground"
@@ -234,7 +238,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_8sdp"
-                android:text="@string/Winners"
+                android:text="@string/substitutes"
                 android:textColor="@color/black"
                 android:textSize="@dimen/title_text_size"
                 android:translationZ="@dimen/_8sdp"
@@ -242,11 +246,13 @@
                 app:layout_constraintTop_toTopOf="@+id/ivBackupWinnerBackground" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvBackupWinners"
+                android:id="@+id/rvSubstitutes"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:padding="@dimen/_8sdp"
                 android:translationZ="@dimen/_8sdp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="@id/ivBackupWinnerBackground"
                 app:layout_constraintEnd_toEndOf="@+id/ivBackupWinnerBackground"
                 app:layout_constraintStart_toStartOf="@+id/ivBackupWinnerBackground"
                 app:layout_constraintTop_toBottomOf="@+id/tvBackupWinner"
@@ -257,23 +263,31 @@
                 android:id="@+id/grpBackupWinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="@{viewState.backupWinnerGroupVisibility}"
-                app:constraint_referenced_ids="ivBackupWinnerBackground,tvBackupWinner,rvBackupWinners" />
+                android:visibility="@{viewState.backupWinnerGroupVisibility,default=gone}"
+                app:constraint_referenced_ids="ivBackupWinnerBackground,tvBackupWinner,rvSubstitutes" />
 
 
             <Button
                 android:id="@+id/btnAction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:backgroundTint="@color/cream_can"
+                android:layout_marginVertical="@dimen/_16sdp"
+                android:background="@{viewState.getButtonColor}"
                 android:paddingHorizontal="@dimen/_16sdp"
-                android:text="@{viewState.getButtonText}"
-                android:textColor="@{viewState.getButtonColor}"
-                android:visibility="@{viewState.getButtonVisibility}"
-                app:layout_constraintEnd_toEndOf="@id/ivBackupWinnerBackground"
-                app:layout_constraintStart_toStartOf="@id/ivBackupWinnerBackground"
+                android:text="@{viewState.getButtonText(context)}"
+                android:textColor="@color/white"
+                android:visibility="@{viewState.getButtonVisibility,default=gone}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivBackupWinnerBackground" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="right"
+                app:constraint_referenced_ids="tvWinner,tvBackupWinner,tvParticipant" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

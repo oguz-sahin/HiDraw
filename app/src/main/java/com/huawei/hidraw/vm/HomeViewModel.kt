@@ -24,15 +24,13 @@ class HomeViewModel @Inject constructor(
     init {
         if (isUserLogged().not()) {
             navigate(actionHomeFragmentToSignInFragment())
-        } else {
-            getActiveDraws()
         }
     }
 
 
     private fun isUserLogged(): Boolean = authRepositoryImpl.isUserLogged()
 
-    private fun getActiveDraws() {
+    fun getActiveDraws() {
         makeNetworkRequest(
             requestFunc = { homeRepository.getActiveDraws() },
             onSuccess = { draws ->

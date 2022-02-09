@@ -68,4 +68,5 @@ class MainActivity : AppCompatActivity() {
             viewState = mainActivityViewState
         }
     }
+
 }

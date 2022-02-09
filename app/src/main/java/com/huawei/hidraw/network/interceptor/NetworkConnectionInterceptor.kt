@@ -16,7 +16,7 @@ class NetworkConnectionInterceptor(private val context: Context) : Interceptor {
         if (isNetworkAvailable(context).not()) {
             throw NoConnectionException()
         }
-        val builder = chain.request().newBuilder()
-        return chain.proceed(builder.build())
+        val newRequestBuilder = chain.request().newBuilder()
+        return chain.proceed(newRequestBuilder.build())
     }
 }

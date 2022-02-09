@@ -37,7 +37,7 @@ interface DrawService {
     companion object {
         const val GET_ACTIVE_DRAWS_REQUEST_PATH = "draw/active"
         const val GET_CREATED_DRAW_REQUEST_PATH = "draw/createdDraw"
-        const val GET_ATTENDED_DRAW_REQUEST_PATH = "attendDraw/draw"
+        const val GET_ATTENDED_DRAW_REQUEST_PATH = "participant"
         const val DRAW_REQUEST_PATH = "draw"
     }
 }

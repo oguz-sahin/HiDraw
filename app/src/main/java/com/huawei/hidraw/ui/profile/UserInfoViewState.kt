@@ -1,6 +1,7 @@
 package com.huawei.hidraw.ui.profile
 
 import com.huawei.hidraw.data.model.UserDetailModel
+import com.huawei.hidraw.data.model.UserModel
 
 /**
  * Created by Oguz Sahin on 12/2/2021.
@@ -9,20 +10,18 @@ data class UserInfoViewState(
     val userInfo: UserDetailModel
 ) {
 
-    fun getUserName() = userInfo.name
+    fun getUserName() = userInfo.user.name
 
-    fun getCreatedDrawCount() = userInfo.createdDraw.toString()
+    fun getCreatedDrawCount() = userInfo.createdDrawCount.toString()
 
     fun getAttendedDrawCount() = userInfo.participantDrawCount.toString()
 
     companion object {
         fun initial() = UserInfoViewState(
             userInfo = UserDetailModel(
-                email = "",
-                name = "",
-                userId = "",
+                user = UserModel(),
                 participantDrawCount = 0,
-                createdDraw = 0
+                createdDrawCount = 0
             )
         )
     }
