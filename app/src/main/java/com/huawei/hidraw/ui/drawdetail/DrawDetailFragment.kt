@@ -30,6 +30,12 @@ class DrawDetailFragment :
         observe(viewModel.drawDetailViewState, ::setViewState)
     }
 
+    override fun initListener() {
+        binding.btnAction.setOnClickListener {
+            viewModel.onActionButtonClicked()
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()

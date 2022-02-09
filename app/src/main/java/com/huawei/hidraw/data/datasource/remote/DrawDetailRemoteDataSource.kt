@@ -3,6 +3,7 @@ package com.huawei.hidraw.data.datasource.remote
 import com.huawei.hidraw.data.ResultWrapper
 import com.huawei.hidraw.data.model.DrawDetailModel
 import com.huawei.hidraw.data.model.DrawModel
+import com.huawei.hidraw.data.model.ParticipateDrawBodyModel
 import com.huawei.hidraw.network.service.DrawService
 import javax.inject.Inject
 
@@ -15,5 +16,9 @@ class DrawDetailRemoteDataSource @Inject constructor(
 
     suspend fun getDrawById(drawId: Long): ResultWrapper<DrawDetailModel> {
         return safeApiCall { drawService.getDrawById(drawId) }
+    }
+
+    suspend fun participateToDraw(participateDrawBodyModel: ParticipateDrawBodyModel): ResultWrapper<Any>{
+      return safeApiCall { drawService.participateToDraw(participateDrawBodyModel) }
     }
 }

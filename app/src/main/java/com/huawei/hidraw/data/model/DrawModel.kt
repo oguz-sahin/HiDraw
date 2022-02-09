@@ -18,4 +18,23 @@ data class DrawModel(
     val screenRecord: Boolean,
     val status: Boolean,
     val creator: UserModel
-)
+) {
+    companion object {
+        fun initial() = DrawModel(
+            id = 0,
+            title = "",
+            description = "",
+            postUrl = "",
+            photoUrl = "",
+            startDate = 0,
+            endDate = 0,
+            participantCount = 0,
+            winnerCount = 0,
+            substituteCount = 0,
+            singleComment = false,
+            screenRecord = false,
+            status = false,
+            creator = UserModel()
+        )
+    }
+}

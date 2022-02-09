@@ -6,7 +6,5 @@ package com.huawei.hidraw.data.model
 data class UserModel(
     val email: String = "",
     val name: String = "",
-    val userId: String = "",
-    val participantDrawCount: Int = 0,
-    val createdDraw: Int = 0
+    val userId: String = ""
 )

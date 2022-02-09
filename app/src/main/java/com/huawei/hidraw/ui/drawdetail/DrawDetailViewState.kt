@@ -14,7 +14,7 @@ import com.huawei.hidraw.util.ext.isPassed
 /**
  * Created by Oguz Sahin on 12/13/2021.
  */
-data class DrawDetailViewState(private val drawDetailModel: DrawDetailModel) :
+data class DrawDetailViewState(val drawDetailModel: DrawDetailModel) :
     BaseViewState() {
 
 
@@ -61,11 +61,18 @@ data class DrawDetailViewState(private val drawDetailModel: DrawDetailModel) :
     }
 
     fun getButtonText(context: Context) = when {
-        drawDetailModel.createdUser -> context.getString(R.string.start_draw)
-        else -> context.getString(R.string.attended)
+        drawDetailModel.createdUser -> getString(context = context, resId = R.string.start_draw)
+        drawDetailModel.userAttended -> getString(context = context, resId = R.string.attended)
+        else -> context.getString(R.string.attend)
     }
 
-    fun getButtonColor() = if (drawDetailModel.userAttended) R.color.emperor else R.color.cream_can
+    fun getButtonColor(context: Context): Int {
+        return if (drawDetailModel.userAttended) getColor(
+            context = context,
+            resId = R.color.emperor
+        )
+        else getColor(context = context, resId = R.color.cream_can)
+    }
 
 
     private fun isDrawDateDelayed() = draw.status == ACTIVE.value && draw.endDate.isPassed()

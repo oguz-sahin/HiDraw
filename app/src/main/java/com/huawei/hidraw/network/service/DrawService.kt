@@ -1,9 +1,6 @@
 package com.huawei.hidraw.network.service
 
-import com.huawei.hidraw.data.model.BaseResponseModel
-import com.huawei.hidraw.data.model.DrawBodyModel
-import com.huawei.hidraw.data.model.DrawDetailModel
-import com.huawei.hidraw.data.model.DrawModel
+import com.huawei.hidraw.data.model.*
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -34,10 +31,15 @@ interface DrawService {
     ): BaseResponseModel<DrawModel>
 
 
+    @POST(PARTICIPANT_REQUEST_PATH)
+    suspend fun participateToDraw(@Body participant: ParticipateDrawBodyModel): BaseResponseModel<Any>
+
+
     companion object {
         const val GET_ACTIVE_DRAWS_REQUEST_PATH = "draw/active"
         const val GET_CREATED_DRAW_REQUEST_PATH = "draw/createdDraw"
         const val GET_ATTENDED_DRAW_REQUEST_PATH = "participant"
         const val DRAW_REQUEST_PATH = "draw"
+        const val PARTICIPANT_REQUEST_PATH = "participant"
     }
 }

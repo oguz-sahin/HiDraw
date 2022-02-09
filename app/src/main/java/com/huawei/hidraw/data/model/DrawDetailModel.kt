@@ -9,6 +9,16 @@ data class DrawDetailModel(
     val substitutes: List<WinnerModel>?,
     val createdUser: Boolean,
     val userAttended: Boolean
-)
+) {
+    companion object {
+        fun initial() = DrawDetailModel(
+            draw = DrawModel.initial(),
+            winners = null,
+            substitutes = null,
+            createdUser = false,
+            userAttended = false
+        )
+    }
+}
 
 

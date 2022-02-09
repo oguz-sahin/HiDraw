@@ -85,7 +85,7 @@ abstract class BaseViewModel : ViewModel() {
     private fun getErrorMessage(errorResponseModel: ErrorResponseModel?): String =
         errorResponseModel?.result?.msg ?: ""
 
-    private fun <T> setEvent(mutableLiveData: MutableLiveData<Event<T>>, value: T) {
+      fun <T> setEvent(mutableLiveData: MutableLiveData<Event<T>>, value: T) {
         mutableLiveData.value = Event(value)
     }
 
