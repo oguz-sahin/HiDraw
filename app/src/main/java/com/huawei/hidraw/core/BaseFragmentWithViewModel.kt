@@ -51,6 +51,8 @@ abstract class BaseFragmentWithViewModel<VB : ViewBinding, out VM : BaseViewMode
             is BaseViewEvent.ShowErrorWithId -> showError(event.messageId)
 
             is BaseViewEvent.NavigateTo -> navigateDirections(event.directions)
+
+            BaseViewEvent.NavigateBack -> navigateBack()
         }
     }
 }

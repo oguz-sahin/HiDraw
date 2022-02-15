@@ -45,6 +45,12 @@
             android:name="drawId"
             android:defaultValue="-1L"
             app:argType="long" />
+        <action
+            android:id="@+id/action_drawDetailFragment_to_drawResultFragment"
+            app:destination="@id/drawResultFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/drawDetailFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -61,4 +67,23 @@
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    <fragment
+        android:id="@+id/drawResultFragment"
+        android:name="com.huawei.hidraw.ui.drawresult.DrawResultFragment"
+        android:label="DrawResultFragment" >
+        <argument
+            android:name="isScreenRecordTake"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="drawId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+        <action
+            android:id="@+id/action_drawResultFragment_to_drawDetailFragment"
+            app:destination="@id/drawDetailFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/drawResultFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

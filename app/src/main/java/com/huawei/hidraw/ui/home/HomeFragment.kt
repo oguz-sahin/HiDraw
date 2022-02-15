@@ -8,6 +8,7 @@ import com.huawei.hidraw.data.model.DrawModel
 import com.huawei.hidraw.databinding.FragmentHomeBinding
 import com.huawei.hidraw.ui.adapter.draw.DrawAdapter
 import com.huawei.hidraw.ui.home.HomeFragmentDirections.actionHomeFragmentToDrawDetailFragment
+import com.huawei.hidraw.ui.home.HomeFragmentDirections.actionHomeFragmentToSignInFragment
 import com.huawei.hidraw.util.ext.observe
 import com.huawei.hidraw.vm.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,10 +23,14 @@ class HomeFragment : BaseFragmentWithViewModel<FragmentHomeBinding, HomeViewMode
     @Inject
     lateinit var drawAdapter: DrawAdapter
 
+    override fun initObserver() {
+        observe(viewModel.activeDraws, ::loadDraws)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (viewModel.isUserLogged().not()) navigateDirections(actionHomeFragmentToSignInFragment())
         initAdapter()
-        observe(viewModel.activeDraws, ::loadDraws)
         viewModel.getActiveDraws()
     }
 

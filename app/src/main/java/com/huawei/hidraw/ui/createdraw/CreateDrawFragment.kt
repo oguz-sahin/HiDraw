@@ -30,7 +30,6 @@ class CreateDrawFragment :
     ) {
     override val viewModel: CreateDrawViewModel by viewModels()
 
-
     private val permissionExplanationDialog by lazy { createPermissionExplanationDialog() }
 
     private val permissionMustGiveExplanationDialogForPermanentlyDenied by lazy { createPermissionExplanationDialogForPermanentlyDenied() }
@@ -144,7 +143,6 @@ class CreateDrawFragment :
     private fun handlePermissionStatusAndGetContentForAndroid11AndAbove() {
         if (checkManageExternalPermission()) {
             openGalleryForImage()
-
         } else {
             manageExternalStorageLauncher.launch("")
         }
@@ -179,7 +177,7 @@ class CreateDrawFragment :
             .setMessage(getString(R.string.content_permission_explanation))
             .setCancelable(true)
             .setPositiveButton(getString(R.string.give_permission)) { _, _ ->
-                goSettings()
+               goSettings()
             }.create()
 
 

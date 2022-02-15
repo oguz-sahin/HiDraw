@@ -3,6 +3,7 @@
  */
 object Versions {
 
+    const val hbRecorder = "2.0.3"
     const val desugaring = "1.0.9"
     const val gradle = "7.0.3"
     const val kotlin = "1.5.20"

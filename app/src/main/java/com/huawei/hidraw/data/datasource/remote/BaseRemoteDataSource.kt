@@ -16,22 +16,22 @@ import java.net.UnknownHostException
 
 open class BaseRemoteDataSource {
 
-    suspend fun <T> safeApiCall(apiCall: suspend () -> BaseResponseModel<T>): ResultWrapper<T> {
+    internal suspend fun <T> safeApiCall(apiCall: suspend () -> BaseResponseModel<T>): ResultWrapper<T> {
         return withContext(Dispatchers.IO) {
             try {
                 val response = apiCall.invoke().data
                 ResultWrapper.Success(response)
             } catch (throwable: Throwable) {
                 when (throwable) {
-                    is NoConnectionException -> Error(throwable)
+                    is NoConnectionException -> Error(value = throwable)
                     is HttpException -> {
                         val errorResponse = convertErrorBody(throwable)
-                        Error(HttpException(errorResponse))
+                        Error(value = HttpException(errorResponseModel = errorResponse))
                     }
-                    is UnknownHostException -> Error(ServiceUnreachableException())
-                    is SocketTimeoutException -> Error(TimeOutException())
+                    is UnknownHostException -> Error(value = ServiceUnreachableException())
+                    is SocketTimeoutException -> Error(value = TimeOutException())
                     else -> {
-                        Error(GeneralException())
+                        Error(value = GeneralException())
                     }
                 }
             }
@@ -44,7 +44,12 @@ open class BaseRemoteDataSource {
                 Gson().fromJson(it, ErrorResponseModel::class.java)
             }
         } catch (exception: Exception) {
-            ErrorResponseModel(ErrorModel(throwable.code().toString(), throwable.message()))
+            ErrorResponseModel(
+                result = ErrorModel(
+                    code = throwable.code().toString(),
+                    msg = throwable.message()
+                )
+            )
         }
     }
 }

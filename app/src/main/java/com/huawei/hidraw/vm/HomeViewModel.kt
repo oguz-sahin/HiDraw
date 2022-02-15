@@ -5,7 +5,6 @@ import com.huawei.hidraw.core.BaseViewModel
 import com.huawei.hidraw.data.model.DrawModel
 import com.huawei.hidraw.data.repository.AuthRepository
 import com.huawei.hidraw.data.repository.HomeRepository
-import com.huawei.hidraw.ui.home.HomeFragmentDirections.actionHomeFragmentToSignInFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -21,14 +20,8 @@ class HomeViewModel @Inject constructor(
     private val _activeDraws = MutableLiveData<List<DrawModel>>()
     val activeDraws get() = _activeDraws
 
-    init {
-        if (isUserLogged().not()) {
-            navigate(actionHomeFragmentToSignInFragment())
-        }
-    }
 
-
-    private fun isUserLogged(): Boolean = authRepositoryImpl.isUserLogged()
+    fun isUserLogged(): Boolean = authRepositoryImpl.isUserLogged()
 
     fun getActiveDraws() {
         makeNetworkRequest(

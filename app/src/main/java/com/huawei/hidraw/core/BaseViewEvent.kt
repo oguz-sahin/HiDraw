@@ -17,4 +17,7 @@ sealed class BaseViewEvent {
     data class ShowSuccessWithId(@StringRes val message: Int) : BaseViewEvent()
 
     data class NavigateTo(val directions: NavDirections) : BaseViewEvent()
+
+    object NavigateBack : BaseViewEvent()
+
 }

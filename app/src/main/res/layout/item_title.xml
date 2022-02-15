@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.huawei.hidraw.ui.adapter.title.ItemTitleViewState" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_8sdp"
+            android:text="@{viewState.title}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/xlarge_text_size"
+            android:textStyle="bold"
+            tools:text="@string/Winners" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_gravity="bottom"
+            android:background="@color/black" />
+
+    </FrameLayout>
+</layout>

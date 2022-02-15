@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvResult"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingVertical="@dimen/_8sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:context=".ui.drawresult.DrawResultFragment">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lavConfetti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lottie_confetti" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStopRecording"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:visibility="gone"
+            android:layout_margin="@dimen/_8sdp"
+            android:drawableStart="@drawable/ic_videocam_off"
+            android:text="@string/stop_recording"
+            app:cornerRadius="@dimen/_4sdp" />
+
+    </FrameLayout>
+
+</layout>

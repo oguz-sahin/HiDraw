@@ -33,16 +33,14 @@ class DrawListViewModel @Inject constructor(
     }
 
     private fun getAttendedDrawsOfUser() {
-        viewModelScope.launch {
-            makeNetworkRequest(
-                requestFunc = {
-                    profileRepositoryImpl.getAttendedDrawsOfUser()
-                },
-                onSuccess = {
-                    _draws.postValue(it)
-                }
-            )
-        }
+        makeNetworkRequest(
+            requestFunc = {
+                profileRepositoryImpl.getAttendedDrawsOfUser()
+            },
+            onSuccess = {
+                _draws.postValue(it)
+            }
+        )
     }
 
     private fun getCreatedDrawsByUser() {

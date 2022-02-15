@@ -108,12 +108,12 @@ class CreateDrawViewModel @Inject constructor(
 
         viewModelScope.launch {
             val drawBodyModel = getDrawBodyModelForRemote()
-
             makeNetworkRequest(
-                requestFunc = {
-                    saveDrawRepositoryImpl.saveDraw(drawBodyModel)
-                },
-                onSuccess = { showSuccess("") }
+                requestFunc = { saveDrawRepositoryImpl.saveDraw(drawBodyModel) },
+                onSuccess = {
+                    showSuccess(R.string.draw_created_successfuly)
+                    navigateBack()
+                }
             )
         }
     }

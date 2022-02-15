@@ -34,6 +34,9 @@ interface DrawService {
     @POST(PARTICIPANT_REQUEST_PATH)
     suspend fun participateToDraw(@Body participant: ParticipateDrawBodyModel): BaseResponseModel<Any>
 
+    @GET(DRAW_RESULT_REQUEST_PATH)
+    suspend fun getDrawResult(@Query("drawId") drawId: Long): BaseResponseModel<DrawResultModel>
+
 
     companion object {
         const val GET_ACTIVE_DRAWS_REQUEST_PATH = "draw/active"
@@ -41,5 +44,6 @@ interface DrawService {
         const val GET_ATTENDED_DRAW_REQUEST_PATH = "participant"
         const val DRAW_REQUEST_PATH = "draw"
         const val PARTICIPANT_REQUEST_PATH = "participant"
+        const val DRAW_RESULT_REQUEST_PATH = "result/complete"
     }
 }

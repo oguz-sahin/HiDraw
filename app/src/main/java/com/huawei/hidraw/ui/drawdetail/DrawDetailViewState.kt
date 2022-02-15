@@ -8,6 +8,7 @@ import com.huawei.hidraw.data.model.DrawDetailModel
 import com.huawei.hidraw.data.model.DrawStatusTypes.ACTIVE
 import com.huawei.hidraw.data.model.DrawStatusTypes.PASSIVE
 import com.huawei.hidraw.util.ext.convertTimeStampWithFormat
+import com.huawei.hidraw.util.ext.getItemWinnerViewState
 import com.huawei.hidraw.util.ext.getServerUrl
 import com.huawei.hidraw.util.ext.isPassed
 
@@ -81,12 +82,8 @@ data class DrawDetailViewState(val drawDetailModel: DrawDetailModel) :
 
     private fun hasBackupWinner() = draw.substituteCount > 0
 
+    fun getWinnersItemViewState() = drawDetailModel.winners.getItemWinnerViewState()
 
-    fun getWinnersItemViewState() =
-        drawDetailModel.winners?.map { winnerModel -> ItemWinnerViewState(winnerModel) } ?: listOf()
-
-    fun getSubstitutesItemViewState() =
-        drawDetailModel.substitutes?.map { winnerModel -> ItemWinnerViewState(winnerModel) }
-            ?: listOf()
+    fun getSubstitutesItemViewState() = drawDetailModel.substitutes.getItemWinnerViewState()
 
 }

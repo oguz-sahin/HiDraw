@@ -12,6 +12,7 @@ buildscript {
         classpath(ClassPaths.hilt)
         classpath(ClassPaths.navigation)
         classpath(ClassPaths.ag_connect)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30")
     }
 }
 

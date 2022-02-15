@@ -30,11 +30,11 @@ abstract class BaseViewModel : ViewModel() {
     private fun sendEvent(event: BaseViewEvent) = setEvent(_baseEvent, event)
 
     fun showLoading() {
-        _loading.postValue(true)
+        _loading.value = true
     }
 
     fun hideLoading() {
-        _loading.postValue(false)
+        _loading.value = false
     }
 
     /** Navigate to specific direction **/
@@ -48,6 +48,9 @@ abstract class BaseViewModel : ViewModel() {
     fun showSuccess(message: String) = sendEvent(BaseViewEvent.ShowSuccess(message))
 
     fun showSuccess(@StringRes message: Int) = sendEvent(BaseViewEvent.ShowSuccessWithId(message))
+
+    fun navigateBack() = sendEvent(BaseViewEvent.NavigateBack)
+
 
     fun <T> makeNetworkRequest(
         requestFunc: suspend () -> ResultWrapper<T>,
@@ -63,8 +66,8 @@ abstract class BaseViewModel : ViewModel() {
                     handleError(response.value)
                 }
                 is ResultWrapper.Success -> {
-                    onSuccess?.invoke(response.value)
                     hideLoading()
+                    onSuccess?.invoke(response.value)
                 }
             }
         }
@@ -85,12 +88,8 @@ abstract class BaseViewModel : ViewModel() {
     private fun getErrorMessage(errorResponseModel: ErrorResponseModel?): String =
         errorResponseModel?.result?.msg ?: ""
 
-      fun <T> setEvent(mutableLiveData: MutableLiveData<Event<T>>, value: T) {
+    fun <T> setEvent(mutableLiveData: MutableLiveData<Event<T>>, value: T) {
         mutableLiveData.value = Event(value)
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        hideLoading()
-    }
 }

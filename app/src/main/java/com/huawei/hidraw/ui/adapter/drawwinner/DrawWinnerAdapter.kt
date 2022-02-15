@@ -1,4 +1,4 @@
-package com.huawei.hidraw.ui.drawdetail
+package com.huawei.hidraw.ui.adapter.drawwinner
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup

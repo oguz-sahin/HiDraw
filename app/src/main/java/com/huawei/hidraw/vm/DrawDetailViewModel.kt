@@ -3,7 +3,6 @@ package com.huawei.hidraw.vm
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.viewModelScope
 import com.huawei.hidraw.core.BaseViewModel
 import com.huawei.hidraw.data.model.*
 import com.huawei.hidraw.data.repository.AuthRepository
@@ -13,7 +12,6 @@ import com.huawei.hidraw.ui.drawdetail.DrawDetailFragmentArgs
 import com.huawei.hidraw.ui.drawdetail.DrawDetailViewState
 import com.huawei.hidraw.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -42,17 +40,13 @@ class DrawDetailViewModel @Inject constructor(
     }
 
     private fun getDrawDetail(drawId: Long) {
-        viewModelScope.launch {
-            makeNetworkRequest(
-                requestFunc = {
-                    drawDetailRepositoryImpl.getDrawById(drawId)
-                },
-                onSuccess = {
-                    drawDetailModel = it
-                    _drawDetailViewState.postValue(DrawDetailViewState(it))
-                }
-            )
-        }
+        makeNetworkRequest(
+            requestFunc = { drawDetailRepositoryImpl.getDrawById(drawId) },
+            onSuccess = {
+                drawDetailModel = it
+                _drawDetailViewState.postValue(DrawDetailViewState(it))
+            }
+        )
     }
 
     fun onActionButtonClicked() {
@@ -61,7 +55,7 @@ class DrawDetailViewModel @Inject constructor(
             canUserParticipateToDraw() -> participateToDraw()
             canStartDraw() -> setEvent(
                 _drawDetailEvent,
-                DrawDetailEvent.NavigateToDrawPage
+                DrawDetailEvent.NavigateToDrawResultPage
             )
         }
     }
@@ -91,4 +85,7 @@ class DrawDetailViewModel @Inject constructor(
 
     private fun isUserAlreadyParticipant() = drawDetailModel.userAttended
 
+    fun getScreenRecordStatus() = drawDetailModel.draw.screenRecord
+
+    fun getDrawId() = drawDetailModel.draw.id
 }

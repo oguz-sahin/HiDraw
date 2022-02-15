@@ -5,8 +5,12 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.huawei.hidraw.core.BaseFragmentWithViewModel
 import com.huawei.hidraw.databinding.FragmentDrawDetailBinding
+import com.huawei.hidraw.ui.adapter.drawwinner.DrawWinnerAdapter
+import com.huawei.hidraw.ui.drawdetail.DrawDetailEvent.NavigateToDrawResultPage
+import com.huawei.hidraw.ui.drawdetail.DrawDetailFragmentDirections.actionDrawDetailFragmentToDrawResultFragment
 import com.huawei.hidraw.util.ext.executeWithAction
 import com.huawei.hidraw.util.ext.observe
+import com.huawei.hidraw.util.ext.observeEvent
 import com.huawei.hidraw.vm.DrawDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -19,6 +23,7 @@ class DrawDetailFragment :
 
     override val viewModel: DrawDetailViewModel by viewModels()
 
+
     @Inject
     lateinit var winnersAdapter: DrawWinnerAdapter
 
@@ -28,6 +33,7 @@ class DrawDetailFragment :
 
     override fun initObserver() {
         observe(viewModel.drawDetailViewState, ::setViewState)
+        observeEvent(viewModel.drawDetailEvent, ::handleEvent)
     }
 
     override fun initListener() {
@@ -46,6 +52,22 @@ class DrawDetailFragment :
             rvWinners.adapter = winnersAdapter
             rvSubstitutes.adapter = substitutesAdapter
         }
+    }
+
+    private fun handleEvent(drawDetailEvent: DrawDetailEvent) {
+        when (drawDetailEvent) {
+            NavigateToDrawResultPage -> navigateToResultPage()
+        }
+    }
+
+
+    private fun navigateToResultPage() {
+        val isScreenRecordTake = viewModel.getScreenRecordStatus()
+        val drawId = viewModel.getDrawId()
+        val direction = actionDrawDetailFragmentToDrawResultFragment()
+            .setIsScreenRecordTake(isScreenRecordTake)
+            .setDrawId(drawId)
+        navigateDirections(direction)
     }
 
 

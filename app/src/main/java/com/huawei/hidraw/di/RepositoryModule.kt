@@ -33,4 +33,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun provideSaveDrawRepository(saveDrawRepositoryImpl: SaveDrawRepositoryImpl): SaveDrawRepository
+
+    @Binds
+    @Singleton
+    abstract fun provideDrawResultRepository(drawResultRepositoryImpl: DrawResultRepositoryImpl): DrawResultRepository
 }

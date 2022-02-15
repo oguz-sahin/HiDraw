@@ -6,16 +6,33 @@
 
         <variable
             name="viewState"
-            type="com.huawei.hidraw.ui.drawdetail.ItemWinnerViewState" />
+            type="com.huawei.hidraw.ui.adapter.drawwinner.ItemWinnerViewState" />
     </data>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_8sdp"
-        android:text="@{viewState.name}"
-        android:textColor="@color/black"
-        android:textSize="@dimen/large_text_size"
-        tools:text="Oğuz Şahin" />
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/_8sdp">
+
+        <TextView
+            android:id="@+id/tvRank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:text="@{viewState.getRank(context)}"
+            android:textColor="@color/cream_can"
+            tools:text="# 1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewState.name}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/large_text_size"
+            tools:text="Oğuz Şahin" />
+
+
+    </LinearLayout>
 
 </layout>

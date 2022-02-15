@@ -11,6 +11,9 @@ open class BaseViewState {
     fun getViewVisibility(isViewVisible: Boolean): Int =
         if (isViewVisible) View.VISIBLE else View.GONE
 
+    fun getString(context: Context, @StringRes resId: Int, vararg formatARgs: Any) =
+        context.getString(resId, formatARgs)
+
     fun getString(context: Context, @StringRes resId: Int) = context.getString(resId)
 
     fun getColor(context: Context, @ColorRes resId: Int) = ContextCompat.getColor(context, resId)

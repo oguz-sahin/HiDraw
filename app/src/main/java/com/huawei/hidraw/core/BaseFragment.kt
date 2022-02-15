@@ -55,8 +55,13 @@ abstract class BaseFragment<VB : ViewBinding>(
 
     fun showError(message: String) = showMessage(ERROR, message)
 
+
     fun navigateDirections(directions: NavDirections) {
         findNavController().navigate(directions)
+    }
+
+    fun navigateBack() {
+        findNavController().popBackStack()
     }
 
     private fun showMessage(type: SnackBarType, message: String) {
@@ -67,6 +72,21 @@ abstract class BaseFragment<VB : ViewBinding>(
         Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
             .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
             .setBackgroundTint(ContextCompat.getColor(requireContext(), backgroundColor))
+            .show()
+    }
+
+
+    fun showMessageWithAction(
+        @StringRes message: Int,
+        @StringRes actionMessage: Int,
+        action: () -> Unit
+    ) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+            .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.red))
+            .setAction(actionMessage) {
+                action.invoke()
+            }
             .show()
     }
 

@@ -12,6 +12,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.huawei.hidraw.util.AppPermission
 import com.huawei.hidraw.util.ManageExternalContracts
+import com.huawei.hidraw.util.MultiplePermissionResult
 
 
 fun Fragment.hasPermission(permission: AppPermission): Boolean {
@@ -24,8 +25,20 @@ fun Fragment.hasPermission(permission: AppPermission): Boolean {
 }
 
 
-fun Fragment.hasPermissions(vararg permissions: AppPermission): Boolean {
-    return permissions.all { appPermission -> hasPermission(appPermission) }
+fun Fragment.getMultiplePermissionResult(vararg permissions: AppPermission): MultiplePermissionResult {
+    return permissions.groupBy { hasPermission(it) }.run {
+        val grantedPermissions = this[true].orEmpty()
+        val deniedPermissions = this[false].orEmpty()
+        val deniedPermissionsStatus =
+            deniedPermissions.groupBy { shouldShowRequestPermissionRationale(it.name) }
+
+        MultiplePermissionResult(
+            isAllPermissionGiven = deniedPermissions.isEmpty(),
+            grantedPermissions = grantedPermissions,
+            deniedPermissions = deniedPermissionsStatus[true].orEmpty(),
+            permanentlyDeniedPermissions = deniedPermissionsStatus[false].orEmpty()
+        )
+    }
 }
 
 fun Fragment.getContentLauncher(onResult: (Uri?) -> Unit) =
@@ -61,6 +74,8 @@ fun Fragment.goSettings() {
 }
 
 @RequiresApi(Build.VERSION_CODES.R)
-fun Fragment.checkManageExternalPermission(): Boolean =
+fun checkManageExternalPermission(): Boolean =
     Environment.isExternalStorageManager()
+
+
 

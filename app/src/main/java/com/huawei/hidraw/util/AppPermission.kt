@@ -13,5 +13,9 @@ sealed class AppPermission(
 
     object ReadExternalStorage : AppPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
 
+    object RecordAudio : AppPermission(Manifest.permission.RECORD_AUDIO)
+
+
+
 
 }

@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     private fun setNavDestinationListener() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.signInFragment, R.id.createDrawFragment -> {
+                R.id.signInFragment, R.id.createDrawFragment, R.id.drawResultFragment -> {
                     setViewState(
                         MainActivityViewState(
                             isFabVisible = false,

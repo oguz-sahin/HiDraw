@@ -9,6 +9,7 @@
     <string name="time_out_exception_message">Connection Request timed out</string>
 
     <string name="sign_in">Sign in</string>
+    <string name="okey">Okey</string>
     <string name="remaining_time_icon">remaining Time Icon</string>
     <string name="draw_status_image">draw_status_image</string>
     <string name="draw_image">draw_image</string>
@@ -57,5 +58,10 @@
     <string name="start_draw">Start Draw</string>
     <string name="attended">Attended</string>
     <string name="attend">Attend</string>
-
+    <string name="you_must_give_permission_for_screen_record">You must give permission for screen record.</string>
+    <string name="go_settings">Go Settings</string>
+    <string name="rank"># %1$d</string>
+    <string name="error_no_screen_record">Screen record does not woeking due to permission status.</string>
+    <string name="stop_recording">Stop Recording</string>
+    <string name="draw_created_successfuly">Draw is created successfully</string>
 </resources>

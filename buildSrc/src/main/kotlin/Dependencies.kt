@@ -2,7 +2,8 @@
  * Created by Oguz Sahin on 12/20/2021.
  */
 object Libs {
-    const val desugaring= "com.android.tools:desugar_jdk_libs:${Versions.desugaring}"
+    const val hbRecorder = "com.github.HBiSoft:HBRecorder:${Versions.hbRecorder}"
+    const val desugaring = "com.android.tools:desugar_jdk_libs:${Versions.desugaring}"
     const val core = "androidx.core:core-ktx:${Versions.core}"
     const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
     const val material_design = "com.google.android.material:material:${Versions.material_design}"
