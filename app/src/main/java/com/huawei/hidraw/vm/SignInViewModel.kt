@@ -69,7 +69,6 @@ class SignInViewModel @Inject constructor(
                         showSuccess(R.string.sign_in_successfully)
                         navigate(actionSignInFragmentToHomeFragment())
                     }
-
                 )
             }
         }
