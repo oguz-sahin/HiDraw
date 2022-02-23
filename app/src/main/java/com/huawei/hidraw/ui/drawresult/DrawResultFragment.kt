@@ -2,8 +2,10 @@ package com.huawei.hidraw.ui.drawresult
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.ContentValues
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.media.MediaPlayer
 import android.media.MediaScannerConnection
 import android.media.projection.MediaProjectionManager
@@ -21,6 +23,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import com.hbisoft.hbrecorder.HBRecorder
 import com.hbisoft.hbrecorder.HBRecorderListener
+import com.huawei.agconnect.config.AGConnectServicesConfig
 import com.huawei.hidraw.R
 import com.huawei.hidraw.core.BaseFragmentWithViewModel
 import com.huawei.hidraw.databinding.FragmentDrawResultBinding
@@ -31,6 +34,10 @@ import com.huawei.hidraw.ui.drawresult.DrawResultFragmentDirections.actionDrawRe
 import com.huawei.hidraw.util.AppPermission.*
 import com.huawei.hidraw.util.ext.*
 import com.huawei.hidraw.vm.DrawResultViewModel
+import com.huawei.hms.videoeditor.ui.api.MediaApplication
+import com.huawei.hms.videoeditor.ui.api.MediaExportCallBack
+import com.huawei.hms.videoeditor.ui.api.MediaInfo
+import com.huawei.hms.videoeditor.ui.api.VideoEditorLaunchOption
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.text.SimpleDateFormat
@@ -82,8 +89,16 @@ class DrawResultFragment :
         arrayOf(WriteExternalStorage.name, ReadExternalStorage.name, RecordAudio.name)
 
     private val screenRecordPermissionsResultLauncherForAndroid11Below =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
-            handlePermissionStatusForAndroid11Below()
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissionResult ->
+            when {
+                hasPermissions(
+                    WriteExternalStorage,
+                    RecordAudio,
+                    ReadExternalStorage
+                ) -> getDrawResultWithScreenRecord()
+                permissionResult.keys.any { shouldShowRequestPermissionRationale(it).not() } -> showPermissionErrorAndGetDrawResult()
+                else -> handlePermissionStatusForAndroid11Below()
+            }
         }
 
     private val screenRecordResultLauncher = getStartActivityForResultLauncher {
@@ -95,25 +110,63 @@ class DrawResultFragment :
         }
     }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val onBackPressedCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                val action = actionDrawResultFragmentToDrawDetailFragment()
-                    .setDrawId(viewModel.getDrawId())
-                navigateDirections(action)
-            }
+    private val mediaExportCallBack: MediaExportCallBack = object : MediaExportCallBack {
+        override fun onMediaExportSuccess(mediaInfo: MediaInfo) {
+            showSuccess(R.string.saved_gallery_successfully)
         }
 
-        requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+        override fun onMediaExportFailed(errorCode: Int) {
+            showError(R.string.common_error)
+        }
+    }
+
+    private val videoEditorKitLicenceId by lazy { UUID.randomUUID().toString() }
+
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            navigateDrawDetailPage()
+        }
+    }
+
+
+    @SuppressLint("SourceLockedOrientationActivity")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        with(requireActivity()) {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+        }
+    }
+
+    private fun navigateDrawDetailPage() {
+        val action = actionDrawResultFragmentToDrawDetailFragment()
+            .setDrawId(viewModel.getDrawId())
+        navigateDirections(action)
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
+        initVideoEditorKit()
+    }
+
+    private fun initVideoEditorKit() {
+        with(MediaApplication.getInstance()) {
+            val apiKey = AGConnectServicesConfig.fromContext(requireContext())
+                .getString(AGC_API_KEY)
+            setApiKey(apiKey)
+            setLicenseId(videoEditorKitLicenceId)
+            setOnMediaExportCallBack(mediaExportCallBack)
+        }
+    }
+
+    private fun openVideoEditor() {
+        val option = VideoEditorLaunchOption.Builder()
+            .setStartMode(MediaApplication.START_MODE_IMPORT_FROM_MEDIA)
+            .build()
+
+        MediaApplication.getInstance().launchEditorActivity(requireContext(), option)
     }
 
     override fun initObserver() {
@@ -175,20 +228,12 @@ class DrawResultFragment :
 
 
     private fun handlePermissionStatusForAndroid11Below() {
-        val permissionsResult = getMultiplePermissionResult(
-            ReadExternalStorage,
-            WriteExternalStorage,
-            RecordAudio
-        )
-
-        when {
-            permissionsResult.isAllPermissionGiven -> getDrawResultWithScreenRecord()
-            permissionsResult.permanentlyDeniedPermissions.isNotEmpty() || permissionsResult.permanentlyDeniedPermissions.isNotEmpty() -> showPermissionErrorAndGetDrawResult()
-            else -> {
-                screenRecordPermissionsResultLauncherForAndroid11Below.launch(
-                    permissionsForScreenRecord
-                )
-            }
+        if (hasPermissions(WriteExternalStorage, ReadExternalStorage, RecordAudio)) {
+            getDrawResultWithScreenRecord()
+        } else {
+            screenRecordPermissionsResultLauncherForAndroid11Below.launch(
+                permissionsForScreenRecord
+            )
         }
     }
 
@@ -222,7 +267,30 @@ class DrawResultFragment :
 
     override fun HBRecorderOnComplete() {
         saveGalleryByBuildVersion()
-        //TODO() video editor kit
+        openVideoEditorDialog()
+    }
+
+    override fun HBRecorderOnError(errorCode: Int, reason: String?) {
+        showError(R.string.common_error)
+    }
+
+    private fun openVideoEditorDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.would_you_like_edit)
+            .setMessage(R.string.video_edit_message)
+            .setCancelable(true)
+            .setPositiveButton(R.string.okey) { _, _ ->
+                openVideoEditor()
+            }
+            .setNegativeButton(R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+                navigateDrawDetailPage()
+            }
+            .setOnCancelListener {
+                navigateDrawDetailPage()
+            }
+            .create()
+            .show()
     }
 
     private fun saveGalleryByBuildVersion() {
@@ -232,11 +300,6 @@ class DrawResultFragment :
             refreshGalleryFile()
         }
     }
-
-    override fun HBRecorderOnError(errorCode: Int, reason: String?) {
-        showError(R.string.common_error)
-    }
-
 
     private fun setOutputPath() {
         val filename = generateFileName()
@@ -300,6 +363,19 @@ class DrawResultFragment :
             Log.i("ExternalStorage", "Scanned $path:")
             Log.i("ExternalStorage", "-> uri=$uri")
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (hbRecorder.isBusyRecording) {
+            hbRecorder.stopScreenRecording()
+        }
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        onBackPressedCallback.remove()
+    }
+
+    companion object {
+        const val AGC_API_KEY = "client/api_key"
     }
 
 }

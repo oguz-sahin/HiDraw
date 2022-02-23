@@ -12,7 +12,6 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.huawei.hidraw.util.AppPermission
 import com.huawei.hidraw.util.ManageExternalContracts
-import com.huawei.hidraw.util.MultiplePermissionResult
 
 
 fun Fragment.hasPermission(permission: AppPermission): Boolean {
@@ -24,21 +23,8 @@ fun Fragment.hasPermission(permission: AppPermission): Boolean {
     }
 }
 
-
-fun Fragment.getMultiplePermissionResult(vararg permissions: AppPermission): MultiplePermissionResult {
-    return permissions.groupBy { hasPermission(it) }.run {
-        val grantedPermissions = this[true].orEmpty()
-        val deniedPermissions = this[false].orEmpty()
-        val deniedPermissionsStatus =
-            deniedPermissions.groupBy { shouldShowRequestPermissionRationale(it.name) }
-
-        MultiplePermissionResult(
-            isAllPermissionGiven = deniedPermissions.isEmpty(),
-            grantedPermissions = grantedPermissions,
-            deniedPermissions = deniedPermissionsStatus[true].orEmpty(),
-            permanentlyDeniedPermissions = deniedPermissionsStatus[false].orEmpty()
-        )
-    }
+fun Fragment.hasPermissions(vararg permissions: AppPermission): Boolean {
+    return permissions.all { hasPermission(it) }
 }
 
 fun Fragment.getContentLauncher(onResult: (Uri?) -> Unit) =

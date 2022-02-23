@@ -18,9 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/_8sdp">
-
+            android:layout_height="wrap_content">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivDrawImage"
@@ -40,15 +38,16 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivDrawInfoBackground"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="@dimen/_180sdp"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:elevation="@dimen/_8sdp"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/bg_common_designed_white"
-                app:layout_constraintBottom_toBottomOf="@id/tvParticipant"
+                app:layout_constraintBottom_toTopOf="@id/ivWinnerBackground"
                 app:layout_constraintEnd_toEndOf="@id/ivDrawImage"
                 app:layout_constraintStart_toStartOf="@id/ivDrawImage"
                 app:layout_constraintTop_toBottomOf="@+id/ivDrawImage"
+                app:layout_goneMarginBottom="@dimen/_16sdp"
                 app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
             <TextView
@@ -106,6 +105,7 @@
                 android:id="@+id/tvWinnerInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:drawablePadding="@dimen/_8sdp"
                 android:gravity="center"
                 android:text="@{viewState.getDrawWinnerCount(context)}"
@@ -141,13 +141,11 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:drawablePadding="@dimen/_8sdp"
                 android:gravity="center"
-                android:paddingBottom="@dimen/_16sdp"
                 android:text="@{viewState.getDrawParticipantCount(context)}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/small_text_size"
                 android:translationZ="@dimen/_8sdp"
                 app:drawableStartCompat="@drawable/ic_partipicant"
-                app:layout_constraintBottom_toBottomOf="@id/ivDrawInfoBackground"
                 app:layout_constraintStart_toStartOf="@+id/tvBackupWinnerInfo"
                 app:layout_constraintTop_toBottomOf="@+id/tvBackupWinnerInfo"
                 tools:text="210 person Attended." />
@@ -156,8 +154,8 @@
             <ImageView
                 android:id="@+id/ivDrawStatus"
                 imageSrc="@{viewState.getStatusImage}"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_16sdp"
                 android:contentDescription="@string/draw_status_image"
@@ -178,10 +176,11 @@
                 android:elevation="@dimen/_8sdp"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/bg_common_designed_white"
-                app:layout_constraintBottom_toBottomOf="@id/rvWinners"
+                app:layout_constraintBottom_toTopOf="@id/ivBackupWinnerBackground"
                 app:layout_constraintEnd_toEndOf="@+id/ivDrawInfoBackground"
                 app:layout_constraintStart_toStartOf="@+id/ivDrawInfoBackground"
                 app:layout_constraintTop_toBottomOf="@+id/ivDrawInfoBackground"
+                app:layout_goneMarginBottom="@dimen/_18sdp"
                 app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
 

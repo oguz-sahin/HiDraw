@@ -2,7 +2,7 @@
  * Created by Oguz Sahin on 12/20/2021.
  */
 object Libs {
-    const val hbRecorder = "com.github.HBiSoft:HBRecorder:${Versions.hbRecorder}"
+
     const val desugaring = "com.android.tools:desugar_jdk_libs:${Versions.desugaring}"
     const val core = "androidx.core:core-ktx:${Versions.core}"
     const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
@@ -45,7 +45,8 @@ object Libs {
     const val crash_service = "com.huawei.agconnect:agconnect-crash:${Versions.crash_service}"
     const val account_kit = "com.huawei.hms:hwid:${Versions.account_kit}"
     const val push_kit = "com.huawei.hms:push:${Versions.push_kit}"
-
+    const val hbRecorder = "com.github.HBiSoft:HBRecorder:${Versions.hbRecorder}"
+    const val video_editor_kit = "com.huawei.hms:video-editor-ui:${Versions.video_editor_kit}"
 }
 
 object ClassPaths {

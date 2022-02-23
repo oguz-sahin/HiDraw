@@ -17,9 +17,17 @@ class HomeViewModel @Inject constructor(
     private val authRepositoryImpl: AuthRepository
 ) : BaseViewModel() {
 
+    private var navigatedDrawId: Long? = null
+
     private val _activeDraws = MutableLiveData<List<DrawModel>>()
     val activeDraws get() = _activeDraws
 
+
+    fun setDrawIdIfHasDeeplink(drawId: Int?) {
+        navigatedDrawId = drawId?.toLong()
+    }
+
+    fun isNavigatedDrawIdChanged(newDrawId: Int?) = newDrawId?.toLong() != navigatedDrawId
 
     fun isUserLogged(): Boolean = authRepositoryImpl.isUserLogged()
 

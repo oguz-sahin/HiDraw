@@ -19,14 +19,18 @@
 
     //purple
     <color name="lavender">#BB6BD9</color>
-    <color name="icon_gray_for_btn">#666666</color>
-    <color name="transparent">#00000000</color>
+
 
     //red
     <color name="red">#FF0000</color>
 
     //green
     <color name="green">#00FF00</color>
+
+    //gray
+    <color name="icon_gray_for_btn">#ACA9A9</color>
+    <color name="icon_gray_for_btn2">#C3FFFFFF</color>
+    <color name="transparent">#00000000</color>
 
 
 </resources>

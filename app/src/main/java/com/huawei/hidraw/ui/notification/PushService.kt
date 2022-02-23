@@ -10,66 +10,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class PushService : HmsMessageService() {
 
-
-    companion object {
-        const val CHANNEL_ID = "drawNotificationChannelId"
-    }
-
-
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
         super.onMessageReceived(remoteMessage)
-
-        //   showNotification(drawId, title, content)
     }
 
-    /*
-    private fun showNotification(drawId: Long, title: String, content: String) {
-        val pendingIntent = getPendingIntent(drawId)
-        createNotificationChannel()
-        val notificationBuilder = getNotificationBuilder(title, content, pendingIntent)
-        val notificationManager = NotificationManagerCompat.from(this)
-        notificationManager.notify(1001, notificationBuilder.build())
-
+    override fun onNewToken(p0: String?) {
+        super.onNewToken(p0)
     }
 
-    private fun getPendingIntent(drawId: Long): PendingIntent {
-        return NavDeepLinkBuilder(this)
-            .setGraph(R.navigation.nav_graph)
-            .setDestination(R.id.drawDetailFragment)
-            .setArguments(bundleOf("drawId" to drawId))
-            .createPendingIntent()
-    }
-
-    private fun getNotificationBuilder(
-        title: String,
-        content: String,
-        pendingIntent: PendingIntent
-    ): NotificationCompat.Builder {
-        return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_common_surprise)
-            .setContentTitle(title)
-            .setContentText(content)
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-    }
-
-
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "drawNotificationChannel"
-            val descriptionText = "Tis is for Draw result notification channel"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-                description = descriptionText
-                setShowBadge(true)
-            }
-            // Register the channel with the system
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
-
-     */
 }

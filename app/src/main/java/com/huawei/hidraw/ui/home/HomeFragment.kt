@@ -30,8 +30,22 @@ class HomeFragment : BaseFragmentWithViewModel<FragmentHomeBinding, HomeViewMode
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (viewModel.isUserLogged().not()) navigateDirections(actionHomeFragmentToSignInFragment())
+        handleDeeplink()
         initAdapter()
         viewModel.getActiveDraws()
+    }
+
+    private fun handleDeeplink() {
+        getDeeplinkDrawId()?.let {
+            if (viewModel.isNavigatedDrawIdChanged(it)) {
+                viewModel.setDrawIdIfHasDeeplink(it)
+                navigateDrawDetail(it.toLong())
+            }
+        }
+    }
+
+    private fun getDeeplinkDrawId(): Int? {
+        return activity?.intent?.extras?.get(DRAW_ID_DEEPLINK_KEY) as? Int
     }
 
     private fun initAdapter() {
@@ -46,5 +60,9 @@ class HomeFragment : BaseFragmentWithViewModel<FragmentHomeBinding, HomeViewMode
 
     private fun loadDraws(drawResponse: List<DrawModel>) {
         drawAdapter.draws = drawResponse
+    }
+
+    companion object {
+        private const val DRAW_ID_DEEPLINK_KEY = "drawId"
     }
 }

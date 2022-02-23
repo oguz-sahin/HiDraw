@@ -27,7 +27,6 @@ class ProfileFragment : BaseFragmentWithViewModel<FragmentProfileBinding, Profil
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
-        viewModel.getProfileDetail()
         initTabLayout()
     }
 

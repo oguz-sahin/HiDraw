@@ -3,7 +3,6 @@
  */
 object Versions {
 
-    const val hbRecorder = "2.0.3"
     const val desugaring = "1.0.9"
     const val gradle = "7.0.3"
     const val kotlin = "1.5.20"
@@ -31,12 +30,13 @@ object Versions {
     const val legacy_support = "1.0.0"
     const val sdp = "1.0.6"
     const val lottie = "3.4.0"
-    const val ag_connect = "1.5.2.300"
+    const val ag_connect = "1.6.3.300"
     const val analytic_kit = "6.3.0.303"
     const val crash_service = "1.6.0.300"
     const val account_kit = "6.1.0.302"
     const val kt_lint = "10.2.0"
     const val detekt = "1.19.0"
     const val push_kit = "6.1.0.300"
-
+    const val video_editor_kit = "1.1.0.301"
+    const val hbRecorder = "2.0.3"
 }

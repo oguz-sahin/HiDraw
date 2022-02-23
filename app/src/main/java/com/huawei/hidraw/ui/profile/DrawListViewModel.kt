@@ -2,6 +2,7 @@ package com.huawei.hidraw.ui.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.huawei.hidraw.R
 import com.huawei.hidraw.core.BaseViewModel
@@ -18,13 +19,20 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class DrawListViewModel @Inject constructor(
-    private val profileRepositoryImpl: ProfileRepositoryImpl
+    private val profileRepositoryImpl: ProfileRepositoryImpl,
+    savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
     private val _draws = MutableLiveData<List<DrawModel>>()
     val draws: LiveData<List<DrawModel>> get() = _draws
 
-    fun getDrawsByType(drawListTypes: DrawListTypes?) {
+    init {
+        val drawListArgs = savedStateHandle.get<String>(DrawListFragment.DRAW_LIST_TYPE)
+        val drawListType = DrawListTypes.valueOf(drawListArgs ?: "")
+        getDrawsByType(drawListType)
+    }
+
+    private fun getDrawsByType(drawListTypes: DrawListTypes?) {
         when (drawListTypes) {
             USER_ATTENDED -> getAttendedDrawsOfUser()
             USER_CREATED -> getCreatedDrawsByUser()

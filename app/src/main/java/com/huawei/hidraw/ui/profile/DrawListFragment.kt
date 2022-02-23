@@ -9,6 +9,7 @@ import com.huawei.hidraw.data.model.DrawModel
 import com.huawei.hidraw.databinding.FragmentDrawListBinding
 import com.huawei.hidraw.ui.adapter.draw.DrawAdapter
 import com.huawei.hidraw.ui.profile.ProfileFragmentDirections.actionProfileFragmentToDrawDetailFragment
+import com.huawei.hidraw.util.ext.executeWithAction
 import com.huawei.hidraw.util.ext.observe
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -21,8 +22,6 @@ class DrawListFragment : BaseFragmentWithViewModel<FragmentDrawListBinding, Draw
     @Inject
     lateinit var drawAdapter: DrawAdapter
 
-    private var drawListType: DrawListTypes? = null
-
     override val viewModel: DrawListViewModel by viewModels()
 
     override fun initObserver() {
@@ -31,42 +30,33 @@ class DrawListFragment : BaseFragmentWithViewModel<FragmentDrawListBinding, Draw
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setDrawListType()
         setAdapter()
-        viewModel.getDrawsByType(drawListType)
     }
 
-    private fun setDrawListType() {
-        arguments?.getString(DRAW_LIST_TYPE)?.let {
-            drawListType = DrawListTypes.valueOf(it)
-        }
-    }
 
     private fun setAdapter() {
-        drawAdapter.onDrawClicked = { drawId ->
-            val action = actionProfileFragmentToDrawDetailFragment().setDrawId(drawId)
-            navigateDirections(action)
-        }
+        drawAdapter.onDrawClicked = ::navigateDrawDetail
         binding.rvDrawList.adapter = drawAdapter
     }
 
     private fun setDrawList(drawList: List<DrawModel>) {
-        val isDrawListEmpty = drawList.isEmpty()
-        if (isDrawListEmpty.not()) {
-            drawAdapter.draws = drawList
-        }
-        setViewState(isDrawListEmpty)
+        drawAdapter.draws = drawList
+        setViewState(drawList)
     }
 
-    private fun setViewState(isDrawListEmpty: Boolean) {
-        with(binding) {
-            viewState = DrawListViewState(isDrawListEmpty)
-            executePendingBindings()
+    private fun navigateDrawDetail(drawId: Long) {
+        val action = actionProfileFragmentToDrawDetailFragment().setDrawId(drawId)
+        navigateDirections(action)
+    }
+
+    private fun setViewState(drawList: List<DrawModel>) {
+        binding.executeWithAction {
+            viewState = DrawListViewState(drawList)
         }
     }
 
     companion object {
-        private const val DRAW_LIST_TYPE = "DRAW_LIST_TYPE"
+        const val DRAW_LIST_TYPE = "DRAW_LIST_TYPE"
         fun newInstance(drawListType: DrawListTypes) = DrawListFragment().apply {
             arguments = bundleOf(DRAW_LIST_TYPE to drawListType.name)
         }

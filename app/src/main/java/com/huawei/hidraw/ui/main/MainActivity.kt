@@ -11,10 +11,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
-
     private val navController by lazy { (supportFragmentManager.findFragmentById(R.id.navHostFragmentContainer) as NavHostFragment).navController }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_HiDraw)
@@ -68,5 +67,4 @@ class MainActivity : AppCompatActivity() {
             viewState = mainActivityViewState
         }
     }
-
 }

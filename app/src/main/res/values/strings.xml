@@ -69,4 +69,7 @@
     <string name="error_no_screen_record">Screen record does not woeking due to permission status.</string>
     <string name="stop_recording">Stop Recording</string>
     <string name="draw_created_successfuly">Draw is created successfully</string>
+    <string name="would_you_like_edit">Would you like edit</string>
+    <string name="video_edit_message">The screen record is saved your galery successfully. Would you like to edit ?</string>
+    <string name="saved_gallery_successfully">Edited video saved successfully in galery.</string>
 </resources>

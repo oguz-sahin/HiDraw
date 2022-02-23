@@ -78,7 +78,6 @@ fun getProperty(propertyName: String): String {
 }
 
 dependencies {
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     coreLibraryDesugaring(Libs.desugaring)
     implementation(Libs.core)
     implementation(Libs.appcompat)
@@ -114,4 +113,5 @@ dependencies {
     implementation(Libs.account_kit)
     implementation(Libs.push_kit)
     implementation(Libs.hbRecorder)
+    implementation(Libs.video_editor_kit)
 }
