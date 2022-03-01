@@ -346,10 +346,8 @@ class DrawResultFragment :
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES),
             "HBRecorder"
         )
-        if (!f1.exists()) {
-            if (f1.mkdirs()) {
-                Log.i("Folder ", "created")
-            }
+        if (!f1.exists() && f1.mkdirs()) {
+            Log.i("Folder ", "created")
         }
     }
 

@@ -44,9 +44,9 @@ abstract class BaseFragment<VB : ViewBinding>(
     private var _binding: VB? = null
     val binding get() = _binding!!
 
-    open fun initListener() {}
+    open fun initListener() {} // NOSONAR
 
-    open fun initObserver() {}
+    open fun initObserver() {} // NOSONAR
 
     override fun onCreateView(
         inflater: LayoutInflater,

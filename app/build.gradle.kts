@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 /*
  * Copyright 2022. Explore in HMS. All rights reserved.
  *
@@ -101,7 +103,7 @@ android {
 }
 
 fun getProperty(propertyName: String): String {
-    return project.property(propertyName) as String
+    return gradleLocalProperties(rootDir).getProperty(propertyName)
 }
 
 dependencies {
