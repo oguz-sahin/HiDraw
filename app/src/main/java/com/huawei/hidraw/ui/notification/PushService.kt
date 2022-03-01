@@ -20,9 +20,6 @@ import com.huawei.hms.push.HmsMessageService
 import com.huawei.hms.push.RemoteMessage
 import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * Created by Oguz Sahin on 20.01.2022.
- */
 @AndroidEntryPoint
 class PushService : HmsMessageService() {
 

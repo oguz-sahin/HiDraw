@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-/**
- * Created by Oguz Sahin on 12/20/2021.
- */
 object Config {
 
     const val compile_sdk_version = 31

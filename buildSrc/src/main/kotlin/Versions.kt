@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-/**
- * Created by Oguz Sahin on 12/20/2021.
- */
 object Versions {
 
     const val desugaring = "1.0.9"

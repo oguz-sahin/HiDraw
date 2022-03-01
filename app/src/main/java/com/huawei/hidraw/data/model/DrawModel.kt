@@ -16,9 +16,6 @@
 
 package com.huawei.hidraw.data.model
 
-/**
- * Created by Oguz Sahin on 12/1/2021.
- */
 data class DrawModel(
     val id: Long = 0,
     val title: String,

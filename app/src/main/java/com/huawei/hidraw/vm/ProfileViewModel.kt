@@ -23,10 +23,6 @@ import com.huawei.hidraw.ui.profile.UserInfoViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-/**
- * Created by Oguz Sahin on 11/23/2021.
- */
-
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val profileRepository: ProfileRepository

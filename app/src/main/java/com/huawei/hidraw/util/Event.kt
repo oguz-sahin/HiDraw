@@ -16,9 +16,6 @@
 
 package com.huawei.hidraw.util
 
-/**
- * Created by Oguz Sahin on 10/26/2021.
- */
 open class Event<out T>(private val content: T) {
 
     var hasBeenHandled = false

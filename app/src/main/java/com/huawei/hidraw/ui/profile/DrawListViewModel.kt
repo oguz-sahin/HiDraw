@@ -30,9 +30,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/**
- * Created by Oguz Sahin on 12/13/2021.
- */
 @HiltViewModel
 class DrawListViewModel @Inject constructor(
     private val profileRepositoryImpl: ProfileRepositoryImpl,

@@ -29,9 +29,6 @@ import com.huawei.hidraw.data.model.IException
 import com.huawei.hidraw.util.Event
 import kotlinx.coroutines.launch
 
-/**
- * Created by Oguz Sahin on 10/26/2021.
- */
 abstract class BaseViewModel : ViewModel() {
 
     /** Internal loading state of ViewModel. Visual representation may differ. **/

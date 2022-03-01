@@ -19,10 +19,6 @@ package com.huawei.hidraw.util.ext
 import android.content.SharedPreferences
 import androidx.core.content.edit
 
-/**
- * Created by Oguz Sahin on 11/15/2021.
- */
-
 inline fun <reified T> SharedPreferences.setValue(key: String, value: T) {
     edit {
         when (value) {

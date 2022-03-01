@@ -23,10 +23,6 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
-/**
- * Created by Oguz Sahin on 11/15/2021.
- */
-
 @InstallIn(SingletonComponent::class)
 @Module
 object CoroutinesDispatchersModule {

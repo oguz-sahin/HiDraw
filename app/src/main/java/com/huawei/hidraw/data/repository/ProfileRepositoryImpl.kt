@@ -22,9 +22,6 @@ import com.huawei.hidraw.data.model.DrawModel
 import com.huawei.hidraw.data.model.UserDetailModel
 import javax.inject.Inject
 
-/**
- * Created by Oguz Sahin on 12/2/2021.
- */
 class ProfileRepositoryImpl @Inject constructor(
     private val profileRemoteDataSource: ProfileRemoteDataSource
 ) : ProfileRepository {

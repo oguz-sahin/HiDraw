@@ -25,9 +25,6 @@ import com.huawei.hidraw.util.ext.convertTimeStampWithFormat
 import com.huawei.hidraw.util.ext.getDifferenceDayByNow
 import com.huawei.hidraw.util.ext.getServerUrl
 
-/**
- * Created by Oguz Sahin on 12/2/2021.
- */
 data class DrawItemViewState(
     private val draw: DrawModel
 ) : BaseViewState() {

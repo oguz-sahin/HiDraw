@@ -19,9 +19,6 @@ package com.huawei.hidraw.ui.profile
 import com.huawei.hidraw.data.model.UserDetailModel
 import com.huawei.hidraw.data.model.UserModel
 
-/**
- * Created by Oguz Sahin on 12/2/2021.
- */
 data class UserInfoViewState(
     val userInfo: UserDetailModel
 ) {

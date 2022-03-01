@@ -28,9 +28,6 @@ import com.huawei.hidraw.util.ext.getItemWinnerViewState
 import com.huawei.hidraw.util.ext.getServerUrl
 import com.huawei.hidraw.util.ext.isPassed
 
-/**
- * Created by Oguz Sahin on 12/13/2021.
- */
 data class DrawDetailViewState(val drawDetailModel: DrawDetailModel) :
     BaseViewState() {
 

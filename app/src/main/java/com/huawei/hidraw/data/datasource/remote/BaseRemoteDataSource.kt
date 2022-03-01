@@ -26,10 +26,6 @@ import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
-/**
- * Created by Oguz Sahin on 11/15/2021.
- */
-
 open class BaseRemoteDataSource {
 
     internal suspend fun <T> safeApiCall(apiCall: suspend () -> BaseResponseModel<T>): ResultWrapper<T> {

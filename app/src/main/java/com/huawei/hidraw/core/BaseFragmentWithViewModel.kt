@@ -25,9 +25,6 @@ import com.huawei.hidraw.R
 import com.huawei.hidraw.util.ext.observe
 import com.huawei.hidraw.util.ext.observeEvent
 
-/**
- * Created by Oguz Sahin on 10/26/2021.
- */
 abstract class BaseFragmentWithViewModel<VB : ViewBinding, out VM : BaseViewModel>(
     inflate: Inflate<VB>
 ) : BaseFragment<VB>(inflate) {

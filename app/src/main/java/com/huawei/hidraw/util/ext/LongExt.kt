@@ -23,10 +23,6 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 
-/**
- * Created by Oguz Sahin on 12/3/2021.
- */
-
 @SuppressLint("SimpleDateFormat")
 fun Long.convertTimeStampWithFormat(formatPattern: String = "dd.MM.yyyy"): String? {
     return try {

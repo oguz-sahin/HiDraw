@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-/**
- * Created by Oguz Sahin on 12/20/2021.
- */
 object Libs {
 
     const val desugaring = "com.android.tools:desugar_jdk_libs:${Versions.desugaring}"

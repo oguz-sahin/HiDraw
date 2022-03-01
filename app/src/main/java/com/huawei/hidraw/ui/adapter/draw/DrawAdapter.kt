@@ -22,9 +22,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.huawei.hidraw.data.model.DrawModel
 import javax.inject.Inject
 
-/**
- * Created by Oguz Sahin on 12/1/2021.
- */
 class DrawAdapter @Inject constructor() : RecyclerView.Adapter<DrawViewHolder>() {
 
     var draws = listOf<DrawModel>()

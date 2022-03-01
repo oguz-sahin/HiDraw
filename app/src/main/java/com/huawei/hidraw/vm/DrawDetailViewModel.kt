@@ -30,10 +30,6 @@ import com.huawei.hidraw.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-/**
- * Created by Oguz Sahin on 11/24/2021.
- */
-
 @HiltViewModel
 class DrawDetailViewModel @Inject constructor(
     private val drawDetailRepositoryImpl: DrawDetailRepository,

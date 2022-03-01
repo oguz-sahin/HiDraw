@@ -20,9 +20,6 @@ import com.huawei.hidraw.data.ResultWrapper
 import com.huawei.hidraw.data.model.DrawModel
 import com.huawei.hidraw.data.model.UserDetailModel
 
-/**
- * Created by Oguz Sahin on 12/2/2021.
- */
 interface ProfileRepository {
 
     suspend fun getUser(): ResultWrapper<UserDetailModel>

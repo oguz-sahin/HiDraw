@@ -21,10 +21,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 
-/**
- * Created by Oguz Sahin on 11/12/2021.
- */
-
 object NetworkUtils {
 
     const val HEADER_KEY = "userId"

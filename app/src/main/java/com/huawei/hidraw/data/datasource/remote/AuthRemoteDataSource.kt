@@ -22,9 +22,6 @@ import com.huawei.hidraw.data.model.UserModel
 import com.huawei.hidraw.network.service.UserService
 import javax.inject.Inject
 
-/**
- * Created by Oguz Sahin on 11/16/2021.
- */
 class AuthRemoteDataSource @Inject constructor(
     private val userService: UserService
 ) : BaseRemoteDataSource() {

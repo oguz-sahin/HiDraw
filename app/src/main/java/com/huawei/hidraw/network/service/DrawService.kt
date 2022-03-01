@@ -22,9 +22,6 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
-/**
- * Created by Oguz Sahin on 11/29/2021.
- */
 interface DrawService {
 
     @GET(GET_ACTIVE_DRAWS_REQUEST_PATH)

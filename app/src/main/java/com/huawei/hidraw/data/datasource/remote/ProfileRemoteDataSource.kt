@@ -23,9 +23,6 @@ import com.huawei.hidraw.network.service.DrawService
 import com.huawei.hidraw.network.service.UserService
 import javax.inject.Inject
 
-/**
- * Created by Oguz Sahin on 12/2/2021.
- */
 class ProfileRemoteDataSource @Inject constructor(
     private val drawService: DrawService,
     private val userService: UserService

@@ -20,9 +20,6 @@ import com.huawei.hidraw.data.ResultWrapper
 import com.huawei.hidraw.data.model.PushTokenBodyModel
 import com.huawei.hidraw.data.model.UserModel
 
-/**
- * Created by Oguz Sahin on 11/15/2021.
- */
 interface AuthRepository {
     suspend fun register(userModel: UserModel): ResultWrapper<UserModel>
     fun isUserLogged(): Boolean

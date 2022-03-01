@@ -23,10 +23,6 @@ import com.huawei.hms.analytics.HiAnalytics
 import com.huawei.hms.analytics.HiAnalyticsTools
 import dagger.hilt.android.HiltAndroidApp
 
-/**
- * Created by Oguz Sahin on 10/26/2021.
- */
-
 @HiltAndroidApp
 class App : Application() {
 

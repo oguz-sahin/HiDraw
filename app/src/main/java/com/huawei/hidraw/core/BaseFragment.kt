@@ -31,10 +31,6 @@ import com.huawei.hidraw.R
 import com.huawei.hidraw.core.BaseFragment.SnackBarType.ERROR
 import com.huawei.hidraw.core.BaseFragment.SnackBarType.SUCCESS
 
-/**
- * Created by Oguz Sahin on 10/26/2021.
- */
-
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
 abstract class BaseFragment<VB : ViewBinding>(

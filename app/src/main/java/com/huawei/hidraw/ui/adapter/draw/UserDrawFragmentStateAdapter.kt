@@ -22,9 +22,6 @@ import com.huawei.hidraw.ui.profile.DrawListFragment
 import com.huawei.hidraw.ui.profile.DrawListTypes.USER_ATTENDED
 import com.huawei.hidraw.ui.profile.DrawListTypes.USER_CREATED
 
-/**
- * Created by Oguz Sahin on 12/6/2021.
- */
 class UserDrawFragmentStateAdapter constructor(fragment: Fragment) :
     FragmentStateAdapter(fragment) {
 

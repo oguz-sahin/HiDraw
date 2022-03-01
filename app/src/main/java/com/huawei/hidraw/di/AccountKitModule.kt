@@ -28,9 +28,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-/**
- * Created by Oguz Sahin on 11/15/2021.
- */
 @Module
 @InstallIn(SingletonComponent::class)
 object AccountKitModule {

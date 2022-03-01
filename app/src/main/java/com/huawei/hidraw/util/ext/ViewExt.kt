@@ -18,10 +18,6 @@ package com.huawei.hidraw.util.ext
 
 import android.view.View
 
-/**
- * Created by Oguz Sahin on 10/26/2021.
- */
-
 fun View.show() {
     visibility = View.VISIBLE
 }

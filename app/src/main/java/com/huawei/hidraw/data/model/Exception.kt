@@ -20,10 +20,6 @@ import androidx.annotation.StringRes
 import com.huawei.hidraw.R
 import java.io.IOException
 
-/**
- * Created by Oguz Sahin on 11/29/2021.
- */
-
 interface IException {
     fun getMessage(): Int {
         return 0

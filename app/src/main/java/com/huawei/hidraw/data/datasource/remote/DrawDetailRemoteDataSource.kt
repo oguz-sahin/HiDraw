@@ -22,9 +22,6 @@ import com.huawei.hidraw.data.model.ParticipateDrawBodyModel
 import com.huawei.hidraw.network.service.DrawService
 import javax.inject.Inject
 
-/**
- * Created by Oguz Sahin on 12/13/2021.
- */
 class DrawDetailRemoteDataSource @Inject constructor(
     private val drawService: DrawService
 ) : BaseRemoteDataSource() {

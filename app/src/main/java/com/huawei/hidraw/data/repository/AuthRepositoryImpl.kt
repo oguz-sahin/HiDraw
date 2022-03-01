@@ -24,10 +24,6 @@ import com.huawei.hidraw.data.model.UserModel
 import com.huawei.hidraw.util.ext.defaultForType
 import javax.inject.Inject
 
-/**
- * Created by Oguz Sahin on 11/15/2021.
- */
-
 class AuthRepositoryImpl @Inject constructor(
     private val prefDataSource: PrefDataSource,
     private val authRemoteDataSource: AuthRemoteDataSource
