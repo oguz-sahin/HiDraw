@@ -1,3 +1,19 @@
+/*
+ * Copyright 2022. Explore in HMS. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.huawei.hidraw.vm
 
 import android.net.Uri
@@ -31,7 +47,6 @@ class CreateDrawViewModel @Inject constructor(
     private val _drawViewState = MutableStateFlow(value = DrawViewState.initial())
     val drawViewState get() = _drawViewState.asStateFlow()
 
-
     fun setContent(contentUri: Uri?) {
         contentUri?.let {
             updateViewState { currentViewState ->
@@ -64,7 +79,6 @@ class CreateDrawViewModel @Inject constructor(
         }
     }
 
-
     fun setSelectedStartDate(startDateText: String, startDate: Long) {
         updateViewState { currentViewState ->
             currentViewState.copy(startDateText = startDateText, startDate = startDate)
@@ -77,13 +91,11 @@ class CreateDrawViewModel @Inject constructor(
         }
     }
 
-
     fun setPostUrl(postUrl: Editable?) {
         updateViewState { currentViewState ->
             currentViewState.copy(postUrl = postUrl.getContent())
         }
     }
-
 
     fun setTakeScreenRecordStatus(isTakenScreenRecord: Boolean) {
         updateViewState { currentViewState ->
@@ -97,11 +109,9 @@ class CreateDrawViewModel @Inject constructor(
         }
     }
 
-
     private fun updateViewState(function: (currentViewState: DrawViewState) -> DrawViewState) {
         _drawViewState.update(function)
     }
-
 
     fun createDraw() {
         if (checkInputsValidation().not()) return
@@ -147,7 +157,6 @@ class CreateDrawViewModel @Inject constructor(
                 false
             }
 
-
             drawViewState.value.startDateText.isBlank() -> {
                 showErrorWithId(R.string.please_select_start_date)
                 false
@@ -171,7 +180,6 @@ class CreateDrawViewModel @Inject constructor(
             else -> true
         }
     }
-
 
     private fun isValidWinnerCount() = drawViewState.value.winnerCount.toInt() > 0
 
@@ -202,6 +210,4 @@ class CreateDrawViewModel @Inject constructor(
             creator = UserModel(userId = authRepositoryImpl.getUserId())
         )
     }
-
-
 }

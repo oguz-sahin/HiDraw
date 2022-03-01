@@ -1,3 +1,19 @@
+/*
+ * Copyright 2022. Explore in HMS. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 plugins {
     id("com.android.application")
     id("com.huawei.agconnect")
@@ -8,6 +24,17 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("org.jlleitschuh.gradle.ktlint") version Versions.kt_lint
     id("io.gitlab.arturbosch.detekt") version Versions.detekt
+    id("org.sonarqube") version Versions.sonarqube
+}
+
+sonarqube {
+    properties {
+        property("sonar.projectKey", getProperty("SONAR_PROJECT_KEY"))
+        property("sonar.projectName", getProperty("SONAR_PROJECT_NAME"))
+        property("sonar.login", getProperty("SONAR_LOGIN"))
+        property("sonar.host.url", getProperty("SONAR_HOST_URL"))
+        property("sonar.projectVersion", Config.version_name)
+    }
 }
 
 android {

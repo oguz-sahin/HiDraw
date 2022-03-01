@@ -1,3 +1,19 @@
+/*
+ * Copyright 2022. Explore in HMS. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.huawei.hidraw.ui.createdraw
 
 import android.app.AlertDialog
@@ -49,7 +65,6 @@ class CreateDrawFragment :
         onPermissionDeniedPermanently = { permissionMustGiveExplanationDialogForPermanentlyDenied.show() }
     )
 
-
     private val materialDatePickerForStart by lazy {
         buildDatePicker(
             title = R.string.selectStartDate,
@@ -67,7 +82,6 @@ class CreateDrawFragment :
             viewModel.setSelectedEndDate(selectedEndDateText, selectedEndDate)
         }
     }
-
 
     override fun initObserver() {
         viewLifecycleOwner.collectLast(viewModel.drawViewState, ::setViewState)
@@ -130,7 +144,6 @@ class CreateDrawFragment :
         }
     }
 
-
     private fun handlePermissionStatusAndGetContentByBuildVersion() {
         if (SDK_INT >= Build.VERSION_CODES.R) {
             handlePermissionStatusAndGetContentForAndroid11AndAbove()
@@ -170,16 +183,14 @@ class CreateDrawFragment :
         .setNegativeButton(getString(R.string.cancel)) { dialog, _ -> dialog.dismiss() }
         .create()
 
-
     private fun createPermissionExplanationDialogForPermanentlyDenied() =
         AlertDialog.Builder(requireContext())
             .setTitle(getString(R.string.permission_need))
             .setMessage(getString(R.string.content_permission_explanation))
             .setCancelable(true)
             .setPositiveButton(getString(R.string.give_permission)) { _, _ ->
-               goSettings()
+                goSettings()
             }.create()
-
 
     private fun buildDatePicker(
         @StringRes title: Int,
@@ -200,13 +211,11 @@ class CreateDrawFragment :
         return materialDatePicker
     }
 
-
     private fun setViewState(drawViewState: DrawViewState) {
         binding.executeWithAction {
             this.drawViewState = drawViewState
         }
     }
-
 
     private fun TextInputEditText.clearTransformationMethod() {
         transformationMethod = null
@@ -219,11 +228,8 @@ class CreateDrawFragment :
         }
     }
 
-
     companion object {
         const val START_DATE_TAG = "START_DATE_TAG"
         const val END_DATE_TAG = "END_DATE_TAG"
     }
-
-
 }

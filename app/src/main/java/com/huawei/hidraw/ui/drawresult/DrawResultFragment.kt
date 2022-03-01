@@ -1,3 +1,19 @@
+/*
+ * Copyright 2022. Explore in HMS. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.huawei.hidraw.ui.drawresult
 
 import android.annotation.SuppressLint
@@ -44,13 +60,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-
 @Suppress("DEPRECATION")
 @AndroidEntryPoint
 class DrawResultFragment :
     BaseFragmentWithViewModel<FragmentDrawResultBinding, DrawResultViewModel>(
         inflate = FragmentDrawResultBinding::inflate
-    ), HBRecorderListener {
+    ),
+    HBRecorderListener {
 
     override val viewModel: DrawResultViewModel by viewModels()
 
@@ -69,7 +85,6 @@ class DrawResultFragment :
     @Inject
     lateinit var drawResultAdapter: DrawResultAdapter
 
-
     @RequiresApi(Build.VERSION_CODES.R)
     private val manageExternalStorageLauncher = getManageExternalStorageResultLauncher {
         if (it) handlePermissionStatusForAndroid11OrAbove()
@@ -83,7 +98,6 @@ class DrawResultFragment :
         onPermissionDenied = { handlePermissionStatusForAndroid11OrAbove() },
         onPermissionDeniedPermanently = { showPermissionErrorAndGetDrawResult() }
     )
-
 
     private val permissionsForScreenRecord =
         arrayOf(WriteExternalStorage.name, ReadExternalStorage.name, RecordAudio.name)
@@ -128,7 +142,6 @@ class DrawResultFragment :
         }
     }
 
-
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -143,7 +156,6 @@ class DrawResultFragment :
             .setDrawId(viewModel.getDrawId())
         navigateDirections(action)
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -210,13 +222,11 @@ class DrawResultFragment :
         }
     }
 
-
     private fun handleEvent(drawResultEvent: DrawResultEvent) {
         when (drawResultEvent) {
             CheckPermissionsForScreenRecord -> handlePermissionStatusByBuildVersion()
         }
     }
-
 
     private fun handlePermissionStatusByBuildVersion() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -225,7 +235,6 @@ class DrawResultFragment :
             handlePermissionStatusForAndroid11Below()
         }
     }
-
 
     private fun handlePermissionStatusForAndroid11Below() {
         if (hasPermissions(WriteExternalStorage, ReadExternalStorage, RecordAudio)) {
@@ -344,7 +353,6 @@ class DrawResultFragment :
         }
     }
 
-
     @SuppressLint("InlinedApi")
     private fun updateGalleryUri() {
         with(contentValues) {
@@ -377,5 +385,4 @@ class DrawResultFragment :
     companion object {
         const val AGC_API_KEY = "client/api_key"
     }
-
 }
