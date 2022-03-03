@@ -17,10 +17,13 @@
 package com.huawei.hidraw.core
 
 import android.app.Application
+import com.huawei.agconnect.config.AGConnectServicesConfig
 import com.huawei.agconnect.crash.AGConnectCrash
+import com.huawei.hidraw.ui.drawresult.DrawResultFragment
 import com.huawei.hidraw.util.manager.AnalyticsManager
 import com.huawei.hms.analytics.HiAnalytics
 import com.huawei.hms.analytics.HiAnalyticsTools
+import com.huawei.hms.videoeditor.ui.api.MediaApplication
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -30,6 +33,7 @@ class App : Application() {
         super.onCreate()
         setupAnalytics()
         initCrashService()
+        setVideoEditorKitApiKey()
     }
 
     private fun setupAnalytics() {
@@ -43,5 +47,11 @@ class App : Application() {
 
     private fun initCrashService() {
         AGConnectCrash.getInstance().enableCrashCollection(true)
+    }
+
+    private fun setVideoEditorKitApiKey() {
+        val apiKey = AGConnectServicesConfig.fromContext(this)
+            .getString(DrawResultFragment.AGC_API_KEY)
+        MediaApplication.getInstance().setApiKey(apiKey)
     }
 }

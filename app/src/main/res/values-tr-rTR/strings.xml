@@ -1,0 +1,88 @@
+<!--
+  ~ Copyright 2022. Explore in HMS. All rights reserved.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="app_name">HiDraw</string>
+
+    //Exception Messages
+    <string name="no_connection_exception_message">İnternet Bağlantınızı Kontrol Ediniz.</string>
+    <string name="general_exception_message">Bir şeyler ters gitti.</string>
+    <string name="service_unreachable_exception_message">Servis Ulaşılmaz Durumda.</string>
+    <string name="time_out_exception_message">İstek Zaman Aşımına Uğradı.</string>
+
+    <string name="sign_in">Kayıt ol</string>
+    <string name="okey">Tamam</string>
+    <string name="draw_status_image">çeliliş durumu resmi</string>
+    <string name="draw_image">çekiliş resmie</string>
+    <string name="attended_draw">Katılınan Çekiliş</string>
+    <string name="created_draw">Oluşturulan Çekiliş</string>
+    <string name="Winners">Kazananlar</string>
+    <string name="substitutes">Yedek Kazananlar</string>
+    <string name="description">Açıklama</string>
+    <string name="create_draw">Oluştur</string>
+    <string name="create_draw_substitutes_count">Yedek Sayısı</string>
+    <string name="create_draw_winner_count">Kazanan Sayısı</string>
+    <string name="draw_name">Çekiliş Adı</string>
+    <string name="url">Link</string>
+    <string name="tag_count">Min. Tag</string>
+    <string name="take_screen_record">Ekran Kaydı Al</string>
+    <string name="count_each_user_only_once">Her Kullanıcıyı Bir Kez Say</string>
+    <string name="start_date">Başlangıç Tarihi</string>
+    <string name="end_date">Bitiş Tarihi</string>
+    <string name="home">Anasayfa</string>
+    <string name="profile">Profil</string>
+    <string name="sign_in_successfully">Başarılı bir şekilde kayıt olundu.</string>
+    <string name="selectStartDate">Başlangıç Tarihi Seçin</string>
+    <string name="selectEndDate">Bitiş Tarihi Seçin</string>
+    <string name="day_abbreviation">d</string>
+    <string name="month_abbreviation">m</string>
+    <string name="my_created">Oluşturduklarım</string>
+    <string name="my_attended">Katıldıklarım</string>
+    <string name="no_draw_error">Gösterilecek Çekiliş Yok.</string>
+    <string name="common_error">HATA</string>
+    <string name="success">Başarılı</string>
+    <string name="winner_count">%1$d Kazanan</string>
+    <string name="substitutes_count">%1$d Yedek kazanan</string>
+    <string name="participant_count">%1$d Katılımcı</string>
+    <string name="substitute_count_must_not_more_from_winner_count">Yedek sayısı kazanan sayısından fazla olamaz.</string>
+    <string name="star_date_must_not_be_after_or_same_end_date">Başlangış tarihi bitiş tarihinden sonra olamaz.</string>
+    <string name="please_enter_draw_title">Lütfen çekiliş başlığı giriniz.</string>
+    <string name="please_enter_draw_description">Lütfen çekiliş tanımı girin.</string>
+    <string name="please_enter_winner_count">Lütfen kazanan sayısı girin.</string>
+    <string name="please_enter_substitute_count">Lütfen yedek kazanan sayısı girin.</string>
+    <string name="please_enter_url">Lütfen link giriniz.</string>
+    <string name="please_select_start_date">Lütfen başlangıç tarihi seçiniz.</string>
+    <string name="please_select_end_date">Lütfen bitiş tarihi seçiniz.</string>
+
+    <string name="common_permission_explanation_message">Lütfen gerekli izinleri verin.</string>
+    <string name="permission_need">İzniniz Gerekli</string>
+    <string name="give_permission">İzin Ver</string>
+    <string name="cancel">İptal</string>
+    <string name="content_permission_explanation">Galeriden fotoğraf seçmek için izin vermelisiniz.</string>
+    <string name="please_enter_valid_winner_count">Lütfen geçerli kazanan sayısı giriniz.</string>
+    <string name="start_draw">Çekilişi Başlat</string>
+    <string name="attended">Katıldın</string>
+    <string name="attend">Katıl</string>
+    <string name="you_must_give_permission_for_screen_record">Ekran kaydı için izin vermelisin.</string>
+    <string name="go_settings">Ayarlar Git.</string>
+    <string name="rank"># %1$d</string>
+    <string name="error_no_screen_record">Ekran kaydı izin verilmediğimden dolayı yapılamıyor. Ayarlardan izin verebilirsiniz.</string>
+    <string name="stop_recording">Kaydı Durdur</string>
+    <string name="draw_created_successfuly">Çekiliş başarıyla oluşturuldu.</string>
+    <string name="would_you_like_edit">Düzenlemek istiyor musunuz</string>
+    <string name="video_edit_message">Ekran kaydı videosu başarılı bir şekilde galeriye kaydedildi. Videoyu düzenlemek istiyor musunuz?</string>
+    <string name="saved_gallery_successfully">Ekran kaydı videosu başarılı bir şekilde galeriye kaydedildi.</string>
+</resources>

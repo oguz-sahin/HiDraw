@@ -39,7 +39,6 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import com.hbisoft.hbrecorder.HBRecorder
 import com.hbisoft.hbrecorder.HBRecorderListener
-import com.huawei.agconnect.config.AGConnectServicesConfig
 import com.huawei.hidraw.R
 import com.huawei.hidraw.core.BaseFragmentWithViewModel
 import com.huawei.hidraw.databinding.FragmentDrawResultBinding
@@ -165,9 +164,6 @@ class DrawResultFragment :
 
     private fun initVideoEditorKit() {
         with(MediaApplication.getInstance()) {
-            val apiKey = AGConnectServicesConfig.fromContext(requireContext())
-                .getString(AGC_API_KEY)
-            setApiKey(apiKey)
             setLicenseId(videoEditorKitLicenceId)
             setOnMediaExportCallBack(mediaExportCallBack)
         }

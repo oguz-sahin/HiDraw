@@ -32,7 +32,7 @@ class SignInFragment : BaseFragmentWithViewModel<FragmentSignInBinding, SignInVi
     override val viewModel: SignInViewModel by viewModels()
 
     private val signInResultLauncher = getStartActivityForResultLauncher { result ->
-        viewModel.signIn(result)
+        viewModel.signIn(result, requireContext())
     }
 
     @Inject

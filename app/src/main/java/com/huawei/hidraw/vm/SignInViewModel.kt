@@ -16,6 +16,7 @@
 
 package com.huawei.hidraw.vm
 
+import android.content.Context
 import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.lifecycle.viewModelScope
@@ -25,6 +26,7 @@ import com.huawei.hidraw.data.model.PushTokenBodyModel
 import com.huawei.hidraw.data.model.UserModel
 import com.huawei.hidraw.data.repository.AuthRepository
 import com.huawei.hidraw.di.IoDispatcher
+import com.huawei.hidraw.network.NetworkUtils
 import com.huawei.hidraw.ui.signin.SignInFragmentDirections.actionSignInFragmentToHomeFragment
 import com.huawei.hms.aaid.HmsInstanceId
 import com.huawei.hms.common.ApiException
@@ -42,10 +44,17 @@ class SignInViewModel @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : BaseViewModel() {
 
-    fun signIn(result: ActivityResult) {
+    fun signIn(result: ActivityResult, context: Context) {
+        if (NetworkUtils.isNetworkAvailable(context)) {
+            showErrorWithId(R.string.no_connection_exception_message)
+            return
+        }
         viewModelScope.launch {
             val authAccountTask = AccountAuthManager.parseAuthResultFromIntent(result.data)
-            if (authAccountTask.isSuccessful.not()) return@launch
+            if (authAccountTask.isSuccessful.not()) {
+                showError(authAccountTask.exception.localizedMessage ?: "")
+                return@launch
+            }
 
             // The sign-in is successful, and the user's ID information and ID token are obtained.
             val userModel = with(authAccountTask.result) {
