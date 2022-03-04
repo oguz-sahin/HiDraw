@@ -22,7 +22,7 @@
 
         <variable
             name="viewState"
-            type="com.huawei.hidraw.ui.adapter.drawwinner.ItemWinnerViewState" />
+            type="com.hms.hidraw.ui.adapter.drawwinner.ItemWinnerViewState" />
     </data>
 
     <LinearLayout

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2022. Explore in HMS. All rights reserved.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +16,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.huawei.hidraw">
+    package="com.hms.hidraw">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -64,11 +63,12 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="com.huawei.hidraw"
+                    android:host="com.hms.hidraw"
                     android:path="/deeplink"
                     android:scheme="pushscheme" />
             </intent-filter>
@@ -76,7 +76,7 @@
         </activity>
 
         <service
-            android:name="com.huawei.hidraw.ui.notification.PushService"
+            android:name="com.hms.hidraw.ui.notification.PushService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.huawei.push.action.MESSAGING_EVENT" />

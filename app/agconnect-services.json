@@ -17,21 +17,21 @@
 	},
 	"client":{
 		"cp_id":"5190090000031119978",
-		"product_id":"737518067793653015",
-		"client_id":"746414686441833664",
-		"client_secret":"896775AE7E4716195052E70DF892EB8B84514EA400F02A9D94530D9330BAEA2B",
-		"project_id":"737518067793653015",
-		"app_id":"104877425",
-		"api_key":"CwEAAAAAqYRYvG+er1j11kEJBrYcY+ggd/Qo4RKfVHDvjhmxpWtB7llO60jb3mdJRXnkq+Juw3hc6enVb7AwefxNq4QBBkAsYf4=",
-		"package_name":"com.huawei.hidraw"
+		"product_id":"99536292102041398",
+		"client_id":"839415693559481216",
+		"client_secret":"78997B04CB5024BBAAB0520ACAC5245480B6589D829ADD70C6313FAEA0C6C307",
+		"project_id":"99536292102041398",
+		"app_id":"105696945",
+		"api_key":"DAEDAM80kZtaQRt8hQZogfLkFW04ockj3VjvryBIWizNOs65FxyYam6S61jk9A2Yo06zoWezl+UzhuYbK8LATb+uA2nL8uajSJj4RA==",
+		"package_name":"com.hms.hidraw"
 	},
 	"oauth_client":{
-		"client_id":"104877425",
+		"client_id":"105696945",
 		"client_type":1
 	},
 	"app_info":{
-		"app_id":"104877425",
-		"package_name":"com.huawei.hidraw"
+		"app_id":"105696945",
+		"package_name":"com.hms.hidraw"
 	},
 	"service":{
 		"analytics":{
@@ -57,17 +57,17 @@
 	"configuration_version":"3.0",
 	"appInfos":[
 		{
-			"package_name":"com.huawei.hidraw",
+			"package_name":"com.hms.hidraw",
 			"client":{
-				"app_id":"104877425"
+				"app_id":"105696945"
 			},
 			"app_info":{
-				"package_name":"com.huawei.hidraw",
-				"app_id":"104877425"
+				"package_name":"com.hms.hidraw",
+				"app_id":"105696945"
 			},
 			"oauth_client":{
 				"client_type":1,
-				"client_id":"104877425"
+				"client_id":"105696945"
 			}
 		}
 	]

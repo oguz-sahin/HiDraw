@@ -22,7 +22,7 @@
 
         <variable
             name="viewState"
-            type="com.huawei.hidraw.ui.adapter.title.ItemTitleViewState" />
+            type="com.hms.hidraw.ui.adapter.title.ItemTitleViewState" />
 
     </data>
 

@@ -49,7 +49,8 @@ android {
         versionCode = Config.version_code
         versionName = Config.version_name
         multiDexEnabled = true
-        buildConfigField("String", "BASE_URL", "\"http://159.138.96.192:8081/api/\"")
+        buildConfigField("String", "BASE_URL", getProperty("BASE_URL"))
+        buildConfigField("String", "APP_ID_FROM_AGC", getProperty("APP_ID_FROM_AGC"))
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -76,7 +77,6 @@ android {
             )
         }
         debug {
-            signingConfig = signingConfigs.findByName("release")
             isDebuggable = true
         }
     }

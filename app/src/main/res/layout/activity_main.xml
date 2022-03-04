@@ -23,7 +23,7 @@
 
         <variable
             name="viewState"
-            type="com.huawei.hidraw.ui.main.MainActivityViewState" />
+            type="com.hms.hidraw.ui.main.MainActivityViewState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

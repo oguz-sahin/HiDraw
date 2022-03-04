@@ -23,7 +23,7 @@
 
         <variable
             name="userInfoViewState"
-            type="com.huawei.hidraw.ui.profile.UserInfoViewState" />
+            type="com.hms.hidraw.ui.profile.UserInfoViewState" />
     </data>
 
     <ScrollView

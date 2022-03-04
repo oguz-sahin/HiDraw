@@ -23,7 +23,7 @@
 
         <variable
             name="viewState"
-            type="com.huawei.hidraw.ui.drawdetail.DrawDetailViewState" />
+            type="com.hms.hidraw.ui.drawdetail.DrawDetailViewState" />
     </data>
 
     <ScrollView

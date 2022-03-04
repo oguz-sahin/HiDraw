@@ -23,7 +23,7 @@
 
         <variable
             name="viewState"
-            type="com.huawei.hidraw.ui.adapter.draw.DrawItemViewState" />
+            type="com.hms.hidraw.ui.adapter.draw.DrawItemViewState" />
 
     </data>
 

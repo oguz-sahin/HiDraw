@@ -22,7 +22,7 @@
 
         <variable
             name="drawViewState"
-            type="com.huawei.hidraw.ui.createdraw.DrawViewState" />
+            type="com.hms.hidraw.ui.createdraw.DrawViewState" />
 
     </data>
 
