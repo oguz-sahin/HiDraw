@@ -25,7 +25,6 @@ plugins {
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
     id("org.jlleitschuh.gradle.ktlint") version Versions.kt_lint
-    id("io.gitlab.arturbosch.detekt") version Versions.detekt
     id("org.sonarqube") version Versions.sonarqube
 }
 
