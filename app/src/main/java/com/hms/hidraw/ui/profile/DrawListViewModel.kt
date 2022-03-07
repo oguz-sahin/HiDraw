@@ -58,8 +58,8 @@ class DrawListViewModel @Inject constructor(
             requestFunc = {
                 profileRepositoryImpl.getAttendedDrawsOfUser()
             },
-            onSuccess = {
-                _draws.postValue(it)
+            onSuccess = { attendedDrawList ->
+                _draws.postValue(attendedDrawList.map { it.draw })
             }
         )
     }

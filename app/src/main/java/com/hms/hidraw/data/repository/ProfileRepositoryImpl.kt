@@ -18,6 +18,7 @@ package com.hms.hidraw.data.repository
 
 import com.hms.hidraw.data.ResultWrapper
 import com.hms.hidraw.data.datasource.remote.ProfileRemoteDataSource
+import com.hms.hidraw.data.model.AttendedDrawModel
 import com.hms.hidraw.data.model.DrawModel
 import com.hms.hidraw.data.model.UserDetailModel
 import javax.inject.Inject
@@ -30,7 +31,7 @@ class ProfileRepositoryImpl @Inject constructor(
         return profileRemoteDataSource.getUser()
     }
 
-    override suspend fun getAttendedDrawsOfUser(): ResultWrapper<List<DrawModel>> {
+    override suspend fun getAttendedDrawsOfUser(): ResultWrapper<List<AttendedDrawModel>> {
         return profileRemoteDataSource.getAttendedDrawsOfUser()
     }
 

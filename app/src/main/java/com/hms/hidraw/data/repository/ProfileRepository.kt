@@ -17,6 +17,7 @@
 package com.hms.hidraw.data.repository
 
 import com.hms.hidraw.data.ResultWrapper
+import com.hms.hidraw.data.model.AttendedDrawModel
 import com.hms.hidraw.data.model.DrawModel
 import com.hms.hidraw.data.model.UserDetailModel
 
@@ -24,7 +25,7 @@ interface ProfileRepository {
 
     suspend fun getUser(): ResultWrapper<UserDetailModel>
 
-    suspend fun getAttendedDrawsOfUser(): ResultWrapper<List<DrawModel>>
+    suspend fun getAttendedDrawsOfUser(): ResultWrapper<List<AttendedDrawModel>>
 
     suspend fun getCreatedDrawsByUser(): ResultWrapper<List<DrawModel>>
 }

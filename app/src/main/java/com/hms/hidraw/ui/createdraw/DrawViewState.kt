@@ -49,6 +49,6 @@ data class DrawViewState(
         )
 
         private const val DEFAULT_DRAW_BACKGROUND_URI_STRING =
-            "android.resource://com.huawei.hidraw/drawable/bg_default_draw"
+            "android.resource://com.hms.hidraw/drawable/bg_default_draw"
     }
 }

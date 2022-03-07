@@ -28,7 +28,7 @@ interface DrawService {
     suspend fun getActiveDraws(): BaseResponseModel<List<DrawModel>>
 
     @GET(GET_ATTENDED_DRAW_REQUEST_PATH)
-    suspend fun getAttendedDrawsOfUser(): BaseResponseModel<List<DrawModel>>
+    suspend fun getAttendedDrawsOfUser(): BaseResponseModel<List<AttendedDrawModel>>
 
     @GET(GET_CREATED_DRAW_REQUEST_PATH)
     suspend fun getCreatedDrawsByUser(): BaseResponseModel<List<DrawModel>>

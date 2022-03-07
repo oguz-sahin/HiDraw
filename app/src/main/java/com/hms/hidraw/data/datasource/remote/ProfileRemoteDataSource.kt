@@ -17,6 +17,7 @@
 package com.hms.hidraw.data.datasource.remote
 
 import com.hms.hidraw.data.ResultWrapper
+import com.hms.hidraw.data.model.AttendedDrawModel
 import com.hms.hidraw.data.model.DrawModel
 import com.hms.hidraw.data.model.UserDetailModel
 import com.hms.hidraw.network.service.DrawService
@@ -32,7 +33,7 @@ class ProfileRemoteDataSource @Inject constructor(
         return safeApiCall { userService.getUser() }
     }
 
-    suspend fun getAttendedDrawsOfUser(): ResultWrapper<List<DrawModel>> {
+    suspend fun getAttendedDrawsOfUser(): ResultWrapper<List<AttendedDrawModel>> {
         return safeApiCall { drawService.getAttendedDrawsOfUser() }
     }
 
