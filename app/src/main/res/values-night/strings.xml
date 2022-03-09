@@ -14,8 +14,12 @@
   ~ limitations under the License.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">HiDraw</string>
+
+    // Material Date Picker positive bug button
+    (https://github.com/material-components/material-components-android/issues/1346#issuecomment-842195737)
+    <string name="mtrl_picker_confirm" tools:override="true">OK</string>
 
     //Exception Messages
     <string name="no_connection_exception_message">Check Your Internet Connection.</string>
