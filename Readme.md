@@ -19,28 +19,28 @@ The draw result computation according to comments in forum link.
 
 <td>
 
-![Explore Landmarks](art/screenshoots/attend_draw.jpg)</td>
+![HiDraw](art/screenshoots/attend_draw.jpg)</td>
 
 <td>
 
-![Explore Landmarks](art/screenshoots/my_attended.jpg)</td></tr>
+![HiDraw](art/screenshoots/my_attended.jpg)</td></tr>
 
 <tr>
 <td>
 
-![Explore Landmarks](art/screenshoots/my_created.jpg)</td>
+![HiDraw](art/screenshoots/my_created.jpg)</td>
 
 <td>
 
-![Explore Landmarks](art/screenshoots/edit_draw_screenrecord.jpg)</td>
+![HiDraw](art/screenshoots/edit_draw_screenrecord.jpg)</td>
 
 <td>
 
-![Explore Landmarks](art/screenshoots/result_draw.jpg)</td>
+![HiDraw](art/screenshoots/result_draw.jpg)</td>
 
 <td>
 
-![Explore Landmarks](art/screenshoots/push_notification.jpg)</td></tr>
+![HiDraw](art/screenshoots/push_notification.jpg)</td></tr>
 
 </table>
 
@@ -52,7 +52,6 @@ The draw result computation according to comments in forum link.
 -----
 Thanks to [Account Kit](https://developer.huawei.com/consumer/en/hms/huawei-accountkit/) you
 can sign in the app. Also, you can see the profile information in profile page.
-
 
 https://user-images.githubusercontent.com/51949389/157419256-a08fce50-65eb-4d62-8e82-e3c0c1e4de14.mp4
 
@@ -122,7 +121,7 @@ This app uses [***MVVM (Model View View-Model)***](https://developer.android.com
 ✅ [Airbnb Lottie](https://github.com/airbnb/lottie-android)     \
 ✅ [Glide](https://github.com/bumptech/glide)     \
 ✅ [SDP](https://github.com/intuit/sdp) \
-✅ [HBRecorder](https://github.com/HBiSoft/HBRecorder) \
+✅ [HBRecorder](https://github.com/HBiSoft/HBRecorder)
 
 ## Support
 Thanks Berkhan Güngör, Dogan Burak Ziyanak, Cengiz Toru for their supports during preparing this repo.
