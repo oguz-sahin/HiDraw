@@ -53,7 +53,8 @@ The draw result computation according to comments in forum link.
 Thanks to [Account Kit](https://developer.huawei.com/consumer/en/hms/huawei-accountkit/) you
 can sign in the app. Also, you can see the profile information in profile page.
 
-https://user-images.githubusercontent.com/51949389/157418486-44187369-4b6b-445a-9fd0-57d40eaf7d51.mp4
+
+https://user-images.githubusercontent.com/51949389/157419256-a08fce50-65eb-4d62-8e82-e3c0c1e4de14.mp4
 
 
 ### Create Draw
