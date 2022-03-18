@@ -20,7 +20,7 @@ import com.hms.hidraw.core.BaseViewState
 import com.hms.hidraw.data.model.DrawModel
 
 data class DrawListViewState(
-    private val drawList: List<DrawModel>
+    val drawList: List<DrawModel>
 ) : BaseViewState() {
 
     private val isDrawListEmpty = drawList.isEmpty()

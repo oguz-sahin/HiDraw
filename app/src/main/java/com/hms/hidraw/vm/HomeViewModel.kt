@@ -16,11 +16,13 @@
 
 package com.hms.hidraw.vm
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hms.hidraw.core.BaseViewModel
-import com.hms.hidraw.data.model.DrawModel
 import com.hms.hidraw.data.repository.AuthRepository
 import com.hms.hidraw.data.repository.HomeRepository
+import com.hms.hidraw.ui.profile.DrawListViewState
+import com.hms.hidraw.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -32,8 +34,12 @@ class HomeViewModel @Inject constructor(
 
     private var navigatedDrawId: Long? = null
 
-    private val _activeDraws = MutableLiveData<List<DrawModel>>()
-    val activeDraws get() = _activeDraws
+    private val _drawListViewState = MutableLiveData<DrawListViewState>()
+    val drawListViewState: LiveData<DrawListViewState> get() = _drawListViewState
+
+
+    private val _isRefreshingStatus = MutableLiveData<Event<Boolean>>()
+    val isRefreshingStatus: LiveData<Event<Boolean>> get() = _isRefreshingStatus
 
     fun setDrawIdIfHasDeeplink(drawId: Int?) {
         navigatedDrawId = drawId?.toLong()
@@ -47,7 +53,11 @@ class HomeViewModel @Inject constructor(
         makeNetworkRequest(
             requestFunc = { homeRepository.getActiveDraws() },
             onSuccess = { draws ->
-                _activeDraws.postValue(draws)
+                _drawListViewState.postValue(DrawListViewState(draws))
+                setEvent(_isRefreshingStatus, false)
+            },
+            onError = {
+                setEvent(_isRefreshingStatus, false)
             }
         )
     }

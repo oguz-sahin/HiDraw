@@ -16,4 +16,4 @@
 
 package com.hms.hidraw.util.ext
 
-fun String.getServerUrl() = "http://159.138.96.192:8081/uploads/$this"
+fun String.getServerUrl() = "http://114.119.173.218:443/uploads/$this"

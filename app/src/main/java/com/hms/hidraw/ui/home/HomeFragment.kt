@@ -20,12 +20,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.hms.hidraw.core.BaseFragmentWithViewModel
-import com.hms.hidraw.data.model.DrawModel
 import com.hms.hidraw.databinding.FragmentHomeBinding
 import com.hms.hidraw.ui.adapter.draw.DrawAdapter
 import com.hms.hidraw.ui.home.HomeFragmentDirections.actionHomeFragmentToDrawDetailFragment
 import com.hms.hidraw.ui.home.HomeFragmentDirections.actionHomeFragmentToSignInFragment
+import com.hms.hidraw.ui.profile.DrawListViewState
+import com.hms.hidraw.util.ext.executeWithAction
 import com.hms.hidraw.util.ext.observe
+import com.hms.hidraw.util.ext.observeEvent
 import com.hms.hidraw.vm.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -40,7 +42,14 @@ class HomeFragment : BaseFragmentWithViewModel<FragmentHomeBinding, HomeViewMode
     lateinit var drawAdapter: DrawAdapter
 
     override fun initObserver() {
-        observe(viewModel.activeDraws, ::loadDraws)
+        observe(viewModel.drawListViewState, ::setDrawListViewState)
+        observeEvent(viewModel.isRefreshingStatus, ::setRefreshStatus)
+    }
+
+    override fun initListener() {
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.getActiveDraws()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -74,8 +83,15 @@ class HomeFragment : BaseFragmentWithViewModel<FragmentHomeBinding, HomeViewMode
         navigateDirections(action)
     }
 
-    private fun loadDraws(drawResponse: List<DrawModel>) {
-        drawAdapter.draws = drawResponse
+    private fun setDrawListViewState(drawListViewState: DrawListViewState) {
+        binding.executeWithAction {
+            viewState = drawListViewState
+        }
+        drawAdapter.draws = drawListViewState.drawList
+    }
+
+    private fun setRefreshStatus(isRefresh: Boolean) {
+        binding.swipeRefresh.isRefreshing = isRefresh
     }
 
     companion object {
