@@ -19,28 +19,28 @@ The draw result computation according to comments in forum link.
 
 <td>
 
-![Explore Landmarks](art/screenshoots/attend_draw.jpg)</td>
+![HiDraw](art/screenshoots/attend_draw.jpg)</td>
 
 <td>
 
-![Explore Landmarks](art/screenshoots/my_attended.jpg)</td></tr>
+![HiDraw](art/screenshoots/my_attended.jpg)</td></tr>
 
 <tr>
 <td>
 
-![Explore Landmarks](art/screenshoots/my_created.jpg)</td>
+![HiDraw](art/screenshoots/my_created.jpg)</td>
 
 <td>
 
-![Explore Landmarks](art/screenshoots/edit_draw_screenrecord.jpg)</td>
+![HiDraw](art/screenshoots/edit_draw_screenrecord.jpg)</td>
 
 <td>
 
-![Explore Landmarks](art/screenshoots/result_draw.jpg)</td>
+![HiDraw](art/screenshoots/result_draw.jpg)</td>
 
 <td>
 
-![Explore Landmarks](art/screenshoots/push_notification.jpg)</td></tr>
+![HiDraw](art/screenshoots/push_notification.jpg)</td></tr>
 
 </table>
 
@@ -53,7 +53,8 @@ The draw result computation according to comments in forum link.
 Thanks to [Account Kit](https://developer.huawei.com/consumer/en/hms/huawei-accountkit/) you
 can sign in the app. Also, you can see the profile information in profile page.
 
-https://user-images.githubusercontent.com/28221219/153600393-b7cbb8b4-f5c8-4d14-8fa0-85dd13ccd1b0.mp4
+https://user-images.githubusercontent.com/51949389/157419256-a08fce50-65eb-4d62-8e82-e3c0c1e4de14.mp4
+
 
 ### Create Draw
 
@@ -61,31 +62,39 @@ https://user-images.githubusercontent.com/28221219/153600393-b7cbb8b4-f5c8-4d14-
 You can create a draw from [Huawei Developer Forum](https://forums.developer.huawei.com/forumPortal/en/home) link. You have to fill necessary fields and click create.
 Url field should be link from huawei developer topic. Winners is selected this topic comments.  
 
-https://user-images.githubusercontent.com/28221219/153600544-e226e046-7bc1-441c-ac73-7b4bc4f7efe1.mp4
+https://user-images.githubusercontent.com/51949389/157418525-d498ff51-3e30-4f19-bcec-c77b5969add9.mp4
+
 
 ### Attend Draw
 
 -----
 You can attend draw that is created by other users and you can obtain the chance to win.
 
-<img src='/art/03LandmarkDetail/LandmarkDetail.png' width='358'>
+https://user-images.githubusercontent.com/51949389/157418593-480cbc5e-0c6e-455b-931a-307fdf0a0e27.mp4
+
 
 ### Profile Management
 
 -----
 You can see the attended and created draw with profile page and manage the draw state.
 
+https://user-images.githubusercontent.com/51949389/157418633-13727454-62e3-483e-8e22-4b164deb5c9b.mp4
+
 
 ### Edit Draw
 
 -----
-Thanks to [HUAWEI VIDEO EDITOR KIT](https://developer.huawei.com/consumer/en/hms/huawei-video-editor/) You can edit the screen record and share with participants.
+Thanks to [HUAWEI VIDEO EDITOR KIT](https://developer.huawei.com/consumer/en/hms/huawei-video-editor/) you can edit the screen record and share with participants.
+
+https://user-images.githubusercontent.com/51949389/157418674-55888c4e-7746-4262-8a8a-a2a39f8e1743.mp4
 
 
 ### Learn Winners
 
 -----
-Thanks to [HUAWEI PUSH KIT](https://developer.huawei.com/consumer/en/hms/huawei-pushkit/) You can learn the winners that is already your attended draws with notification.
+Thanks to [HUAWEI PUSH KIT](https://developer.huawei.com/consumer/en/hms/huawei-pushkit/) you can learn the winners that is already your attended draws with notification.
+
+https://user-images.githubusercontent.com/51949389/157418699-e2ad2d50-b2d9-4e10-9c94-a583274fd2d0.mp4
 
 
 
@@ -112,10 +121,10 @@ This app uses [***MVVM (Model View View-Model)***](https://developer.android.com
 ✅ [Airbnb Lottie](https://github.com/airbnb/lottie-android)     \
 ✅ [Glide](https://github.com/bumptech/glide)     \
 ✅ [SDP](https://github.com/intuit/sdp) \
-✅ [HBRecorder](https://github.com/HBiSoft/HBRecorder) \
+✅ [HBRecorder](https://github.com/HBiSoft/HBRecorder)
 
 ## Support
-Thanks Berkhan Güngör, Dogan Burak Ziyanak, Cengiz Torufor their supports during preparing this repo.
+Thanks Berkhan Güngör, Dogan Burak Ziyanak, Cengiz Toru for their supports during preparing this repo.
 
 ## Licence
 
