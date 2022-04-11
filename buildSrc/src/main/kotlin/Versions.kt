@@ -16,6 +16,7 @@
 
 object Versions {
 
+    const val circular_imageview= "3.1.0"
     const val desugaring = "1.0.9"
     const val gradle = "7.0.3"
     const val kotlin = "1.5.20"
@@ -35,7 +36,7 @@ object Versions {
     const val retrofit = "2.9.0"
     const val okhttp_interceptor = "5.0.0-alpha.2"
     const val nav = "2.4.0"
-    const val glide = "4.12.0"
+    const val glide = "4.7.1"
     const val hilt = "2.38.1"
     const val coroutines = "1.3.8"
     const val coroutines_android = "1.5.2"

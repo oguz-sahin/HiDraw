@@ -20,5 +20,6 @@ data class WinnerModel(
     val userId: String?,
     val name: String?,
     val mail: String?,
-    val forumName: String?
+    val forumName: String?,
+    val forumPhotoUrl: String?
 )

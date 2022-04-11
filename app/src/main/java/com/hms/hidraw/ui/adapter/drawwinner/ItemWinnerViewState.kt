@@ -32,5 +32,7 @@ data class ItemWinnerViewState(
         else -> ""
     }
 
+    fun getPhotoUrl() = winnerModel.forumPhotoUrl
+
     fun getRank(context: Context) = context.getString(R.string.rank, rank)
 }

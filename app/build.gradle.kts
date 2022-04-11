@@ -142,4 +142,5 @@ dependencies {
     implementation(Libs.push_kit)
     implementation(Libs.hbRecorder)
     implementation(Libs.video_editor_kit)
+    implementation(Libs.circular_imageview)
 }

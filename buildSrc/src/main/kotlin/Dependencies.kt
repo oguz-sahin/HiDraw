@@ -16,6 +16,7 @@
 
 object Libs {
 
+    const val circular_imageview = "de.hdodenhof:circleimageview:${Versions.circular_imageview}"
     const val desugaring = "com.android.tools:desugar_jdk_libs:${Versions.desugaring}"
     const val core = "androidx.core:core-ktx:${Versions.core}"
     const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"

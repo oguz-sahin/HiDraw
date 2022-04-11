@@ -52,6 +52,6 @@ class App : Application() {
     private fun setVideoEditorKitApiKey() {
         val apiKey = AGConnectServicesConfig.fromContext(this)
             .getString(DrawResultFragment.AGC_API_KEY)
-        MediaApplication.getInstance().setApiKey(apiKey)
+         MediaApplication.getInstance().setApiKey(apiKey)
     }
 }
